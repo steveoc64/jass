@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="application-name" content="Jass Perfumes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="description" content="Perfume is magic. It’s mystery. We recreate the smell of a flower. Of wood. Of grass. We capture the essence of life. Liquefy it. We store memories. We make dreams,” he told her once. “What we do is a wonder, an art, and we have a responsibility to do it well">
+    <link rel="manifest" href="jass.webmanifest">
+    <!-- <link rel="icon" href="img/favicon.png" type="image/x-icon"> -->
+    <link rel="icon" sizes="16x16 32x32 48x48 200x200" href="img/jass.png">
+    <title>Jass Perfumes</title>
+
+    <!-- Fonts -->
+    <!-- <script src="https://use.fontawesome.com/ee68b0acc1.js"></script> -->
+    <link rel="stylesheet" href="fonts/Roboto.css">   
+    <!-- <link rel="stylesheet" href="css/font-awesome.css">    -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Domine|Playfair+Display:700i" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet">
+
+
+    <!-- Styles -->
+    <!-- <link type="text/css" rel="stylesheet" href="css/treeview.css"/> -->
+    <link type="text/css" rel="stylesheet" href="css/jass.css"/>
+
+    <!-- Load c3.css -->
+    <!-- <link href="css/c3.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="css/c3.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Load d3.js and c3.js -->
+    <!-- <script src="js/d3.min.js" charset="utf-8"></script> -->
+    <!-- <script src="js/c3.js"></script> -->
+    <!-- <script src="js/c3.min.js"></script> -->
+  </head>
+
+<body id="app" onresize="resize()">
+  <!-- basic layout in here -->
+  <div class="wrapper">
+
+    <nav class="navigation">
+        <a class="navigation-title" href="#" id="homepage">
+          <img src="img/jass.jpg" class="hidden jass-logo-top">
+        </a>
+
+        <button class="button button-header float-right no-print" id="hamburger">
+          <span></span>
+        </button>
+    </nav>
+  </div>
+
+  <div class="header-pad"></div>
+  <main>
+    <div class="jass-logo-box">
+      <img src="img/jass.jpg" class="jass-logo fade-in fast">
+    </div>
+    <div class="choice-box fade-in one">
+      <nav class="choices">
+        <ul class="choice">
+          <li class="choice-item">Fragrance</li>
+          <li class="choice-item">Shop</li>
+          <li class="choice-item">Discover</li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+
+
+  <div id="faq" class="documentext hidden"></div>
+  <div id="slidemenu-div"></div>
+
+<div class="md-overlay"></div>
+  
+</body>
+<script type="text/javascript">
+  document.querySelector("#hamburger")
+  .addEventListener( "click", function() {
+    this.classList.toggle( "active" );
+  });
+</script>
+<script src="jass.js"></script>
+</html>

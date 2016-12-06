@@ -1,0 +1,16 @@
+#hamburger span, #hamburger span:before, #hamburger span:after {
+  transition: all 500ms ease-in-out;
+  background: black
+}
+#hamburger.active span {
+  background-color: transparent;
+}
+#hamburger.active span:before, #hamburger.active span:after {
+  top: 0;
+}
+#hamburger.active span:before {
+  transform: rotate(45deg);
+}
+#hamburger.active span:after {
+  transform: rotate(-45deg);
+}
