@@ -12,13 +12,7 @@ import (
 type MessageFunction func(string, *shared.NetData, *router.Context)
 
 type GlobalSessionData struct {
-	Version              string
-	Username             string
-	Passwd               string
-	Rank                 int
 	UserID               int
-	CanAllocate          bool
-	Channel              int
 	Router               *router.Router
 	AppFn                map[string]router.Handler
 	Subscriptions        map[string]MessageFunction
@@ -133,6 +127,8 @@ func (s *GlobalSessionData) Resize() {
 }
 
 func main() {
+	dom.GetWindow().ScrollTo(0, 0)
+
 	initRouter()
 	formulate.Templates(GetTemplate)
 	initForms()
@@ -152,4 +148,8 @@ func main() {
 	js.Global.Set("resize", func() {
 		Session.Resize()
 	})
+
+	fadeIn()
+
+	cyclePhotos()
 }

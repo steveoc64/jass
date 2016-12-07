@@ -1,6 +1,8 @@
 #hamburger span, #hamburger span:before, #hamburger span:after {
   transition: all 500ms ease-in-out;
-  background: black
+  background: black;
+  width: 5rem;
+  height: 4rem;
 }
 #hamburger.active span {
   background-color: transparent;

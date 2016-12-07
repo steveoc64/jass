@@ -18,9 +18,10 @@
     <!-- Fonts -->
     <!-- <script src="https://use.fontawesome.com/ee68b0acc1.js"></script> -->
     <link rel="stylesheet" href="fonts/Roboto.css">   
+    <link rel="stylesheet" href="fonts/Raleway.css">   
     <!-- <link rel="stylesheet" href="css/font-awesome.css">    -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Domine|Playfair+Display:700i" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet"> -->
 
 
     <!-- Styles -->
@@ -42,13 +43,14 @@
   <div class="wrapper">
 
     <nav class="navigation">
-        <a class="navigation-title" href="#" id="homepage">
-          <img src="img/jass.jpg" class="hidden jass-logo-top">
-        </a>
+        <!-- <a class="navigation-title" href="#" id="homepage"> -->
+          <img src="img/jass-invert.jpg" class="jass-logo-top hidden">
+        <!-- </a> -->
 
-        <button class="button button-header float-right no-print" id="hamburger">
+        <!-- <button class="button button-header float-right no-print" id="hamburger"> -->
+        <div class="float-right" id="hamburger">
           <span></span>
-        </button>
+        </div>
     </nav>
   </div>
 
@@ -57,14 +59,75 @@
     <div class="jass-logo-box">
       <img src="img/jass.jpg" class="jass-logo fade-in fast">
     </div>
-    <div class="choice-box fade-in one">
+    <div class="jass-splash-box">
+      <img src="img/null.jpg" class="jass-splash-image hidden">
+    </div>
+    <div class="choice-box">
       <nav class="choices">
         <ul class="choice">
-          <li class="choice-item">Fragrance</li>
-          <li class="choice-item">Shop</li>
-          <li class="choice-item">Discover</li>
+          <li class="choice-item fade-in one">Fragrance</li>
+          <li class="choice-item fade-in two">Shop</li>
+          <li class="choice-item fade-in three">Discover</li>
         </ul>
       </nav>
+    </div>
+
+    <div class="other-pages">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
     </div>
   </main>
 
@@ -75,11 +138,5 @@
 <div class="md-overlay"></div>
   
 </body>
-<script type="text/javascript">
-  document.querySelector("#hamburger")
-  .addEventListener( "click", function() {
-    this.classList.toggle( "active" );
-  });
-</script>
 <script src="jass.js"></script>
 </html>

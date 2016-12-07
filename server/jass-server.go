@@ -11,7 +11,6 @@ import (
 	"github.com/labstack/echo/middleware"
 	_ "github.com/lib/pq"
 	"github.com/steveoc64/godev/db"
-	"github.com/steveoc64/godev/echocors"
 	runner "gopkg.in/mgutz/dat.v1/sqlx-runner"
 )
 
@@ -59,7 +58,7 @@ func main() {
 	e.Use(middleware.Recover())
 	e.Use(middleware.Gzip())
 	e.Debug = Config.Debug
-	echocors.Init(e, Config.Debug)
+	// echocors.Init(e, Config.Debug)
 
 	// Connect to the database
 	DB = db.Init(Config.DataSourceName)
