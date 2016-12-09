@@ -44,32 +44,34 @@
 
     <nav class="navigation">
         <!-- <a class="navigation-title" href="#" id="homepage"> -->
-          <img src="img/jass-invert.jpg" class="jass-logo-top hidden">
+          <img src="img/jass-invert-cropped.jpg" class="jass-logo-top hidden">
         <!-- </a> -->
+        <a class="hamburger hamburger--arrow hidden" aria-label="Menu" aria-controls="navigation">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </a>
 
         <!-- <button class="button button-header float-right no-print" id="hamburger"> -->
-        <div class="float-right" id="hamburger">
+<!--         <div class="float-right" id="hamburger">
           <span></span>
-        </div>
+  -->       </div>
     </nav>
   </div>
 
   <div class="header-pad"></div>
   <main>
-    <div class="jass-logo-box">
-      <img src="img/jass.jpg" class="jass-logo fade-in fast">
+    <div class="jass-logo-container">
+      <div class="jass-logo-box fade-in fast"></div>
     </div>
-    <div class="jass-splash-box">
-      <img src="img/null.jpg" class="jass-splash-image hidden">
-    </div>
-    <div class="choice-box">
-      <nav class="choices">
-        <ul class="choice">
-          <li class="choice-item fade-in one">Fragrance</li>
-          <li class="choice-item fade-in two">Shop</li>
-          <li class="choice-item fade-in three">Discover</li>
-        </ul>
-      </nav>
+
+    <div class="jass-splash-box hidden"></div>
+    <div class="jass-model-cycle hidden"></div>
+    <div class="jass-sale-items hidden"></div>
+
+    <div class="option-bar hidden">
+      <button id="option1" class="button button-outline option-button fade-in two">Shop</button>
+      <button id="option2" class="button button-outline option-button fade-in three">Discover</button>
     </div>
 
     <div class="other-pages">

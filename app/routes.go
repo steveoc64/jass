@@ -64,7 +64,6 @@ func enableRoutes(Rank int) {
 
 func initRouter() {
 	print("initRouter")
-	Session.Subscriptions = make(map[string]MessageFunction)
 	Session.Context = nil
 	Session.ID = make(map[string]int)
 
@@ -72,6 +71,10 @@ func initRouter() {
 	Session.Router = router.New()
 	Session.Router.ShouldInterceptLinks = true
 	Session.Router.HandleFunc("/", defaultRoute)
+	Session.Router.HandleFunc("/fragrance", fragrance)
+	Session.Router.HandleFunc("/shop", shop)
+	Session.Router.HandleFunc("/merchandise", merchandise)
+	Session.Router.HandleFunc("/discover", discover)
 	Session.Router.Start()
 
 }

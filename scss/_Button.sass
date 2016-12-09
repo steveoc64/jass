@@ -37,10 +37,11 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit']
-	background-color: $color-primary
-	border: .1rem solid $color-primary
+	background-color: $jass-dark-blue
+	border: .1rem solid $jass-dark-blue
 	border-radius: .4rem
-	color: $color-initial
+	color: $jass-green-solid
+	color: $jass-dark-blue
 	cursor: pointer
 	display: inline-block
 	font-size: 1.1rem
@@ -61,10 +62,8 @@ input[type='submit']
 
 	&:hover,
 	&:focus
-		background-color: $color-secondary
-		border-color: $color-secondary
-		background-color: $dark-mud
-		border-color: $dark-mud
+		border-color: $jass-dark-blue
+		background-color: $jass-shade-pink
 		color: $color-initial
 		outline: 0
 
@@ -79,16 +78,15 @@ input[type='submit']
 			border-color: $color-primary
 
 	&.button-outline
-		color: $color-primary
+		color: $jass-dark-blue
 		background-color: transparent
+		border-color: $jass-dark-blue
 
 		&:hover,
 		&:focus
-			color: $color-secondary
-			color: $dark-mud
-			background-color: $light2-mud
-			border-color: $color-secondary
-			border-color: $mud-grey
+			color: black
+			background-color: $jass-skin
+			border-color: $jass-dark-blue
 
 		&.button-disabled,
 		&[disabled]

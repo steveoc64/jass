@@ -24,7 +24,7 @@ func _cyclePhotos() {
 		print("spin cycle")
 		theModel++
 		if theModel > numModels {
-			theModel = 1
+			theModel = 0
 		}
 		js.Class().SetString("jass-splash-image fade-out fast")
 		time.Sleep(100 * time.Millisecond)

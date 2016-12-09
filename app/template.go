@@ -26,6 +26,10 @@ func init() {
 		panic(err)
 	}
 
+	if err = g.AddTemplate("sale-items", `Here is a big list of all the things`); err != nil {
+		panic(err)
+	}
+
 	GetTemplate = g.GetTemplate
 	GetPartial = g.GetPartial
 	GetLayout = g.GetLayout
