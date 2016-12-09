@@ -1,11 +1,11 @@
 package main
 
 import (
+	"./shared"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"./shared"
 )
 
 func getItems() bool {
@@ -19,7 +19,7 @@ func getItems() bool {
 		fmt.Println("did not get acceptable status code: %v body: %q", resp.Status, string(body))
 		return false
 	}
-	items := []shared.Item
+	items := []shared.Item{}
 	err = json.NewDecoder(resp.Body).Decode(&items)
 	if err != nil {
 		return false
