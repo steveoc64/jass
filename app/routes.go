@@ -3,8 +3,6 @@ package main
 import (
 	"errors"
 
-	"./shared"
-
 	"github.com/go-humble/router"
 	"honnef.co/go/js/dom"
 )
@@ -43,25 +41,6 @@ func loadTemplate(template string, selector string, data interface{}) error {
 	return nil
 }
 
-func enableRoutes(Rank int) {
-
-	// print("enabling routes for rank", Rank, "session", Session, Session.GetRank())
-
-	Session.AppFn = map[string]router.Handler{
-		"mainpage": mainPage,
-	}
-	w := dom.GetWindow()
-	doc := w.Document()
-
-	if el := doc.QuerySelector("#show-image"); el != nil {
-		// print("Adding click event for photo view")
-		el.AddEventListener("click", false, func(evt dom.Event) {
-			el.Class().Remove("md-show")
-			// doc.QuerySelector("#show-image").Class().Remove("md-show")
-		})
-	}
-}
-
 func initRouter() {
 	print("initRouter")
 	Session.Context = nil
@@ -81,24 +60,4 @@ func initRouter() {
 
 func defaultRoute(context *router.Context) {
 	print("Nav to Default Route")
-}
-
-func loadRoutes(Rank int, Routes []shared.UserRoute) {
-
-	if Session.Router != nil {
-		Session.Router.Stop()
-	}
-	Session.Router = router.New()
-	Session.Router.ShouldInterceptLinks = true
-	enableRoutes(Rank)
-
-	for _, v := range Routes {
-		// print("processing ", v.Route, v)
-		if f, ok := Session.AppFn[v.Func]; ok {
-			// print("found a function called", v.Func)
-			// print("adding route", v.Route, v.Func)
-			Session.Router.HandleFunc(v.Route, f)
-		}
-	}
-	Session.Router.Start()
 }

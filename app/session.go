@@ -1,6 +1,7 @@
 package main
 
 import (
+	"./shared"
 	"github.com/go-humble/router"
 	"honnef.co/go/js/dom"
 )
@@ -19,6 +20,7 @@ type GlobalSessionData struct {
 	LastWidth            int
 	Orientation          string
 	wasSubmobile         bool
+	Items                []shared.Item
 }
 
 var Session GlobalSessionData

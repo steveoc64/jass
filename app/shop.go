@@ -1,9 +1,10 @@
 package main
 
 import (
+	"time"
+
 	"github.com/go-humble/router"
 	"honnef.co/go/js/dom"
-	"time"
 )
 
 func shop(context *router.Context) {
@@ -17,7 +18,7 @@ func shop(context *router.Context) {
 
 		sTemplate := MustGetTemplate("sale-items")
 		print("sTemplate", sTemplate)
-		sTemplate.ExecuteEl(doc.QuerySelector(".jass-sale-items"), nil)
+		sTemplate.ExecuteEl(doc.QuerySelector(".jass-sale-items"), &Session.Items)
 
 		doc.QuerySelector(".jass-sale-items").Class().SetString("jass-sale-items fade-in fast")
 		if !doc.QuerySelector(".jass-splash-box").Class().Contains("hidden") {

@@ -26,7 +26,17 @@ func init() {
 		panic(err)
 	}
 
-	if err = g.AddTemplate("sale-items", `Here is a big list of all the things`); err != nil {
+	if err = g.AddTemplate("sale-items", `Here is a big list of all the things
+
+<ul>
+	
+{{range $key,$value := .}}
+<li><img src="{{$value.Image}}"> {{$value.Name}} {{$value.Descr}} {{$value.SKU}} {{$value.Price}}</li>
+
+
+{{end}}
+
+</ul>`); err != nil {
 		panic(err)
 	}
 

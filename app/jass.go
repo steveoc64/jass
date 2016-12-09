@@ -28,6 +28,7 @@ func main() {
 	})
 
 	fadeIn()
+	getItems()
 
 	// cyclePhotos()
 }

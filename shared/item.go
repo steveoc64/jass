@@ -5,4 +5,5 @@ type Item struct {
 	Price float64
 	Name  string
 	Descr string
+	Image string
 }

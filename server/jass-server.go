@@ -27,6 +27,7 @@ func main() {
 	e = echo.New()
 	e.Debug = true
 	e.Static("/", "public")
+	e.GET("/api/items", getItems)
 
 	// Start up the mail server
 	if Config.MailServer == "" {

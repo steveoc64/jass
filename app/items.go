@@ -9,7 +9,8 @@ import (
 )
 
 func getItems() bool {
-	req, err := http.NewRequest("POST", "/api/items", nil)
+	print("getting items")
+	req, err := http.NewRequest("GET", "/api/items", nil)
 	// req.Header.Add("Authorization", "Basic "+basicAuth(u, p))
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -18,9 +19,12 @@ func getItems() bool {
 		body, _ := ioutil.ReadAll(resp.Body)
 		fmt.Println("did not get acceptable status code: %v body: %q", resp.Status, string(body))
 		return false
+	} else {
+		print("yay - got items")
 	}
-	items := []shared.Item{}
-	err = json.NewDecoder(resp.Body).Decode(&items)
+	Session.Items = []shared.Item{}
+	err = json.NewDecoder(resp.Body).Decode(&Session.Items)
+	print("items appears to be", Session.Items)
 	if err != nil {
 		return false
 	}
