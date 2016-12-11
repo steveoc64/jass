@@ -40,6 +40,23 @@ func init() {
 		panic(err)
 	}
 
+	if err = g.AddTemplate("slidemenu", `<!-- Slide in menu once logged in  -->
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="slidemenu">
+  <a href="#" id="menu-shop"><i class="fa fa-facebook"></i> Shop</a>
+  <a href="#" id="menu-discover"><i class="fa fa-facebook"></i> Discover</a>
+  <a href="#" id="menu-merchandise"><i class="fa fa-facebook"></i> Merchandise</a>
+  <a href="#" id="menu-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+  <a href="#" id="menu-instagram"><i class="fa fa-facebook"></i> Instagram</a>
+  <a href="#" id="menu-blog"><i class="fa fa-facebook"></i> Blog</a>
+  <a href="#" id="menu-contact"><i class="fa fa-facebook"></i> Contact</a>
+</nav> 
+
+
+
+`); err != nil {
+		panic(err)
+	}
+
 	GetTemplate = g.GetTemplate
 	GetPartial = g.GetPartial
 	GetLayout = g.GetLayout

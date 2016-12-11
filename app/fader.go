@@ -8,6 +8,7 @@ import (
 
 var elements = []string{
 	"jass-logo-box",
+	"jass-logo-container",
 	"jass-splash-box",
 	"jass-sale-items",
 	"jass-model-cycle",

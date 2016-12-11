@@ -11,5 +11,6 @@ func shop(context *router.Context) {
 
 	sTemplate := MustGetTemplate("sale-items")
 	sTemplate.ExecuteEl(doc.QuerySelector(".jass-sale-items"), &Session.Items)
+	doc.QuerySelector(".jass-option-bar").Class().Add("hidden")
 	fadeIn("jass-sale-items")
 }

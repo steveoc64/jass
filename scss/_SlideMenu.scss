@@ -2,42 +2,38 @@
 /*http://tympanus.net/codrops/2013/04/17/slide-and-push-menus/*/
 
 .cbp-spmenu {
-	// background: #47a3da;
-	// background: rgba(20,100,60,0.8);
-	// background-color: rgba(0,48,0,0.2);
-	// background-color: rgba(68, 70, 45, 0.8);
-	background-color: rgb(115, 117, 89);
+	background-color: white;
 	position: fixed;
 	overflow: scroll;
-	// transition: 0.9s all;
+	transition: 0.9s all;
 }
 
 .cbp-spmenu h3 {
 	// color: #afdefa;
-	color: #ddc;
+	color: black;
 	font-size: 2.2rem;
 	padding: 20px;
 	margin: 0;
 	font-weight: 300;
-	// background: #0d77b6;
-	background-color: rgba(68, 70, 45, 1);
+	font-family: 'JosefinSans', sans-serif;
+	background-color: white;
 }
 
 .cbp-spmenu a {
 	display: block;
-	color: #fff;
-	font-size: 1.8rem;
-	font-weight: 300;
+	color: black;
+	font-size: 2.8rem;
+	font-weight: 900;
+	font-family: 'JosefinSans', sans-serif;
 }
 
 .cbp-spmenu a:hover {
-	// background: #258ecd;
-	background-color: rgba(68, 70, 45, 0.9);
+	background-color: $jass-shade;
 }
 
 .cbp-spmenu a:active {
-	background: #afdefa;
-	color: #47a3da;
+	background: $jass-green;
+	color: black;
 }
 
 /* Orientation-dependent styles for the content of the menu */
@@ -45,7 +41,7 @@
 .cbp-spmenu-vertical {
 	width: 240px;
 	height: 100%;
-	top: 0;
+	top: 5rem;
 	z-index: 1000;
 }
 

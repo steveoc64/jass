@@ -41,4 +41,7 @@ func main() {
 	doc.QuerySelector("#option2").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/discover")
 	})
+
+	initBurger()
+
 }
