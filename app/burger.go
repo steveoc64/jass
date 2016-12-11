@@ -46,4 +46,5 @@ func openBurger() {
 	sc.Add("cbp-spmenu-open")
 	sc.Remove("fade-out")
 	sc.Add("fade-in")
+	sc.Add("fast")
 }

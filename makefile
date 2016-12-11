@@ -67,13 +67,14 @@ cert:
 	openssl genrsa -out cert/jass.key 2048
 	openssl req -new -x509 -key cert/jass.key -out cert/jass.pem -days 3650
 
-dist/assets.log: assets/*.html assets/img/*  assets/fonts/* assets/*.webmanifest assets/img/models/* assets/img/items/*
+dist/assets.log: assets/*.html assets/img/*  assets/fonts/* assets/*.webmanifest assets/img/models/* assets/img/items/* assets/css/*
 	@mplayer -quiet ../audio/attention.oga 2> /dev/null > /dev/null
 	@mkdir -p dist/public/css dist/public/font dist/public/js
 	cp assets/*.html dist/public
 	cp assets/*.webmanifest dist/public
 	cp -R assets/img dist/public
 	cp -R assets/fonts dist/public
+	cp -R assets/css dist/public
 	@date > dist/assets.log
 
 appjs: dist/public/jass.js
