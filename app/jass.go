@@ -6,7 +6,10 @@ import (
 )
 
 func main() {
-	dom.GetWindow().ScrollTo(0, 0)
+	w := dom.GetWindow()
+	doc := w.Document()
+
+	w.ScrollTo(0, 0)
 
 	initRouter()
 	initForms()
@@ -27,8 +30,15 @@ func main() {
 		Session.Resize()
 	})
 
-	fadeIn()
 	getItems()
+	doSplashPage()
+	showTopMenu()
 
-	// cyclePhotos()
+	doc.QuerySelector("#option1").AddEventListener("click", false, func(evt dom.Event) {
+		Session.Navigate("/shop")
+	})
+
+	doc.QuerySelector("#option2").AddEventListener("click", false, func(evt dom.Event) {
+		Session.Navigate("/discover")
+	})
 }
