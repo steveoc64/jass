@@ -72,6 +72,9 @@ func main() {
 	InitPaypal(Config, e)
 
 	errRun := e.Start(fmt.Sprintf(":%d", Config.WebPort))
-	println("World of Jass Server All Done", errRun.Error())
+	if errRun != nil {
+		println("Error: ", errRun.Error())
+	}
+	println("World of Jass Server All Done")
 
 }
