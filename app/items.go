@@ -1,11 +1,12 @@
 package main
 
 import (
-	"./shared"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	"./shared"
 )
 
 func getItems() bool {
