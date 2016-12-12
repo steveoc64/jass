@@ -43,9 +43,12 @@
 	background-position: bottom
 	width: 99vw
 	max-width: 99vw
-	height: calc(100vh - 5rem - 3rem)
+	height: calc(100vh - 5rem)
 	background-size: contain
 	border-bottom: .3rem solid $jass-green
+	@media (orientation: portrait)
+		background-size: cover
+
 
 .green-base
 	border-bottom: .3rem solid $jass-green

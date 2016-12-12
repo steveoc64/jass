@@ -34,12 +34,20 @@ func main() {
 	doSplashPage()
 	showTopMenu()
 
-	doc.QuerySelector("#option1").AddEventListener("click", false, func(evt dom.Event) {
+	doc.QuerySelector("#option-shop").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/shop")
 	})
 
-	doc.QuerySelector("#option2").AddEventListener("click", false, func(evt dom.Event) {
+	doc.QuerySelector("#option-discover").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/discover")
+	})
+
+	doc.QuerySelector("#option-merchandise").AddEventListener("click", false, func(evt dom.Event) {
+		Session.Navigate("/merchandise")
+	})
+
+	doc.QuerySelector("#option-stories").AddEventListener("click", false, func(evt dom.Event) {
+		Session.Navigate("/stories")
 	})
 
 	initBurger()

@@ -3,7 +3,8 @@
 
 .cbp-spmenu {
 	// background-color: white;
-	background-color: rgba(223, 247, 219, 0.9);
+	// background-color: rgba(223, 247, 219, 0.9);
+	background-color: #f2fbf5;
 	position: fixed;
 	overflow: scroll;
 	transition: 0.9s all;
@@ -67,6 +68,9 @@
 	border-bottom: 1px solid rgba(44,22,00,.3);
 	padding: .6em;
 	border-left: 1px solid $jass-green;
+	@media (max-height: 420px) {
+		padding: .3rem;
+	}
 }
 
 .cbp-spmenu-horizontal {
