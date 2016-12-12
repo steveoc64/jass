@@ -13,6 +13,7 @@ func main() {
 
 	initRouter()
 	initForms()
+	initBurger()
 
 	Session.LastWidth = dom.GetWindow().InnerWidth()
 	Session.Orientation = "Landscape"
@@ -49,7 +50,4 @@ func main() {
 	doc.QuerySelector("#option-stories").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/stories")
 	})
-
-	initBurger()
-
 }

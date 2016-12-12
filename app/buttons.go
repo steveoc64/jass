@@ -24,6 +24,7 @@ func noButtons() {
 	doc := w.Document()
 
 	doc.QuerySelector(".jass-option-bar").Class().SetString("jass-option-bar hidden")
+	closeBurger()
 }
 
 func showButtons(btns ...string) {
@@ -43,5 +44,6 @@ func showButtons(btns ...string) {
 	} else {
 		doc.QuerySelector(".jass-option-bar").Class().SetString("jass-option-bar hidden")
 	}
+	closeBurger()
 
 }
