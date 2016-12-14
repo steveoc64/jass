@@ -9,8 +9,14 @@ func shop(context *router.Context) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	sTemplate := MustGetTemplate("sale-items")
-	sTemplate.ExecuteEl(doc.QuerySelector(".jass-sale-items"), &Session.Items)
-	fadeIn("jass-sale-items")
+	// Load up em templates
+	sTemplate := MustGetTemplate("sales-bar")
+	sTemplate.ExecuteEl(doc.QuerySelector(".jass-sales-bar"), &Session)
+
+	sTemplate = MustGetTemplate("sale-items")
+	sTemplate.ExecuteEl(doc.QuerySelector(".jass-sale-items"), &Session)
+
+	// fade in multiple elements
+	fadeIn("jass-sales-bar", "jass-sale-items")
 	noButtons()
 }

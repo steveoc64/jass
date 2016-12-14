@@ -5,10 +5,10 @@ import (
 )
 
 var allBtns = []string{
-	"stories",
+	// "stories",
 	"shop",
 	"discover",
-	"merchandise",
+	// "merchandise",
 }
 
 var btnSpeeds = []string{

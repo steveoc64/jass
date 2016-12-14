@@ -15,10 +15,18 @@ func getItems(c echo.Context) error {
 
 	items = append(items, shared.Item{
 		SKU:   "abc123",
-		Price: 123.45,
+		Price: 57.66,
 		Name:  "200ml Jass Perfume",
-		Descr: "A bottle of the worlds finest perfume",
-		Image: "img/items/jass_product.jpg",
+		Descr: "A bottle of the worlds finest perfume, for him",
+		Image: "img/items/jass_his-mono.png",
+	})
+
+	items = append(items, shared.Item{
+		SKU:   "def456",
+		Price: 53.66,
+		Name:  "200ml Jass Perfume",
+		Descr: "A bottle of the worlds finest perfume, for her",
+		Image: "img/items/jass_hers.png",
 	})
 
 	fmt.Printf("the items array is %v\n", items)

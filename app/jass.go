@@ -43,11 +43,11 @@ func main() {
 		Session.Navigate("/discover")
 	})
 
-	doc.QuerySelector("#option-merchandise").AddEventListener("click", false, func(evt dom.Event) {
-		Session.Navigate("/merchandise")
-	})
+	// doc.QuerySelector("#option-merchandise").AddEventListener("click", false, func(evt dom.Event) {
+	// 	Session.Navigate("/merchandise")
+	// })
 
-	doc.QuerySelector("#option-stories").AddEventListener("click", false, func(evt dom.Event) {
-		Session.Navigate("/stories")
-	})
+	// doc.QuerySelector("#option-stories").AddEventListener("click", false, func(evt dom.Event) {
+	// 	Session.Navigate("/stories")
+	// })
 }

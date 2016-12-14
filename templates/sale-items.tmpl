@@ -1,9 +1,15 @@
-Here is a big list of all the things
-
 <ul>
 	
-{{range $key,$value := .}}
-<li><img src="{{$value.Image}}"> {{$value.Name}} {{$value.Descr}} {{$value.SKU}} {{$value.Price}}</li>
+{{range $key,$value := .Items}}
+<li>
+	<img src="{{$value.Image}}">
+	<p>
+	{{$value.Name}}<br>
+	{{$value.Descr}}<br>
+	{{$value.SKU}}<br>
+	{{$value.Price}}
+	</p>
+</li>
 
 
 {{end}}

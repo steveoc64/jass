@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"./shared"
 	"github.com/go-humble/router"
 	"honnef.co/go/js/dom"
@@ -21,6 +23,28 @@ type GlobalSessionData struct {
 	Orientation          string
 	wasSubmobile         bool
 	Items                []shared.Item
+	CartTotal            float64
+	CartItemCount        int
+	CartItems            []shared.Item
+}
+
+func (s *GlobalSessionData) GetCartTotal() string {
+	// print("cart total", s.CartTotal)
+	if s.CartTotal == 0.0 {
+		return ""
+	}
+	return fmt.Sprintf("$ %.0f", s.CartTotal)
+}
+
+func (s *GlobalSessionData) GetCartItemCount() string {
+	switch s.CartItemCount {
+	case 0:
+		return ""
+	case 1:
+		return "1 Item"
+	default:
+		return fmt.Sprintf("%d Items", s.CartItemCount)
+	}
 }
 
 var Session GlobalSessionData

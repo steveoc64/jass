@@ -3,7 +3,7 @@ package main
 import "honnef.co/go/js/dom"
 
 func doSplashPage() {
-	fadeIn("jass-splash-box")
+	fadeIn("jass-splash-box", "jass-options")
 	showButtons("shop", "discover")
 }
 

@@ -26,12 +26,18 @@ func init() {
 		panic(err)
 	}
 
-	if err = g.AddTemplate("sale-items", `Here is a big list of all the things
-
-<ul>
+	if err = g.AddTemplate("sale-items", `<ul>
 	
-{{range $key,$value := .}}
-<li><img src="{{$value.Image}}"> {{$value.Name}} {{$value.Descr}} {{$value.SKU}} {{$value.Price}}</li>
+{{range $key,$value := .Items}}
+<li>
+	<img src="{{$value.Image}}">
+	<p>
+	{{$value.Name}}<br>
+	{{$value.Descr}}<br>
+	{{$value.SKU}}<br>
+	{{$value.Price}}
+	</p>
+</li>
 
 
 {{end}}
@@ -40,8 +46,24 @@ func init() {
 		panic(err)
 	}
 
+	if err = g.AddTemplate("sales-bar", `<span class="sales-cart"><i class="fa fa-2x fa-shopping-cart"></i></span>
+<span class="sales-account"><i class="fa fa-2x fa-user"></i></span>
+<span class="sales-qty">{{.GetCartItemCount}}</span>
+<span class="sales-amount">{{.GetCartTotal}}</span>
+<span class="sales-checkout hidden"><i class="fa fa-2x fa-credit-card"></i></span>`); err != nil {
+		panic(err)
+	}
+
 	if err = g.AddTemplate("slidemenu", `<!-- Slide in menu once logged in  -->
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="slidemenu">
+  <a href="#" id="menu-fragrances"><i class="fa fa-snowflake-o"></i> Fragrances</a>
+  <a href="#" id="menu-skincare"><i class="fa fa-hand-lizard-o"></i> Skincare</a>
+  <a href="#" id="menu-merchandise"><i class="fa fa-gift"></i> Merchandise</a>
+  <a href="#" id="menu-ambassadors"><i class="fa fa-user-circle-o"></i> Ambassadors</a>
+  <a href="#" id="menu-blog"><i class="fa fa-hashtag"></i> Blog</a>
+  <a href="#" id="menu-about"><i class="fa fa-question-circle-o"></i> About</a>
+  <a href="#" id="menu-contact"><i class="fa fa-at"></i> Contact</a>
+<!-- 
   <a href="#" id="menu-shop"><i class="fa fa-shopping-bag"></i> Shop</a>
   <a href="#" id="menu-discover"><i class="fa fa-snowflake-o"></i> Discover</a>
   <a href="#" id="menu-merchandise"><i class="fa fa-gift"></i> Merchandise</a>
@@ -50,7 +72,8 @@ func init() {
   <a href="#" id="menu-instagram"><i class="fa fa-instagram"></i> Instagram</a>
   <a href="#" id="menu-blog"><i class="fa fa-hashtag"></i> Blog</a>
   <a href="#" id="menu-contact"><i class="fa fa-at"></i> Contact</a>
-</nav> 
+
+ --></nav> 
 
 
 

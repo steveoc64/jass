@@ -27,10 +27,10 @@
 	color: black;
 	// color: white;
 	font-size: 2.8rem;
-	// font-weight: 900;
-	font-weight: 300;
+	font-weight: 900;
+	// font-weight: 300;
 	font-family: 'JosefinSans', sans-serif;
-	font-family: 'Raleway', sans-serif;
+	// font-family: 'Raleway', sans-serif;
 	// background-color: rgba(127, 241, 100, 0.07);
 	// background-color: rgba(241, 249, 239, 0.91);
 	background-color: rgb(247, 247, 247);
@@ -82,6 +82,18 @@
 // background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
 // background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+// background: -moz-linear-gradient(-45deg,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+// background: -webkit-linear-gradient(-45deg,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); Chrome10-25,Safari5.1-6
+// background: linear-gradient(135deg,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fcfff4+0,e9e9ce+100;Wax+3D+%232 */
+background: rgb(252,255,244); /* Old browsers */
+background: -moz-linear-gradient(-45deg,  rgba(252,255,244,1) 0%, rgba(233,233,206,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  rgba(252,255,244,1) 0%,rgba(233,233,206,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  rgba(252,255,244,1) 0%,rgba(233,233,206,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#e9e9ce',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 
 }
@@ -118,7 +130,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 /* Orientation-dependent styles for the content of the menu */
 
 .cbp-spmenu-vertical {
-	width: 240px;
+	// width: 240px;
 	height: 100%;
 	top: 5rem;
 	z-index: 1000;
