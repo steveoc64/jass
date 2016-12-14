@@ -1,0 +1,18 @@
+#!/bin/sh
+
+. /etc/rc.subr
+
+name=jass
+rcvar=jass_enable
+
+start_cmd="${name}_start"
+stop_cmd=":"
+
+load_rc_config $name
+: ${jass_enable:=no}
+: ${jass_msg="Nothing started."}￼
+
+jass_start()
+{
+	echo "Starting JASS Server"
+}
