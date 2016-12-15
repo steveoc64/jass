@@ -15,16 +15,27 @@ func initBurger() {
 	sc := doc.QuerySelector("#slidemenu").Class()
 	sc.Remove("cbp-spmenu-open")
 
+	doc.QuerySelector("body").AddEventListener("click", false, func(evt dom.Event) {
+		hc := doc.QuerySelector(".hamburger").Class()
+		sc := doc.QuerySelector("#slidemenu").Class()
+		if sc.Contains("cbp-spmenu-open") {
+			sc.Remove("cbp-spmenu-open")
+			hc.Remove("is-active")
+		}
+	})
+
 	doc.QuerySelector(".hamburger").AddEventListener("click", false, func(evt dom.Event) {
+		evt.PreventDefault()
 		c := doc.QuerySelector(".hamburger").Class()
 		c.Toggle("is-active")
 		if c.Contains("is-active") {
-			print("burger time")
+			// print("burger time")
 			openBurger()
 		} else {
-			print("no more burger")
+			// print("no more burger")
 			closeBurger()
 		}
+		evt.StopPropagation()
 	})
 
 	// doc.QuerySelector("#menu-shop").AddEventListener("click", false, func(evt dom.Event) {
