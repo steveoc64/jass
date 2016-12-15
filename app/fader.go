@@ -8,10 +8,12 @@ import (
 
 var elements = []string{
 	"jass-logo-box",
+	// "jass-logo-small-box",
 	"jass-logo-container",
 	"jass-splash-box",
 	"jass-sale-items",
 	"jass-sales-bar",
+	"jass-cart",
 	"jass-model-cycle",
 	"jass-options",
 }
@@ -41,11 +43,14 @@ func fadeIn(element ...string) {
 	gotSome := false
 	for _, v := range elements {
 		if !showThis(v) {
-			c := doc.QuerySelector("." + v).Class()
-			if !c.Contains("hidden") {
-				gotSome = true
-				// print("fade out element ", k, v)
-				c.SetString(v + " fade-out fast")
+			el := doc.QuerySelector("." + v)
+			if el != nil {
+				c := el.Class()
+				if !c.Contains("hidden") {
+					gotSome = true
+					// print("fade out element ", k, v)
+					c.SetString(v + " fade-out fast")
+				}
 			}
 		}
 	}
@@ -57,7 +62,10 @@ func fadeIn(element ...string) {
 			for _, v := range elements {
 				if !showThis(v) {
 					// print("hiding", v)
-					doc.QuerySelector("." + v).Class().Add("hidden")
+					el := doc.QuerySelector("." + v)
+					if el != nil {
+						el.Class().Add("hidden")
+					}
 				}
 			}
 		}()

@@ -20,6 +20,16 @@ func init() {
 	var err error
 	g := temple.NewGroup()
 
+	if err = g.AddTemplate("cart", `{{range $key,$value := .CartItems}}
+<div>
+	{{$value}}
+</div>
+{{end}}
+
+<div class="jass-logo-small-box"> </div>`); err != nil {
+		panic(err)
+	}
+
 	if err = g.AddTemplate("main-page", `<div class="container">
 </div>
 `); err != nil {

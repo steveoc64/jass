@@ -15,5 +15,6 @@ func getItems() {
 
 	doc.QuerySelector(".jass-sales-bar").AddEventListener("click", false, func(evt dom.Event) {
 		print("clicksed on sales bar")
+		Session.Navigate("/cart")
 	})
 }

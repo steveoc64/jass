@@ -49,3 +49,16 @@ func shop(context *router.Context) {
 		})
 	}
 }
+
+func cart(context *router.Context) {
+	w := dom.GetWindow()
+	doc := w.Document()
+
+	print("shopping cart")
+
+	// Load up em templates
+	sTemplate := MustGetTemplate("cart")
+	sTemplate.ExecuteEl(doc.QuerySelector(".jass-cart"), &Session)
+	fadeIn("jass-cart")
+	noButtons()
+}
