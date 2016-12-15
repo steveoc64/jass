@@ -26,31 +26,33 @@ func init() {
 		panic(err)
 	}
 
-	if err = g.AddTemplate("sale-items", `<ul>
-	
-{{range $key,$value := .Items}}
-<li>
-	<img src="{{$value.Image}}">
-	<p>
-	{{$value.Name}}<br>
-	{{$value.Descr}}<br>
-	{{$value.SKU}}<br>
-	{{$value.Price}}
-	</p>
-</li>
-
-
-{{end}}
-
-</ul>`); err != nil {
+	if err = g.AddTemplate("sale-items", `{{range $key,$value := .Items}}
+<div class="jass-sale-item" data-sku="{{$value.SKU}}">
+	<div class="sale-image">
+		<img src="{{$value.Image}}">
+	</div>
+	<div class="sale-name">
+		{{$value.Name}}
+	</div>
+	<div class="sale-descr">
+		{{$value.Descr}}
+	</div>
+	<div class="sale-price">
+		<span class="add-me"><i class="fa fa-2x fa-cart-plus"></i></span>
+		<span class="the-price">
+		$ {{$value.Price}}
+		</span>
+	</div>
+</div>
+{{end}}`); err != nil {
 		panic(err)
 	}
 
-	if err = g.AddTemplate("sales-bar", `<span class="sales-cart"><i class="fa fa-2x fa-shopping-cart"></i></span>
-<span class="sales-account"><i class="fa fa-2x fa-user"></i></span>
+	if err = g.AddTemplate("sales-bar", `<span class="sales-account"><i class="fa fa-2x fa-user"></i></span>
 <span class="sales-qty">{{.GetCartItemCount}}</span>
 <span class="sales-amount">{{.GetCartTotal}}</span>
-<span class="sales-checkout hidden"><i class="fa fa-2x fa-credit-card"></i></span>`); err != nil {
+<span class="sales-cart"><i class="fa fa-2x fa-shopping-cart"></i></span>
+<!-- <span class="sales-checkout hidden"><i class="fa fa-2x fa-credit-card"></i></span> -->`); err != nil {
 		panic(err)
 	}
 

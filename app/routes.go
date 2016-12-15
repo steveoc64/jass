@@ -42,7 +42,7 @@ func loadTemplate(template string, selector string, data interface{}) error {
 }
 
 func initRouter() {
-	print("initRouter")
+	// print("initRouter")
 	Session.Context = nil
 	Session.ID = make(map[string]int)
 
@@ -61,5 +61,5 @@ func initRouter() {
 }
 
 func defaultRoute(context *router.Context) {
-	print("Nav to Default Route")
+	// print("Nav to Default Route")
 }

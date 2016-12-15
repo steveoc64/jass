@@ -47,6 +47,35 @@ func (s *GlobalSessionData) GetCartItemCount() string {
 	}
 }
 
+func (s *GlobalSessionData) AddToCart(item *shared.Item) {
+	if item != nil {
+		// check if already in cart, if so, increment qty
+		for i, v := range s.CartItems {
+			if v.SKU == item.SKU {
+				s.CartItemCount++
+				s.CartTotal += item.Price
+				s.CartItems[i].Qty++
+				return
+			}
+		}
+
+		// not in the cart yet
+		s.CartItemCount++
+		s.CartTotal += item.Price
+		s.CartItems = append(s.CartItems, *item)
+	}
+
+}
+
+func (s *GlobalSessionData) FindItem(sku string) *shared.Item {
+	for i, v := range s.Items {
+		if sku == v.SKU {
+			return &s.Items[i]
+		}
+	}
+	return nil
+}
+
 var Session GlobalSessionData
 
 func (s *GlobalSessionData) Navigate(url string) {

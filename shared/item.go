@@ -6,4 +6,5 @@ type Item struct {
 	Name  string
 	Descr string
 	Image string
+	Qty   int
 }

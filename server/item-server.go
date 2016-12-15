@@ -18,7 +18,7 @@ func getItems(c echo.Context) error {
 		Price: 57.66,
 		Name:  "200ml Jass Perfume",
 		Descr: "A bottle of the worlds finest perfume, for him",
-		Image: "img/items/jass_his-mono.png",
+		Image: "img/items/jass_his-color.png",
 	})
 
 	items = append(items, shared.Item{
@@ -26,7 +26,7 @@ func getItems(c echo.Context) error {
 		Price: 53.66,
 		Name:  "200ml Jass Perfume",
 		Descr: "A bottle of the worlds finest perfume, for her",
-		Image: "img/items/jass_hers.png",
+		Image: "img/items/jass_hers-color.png",
 	})
 
 	fmt.Printf("the items array is %v\n", items)
