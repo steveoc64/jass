@@ -23,6 +23,7 @@ type GlobalSessionData struct {
 	Orientation          string
 	wasSubmobile         bool
 	Items                []shared.Item
+	Blogs                []shared.Blog
 	CartTotal            float64
 	CartItemCount        int
 	CartItems            []shared.Item

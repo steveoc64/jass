@@ -30,6 +30,23 @@ func init() {
 		panic(err)
 	}
 
+	if err = g.AddTemplate("jass-blog", `{{range $key,$value := .Blogs}}
+<div class="blog-item" name="blog-{{$value.ID}}">
+	<ul>
+		<li>{{$value.Image}}</li>
+		<li>{{$value.Name}}</li>
+		<li>{{$value.Title}}</li>
+		<li>{{$value.Date}}</li>
+		<li>{{$value.Content}}</li>
+	</ul>
+	{{$value}}
+</div>
+{{end}}
+
+<div class="jass-logo-small-box"> </div>`); err != nil {
+		panic(err)
+	}
+
 	if err = g.AddTemplate("main-page", `<div class="container">
 </div>
 `); err != nil {

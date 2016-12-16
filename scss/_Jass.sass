@@ -19,7 +19,7 @@
 
 .jass-logo-small-box
 	align-items: center
-	position: absolute
+	position: fixed
 	height: 8rem
 	bottom: 1rem
 	width: 100%
@@ -121,7 +121,9 @@
 
 // individual item
 .jass-sale-item
-	flex: 1 0 40rem
+	flex-grow: 1
+	flex-shrink: 0
+	flex-basis: 100%
 	border: 1px solid black 
 	border-radius: .3rem
 	font-family: 'Raleway', sans-serif
@@ -131,6 +133,11 @@
 	flex-wrap: none
 	flex-direction: column
 	height: calc(100vh - 11rem)
+	@media screen and (min-width: 640px)
+		flex-basis: 50%
+	@media screen and (min-width: 992px )
+		flex-basis: 32%
+
 	&:hover
 		border: 1px solid $jass-green-solid
 		.sale-image
@@ -321,3 +328,47 @@
 	&:hover
 		color: $jass-green-solid
 		transition: .3s
+
+
+.jass-blog
+	display: flex 
+	flex-wrap: wrap
+	flex-direction: row
+	justify-content: space-around
+	background-color: white
+	padding: 2rem
+
+	.blog-header
+
+	.blog-item
+		border: 1px solid white
+		background-color: rgba(0, 0, 0, 0.87);
+		background-size: cover
+		flex: 1 0 auto
+		flex-basis: 100%
+		height: 600px
+		margin: 1rem
+		border: 1px solid black
+		border-radius: 3px
+		transition: all .3s ease-in
+		-webkit-filter: saturate(0.3) opacity(.8) drop-shadow(8px 8px 10px $jass-shade)
+		filter: saturate(0.3) opacity(.8) drop-shadow(8px 8px 10px $jass-shade)
+		&:hover
+			-webkit-filter: saturate(1.2) opacity(1) drop-shadow(8px 8px 10px $jass-shade)
+			filter: saturate(1.2) opacity(1) drop-shadow(8px 8px 10px $jass-shade)
+		@media screen and (min-width: 560px)
+			flex-basis: 50%
+		@media screen and (min-width: 992px )
+			flex-basis: 32%
+
+		.blog-item-date
+		.blog-item-title
+
+.blog-article
+	.blog-article-header
+	.blog-article-title
+	.blog-article-date
+	.blog-article-name
+	.blog-article-content
+	.blog-article-hashtags
+	.blog-article-shares

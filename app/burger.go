@@ -61,10 +61,11 @@ func initBurger() {
 	// 	evt.PreventDefault()
 	// 	w.Open("https://www.instagram.com/worldofjass", "instagram", "")
 	// })
-	// doc.QuerySelector("#menu-blog").AddEventListener("click", false, func(evt dom.Event) {
-	// 	evt.PreventDefault()
-	// 	w.Open("https://theworldofjass.wordpress.com", "blog", "")
-	// })
+	doc.QuerySelector("#menu-blog").AddEventListener("click", false, func(evt dom.Event) {
+		evt.PreventDefault()
+		Session.Navigate("/blog")
+		// w.Open("https://theworldofjass.wordpress.com", "blog", "")
+	})
 	// doc.QuerySelector("#menu-twitter").AddEventListener("click", false, func(evt dom.Event) {
 	// 	evt.PreventDefault()
 	// 	w.Open("https://twitter.com/worldofjass", "twitter", "")

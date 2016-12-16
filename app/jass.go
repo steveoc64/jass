@@ -32,6 +32,7 @@ func main() {
 	})
 
 	getItems()
+	getBlogs()
 	doSplashPage()
 	showTopMenu()
 
@@ -50,4 +51,9 @@ func main() {
 	// doc.QuerySelector("#option-stories").AddEventListener("click", false, func(evt dom.Event) {
 	// 	Session.Navigate("/stories")
 	// })
+
+	// map options to routes
+	doc.QuerySelector("[name=opt-b]").AddEventListener("click", false, func(evt dom.Event) {
+		Session.Navigate("/blog")
+	})
 }

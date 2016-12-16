@@ -28,6 +28,7 @@ func main() {
 	e.Debug = true
 	e.Static("/", "public")
 	e.GET("/api/items", getItems)
+	e.GET("/api/blog", getBlogs)
 
 	// Start up the mail server
 	if Config.MailServer == "" {

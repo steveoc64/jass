@@ -56,6 +56,7 @@ func initRouter() {
 	Session.Router.HandleFunc("/discover", discover)
 	Session.Router.HandleFunc("/contact", contact)
 	Session.Router.HandleFunc("/cart", cart)
+	Session.Router.HandleFunc("/blog", blog)
 	Session.Router.Start()
 
 }
