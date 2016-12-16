@@ -19,7 +19,7 @@ func blog(context *router.Context) {
 	// set background images on each blog-item
 	for _, v := range Session.Blogs {
 		print("looking for blog-", v.ID)
-		i := doc.QuerySelector(fmt.Sprintf(`[name="blog-%d"]`, v.ID))
+		i := doc.QuerySelector(fmt.Sprintf(`[name="blog-image-%d"]`, v.ID))
 		if i != nil {
 			bgi := fmt.Sprintf("url(/img/models/%s)", v.Image)
 			print("got it, set BGI", bgi)

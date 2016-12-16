@@ -32,14 +32,8 @@ func init() {
 
 	if err = g.AddTemplate("jass-blog", `{{range $key,$value := .Blogs}}
 <div class="blog-item" name="blog-{{$value.ID}}">
-	<ul>
-		<li>{{$value.Image}}</li>
-		<li>{{$value.Name}}</li>
-		<li>{{$value.Title}}</li>
-		<li>{{$value.Date}}</li>
-		<li>{{$value.Content}}</li>
-	</ul>
-	{{$value}}
+	<div class="blog-item-pic" name="blog-image-{{$value.ID}}"></div>
+	<div class="blog-item-title">{{$value.Title}}</div>
 </div>
 {{end}}
 

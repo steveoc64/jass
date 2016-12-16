@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"../shared"
@@ -9,7 +8,7 @@ import (
 )
 
 func getItems(c echo.Context) error {
-	println("getting items")
+	// println("getting items")
 
 	items := []shared.Item{}
 
@@ -29,7 +28,7 @@ func getItems(c echo.Context) error {
 		Image: "img/items/jass_hers-color.png",
 	})
 
-	fmt.Printf("the items array is %v\n", items)
+	// fmt.Printf("the items array is %v\n", items)
 
 	return c.JSON(http.StatusOK, items)
 

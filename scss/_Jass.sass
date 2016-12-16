@@ -11,7 +11,7 @@
 	height: 100%
 	width: 100%
 	// background-image: url("../img/jass.jpg")
-	background-image: url("../img/flower.png")
+	background-image: url("../img/flower4c.png")
 	background-repeat: no-repeat
 	background-position-x: center
 	background-position-y: center
@@ -24,7 +24,7 @@
 	bottom: 1rem
 	width: 100%
 	// background-image: url("../img/jass.jpg")
-	background-image: url("../img/flower.png")
+	background-image: url("../img/flower4c.png")
 	background-repeat: no-repeat
 	background-position-x: center
 	background-position-y: center
@@ -127,16 +127,15 @@
 	border: 1px solid black 
 	border-radius: .3rem
 	font-family: 'Raleway', sans-serif
-	max-width: 30vw
 	padding: 1rem
 	display: flex
 	flex-wrap: none
 	flex-direction: column
 	height: calc(100vh - 11rem)
-	@media screen and (min-width: 640px)
-		flex-basis: 50%
+	@media screen and (min-width: 560px)
+		flex-basis: calc((100vw - 8rem)/2)
 	@media screen and (min-width: 992px )
-		flex-basis: 32%
+		flex-basis: calc((100vw - 10rem)/3)
 
 	&:hover
 		border: 1px solid $jass-green-solid
@@ -341,6 +340,7 @@
 	.blog-header
 
 	.blog-item
+		position: relative
 		border: 1px solid white
 		background-color: rgba(0, 0, 0, 0.87);
 		background-size: cover
@@ -350,19 +350,50 @@
 		margin: 1rem
 		border: 1px solid black
 		border-radius: 3px
-		transition: all .3s ease-in
-		-webkit-filter: saturate(0.3) opacity(.8) drop-shadow(8px 8px 10px $jass-shade)
-		filter: saturate(0.3) opacity(.8) drop-shadow(8px 8px 10px $jass-shade)
-		&:hover
-			-webkit-filter: saturate(1.2) opacity(1) drop-shadow(8px 8px 10px $jass-shade)
-			filter: saturate(1.2) opacity(1) drop-shadow(8px 8px 10px $jass-shade)
 		@media screen and (min-width: 560px)
-			flex-basis: 50%
+			flex-basis: calc((100vw - 8rem)/2)
 		@media screen and (min-width: 992px )
-			flex-basis: 32%
+			flex-basis: calc((100vw - 12rem)/3)
+		&:hover
+			.blog-item-pic
+				-webkit-filter: saturate(1.2) opacity(1) blur(0)
+				filter: saturate(1.2) opacity(1) blur(0)
+				-moz-transform: scale(1.05)
+				-webkit-transform: scale(1.05)
+				transform: scale(1.05)
+			.blog-item-title
+				opacity: 1
 
-		.blog-item-date
-		.blog-item-title
+
+.blog-item-pic
+	transition: all .3s ease-in
+	-webkit-filter: saturate(0.3) opacity(.8) blur(1px)
+	filter: saturate(0.3) opacity(.8) blur(1px)
+	background-size: cover
+	height: 100%
+	width: 100%
+	max-width: 100%
+
+.blog-item-title
+	transition: all 1s ease-in
+	position: absolute
+	padding-left: 2rem
+	bottom: 2rem
+	right: 2rem
+	left: 0rem
+	opacity: 0
+	font-family: 'JosefinSans',sans-serif
+	font-size: 4rem
+	color: white
+	font-weight: 900
+	width: 100%
+	background-color: rgba(0,0,0,.6)
+	@media screen and (orientation: portrait)
+		top: 1rem
+		bottom: inherit
+	@media screen and (max-width: 760px)
+		top: 2rem
+		bottom: inherit
 
 .blog-article
 	.blog-article-header

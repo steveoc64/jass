@@ -127,3 +127,4 @@ tail:
 
 data:
 	pg_dump jass > database/jass.sql
+	scp -P 446 database/jass.sql freebsd@bsd:/home/freebsd/jass.sql

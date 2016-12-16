@@ -9,7 +9,6 @@ import (
 )
 
 func getBlogs(c echo.Context) error {
-	println("getting items")
 
 	blogs := []shared.Blog{}
 
