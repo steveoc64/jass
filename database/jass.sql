@@ -336,6 +336,8 @@ SELECT pg_catalog.setval('blog_id_seq', 9, true);
 --
 
 COPY item (id, sku, price, name, descr, image, volume_ml, weight_g, shipping_volume_ml, shipping_weight_g) FROM stdin;
+2	JASS002	57.25	Chamelee	Chamelee - TBD	jass_hers-color.png	100	100	150	250
+1	JASS001	58.25	Metaphor	Metaphor - ATBD	jass_his-color.png	100	100	150	250
 \.
 
 
@@ -343,7 +345,7 @@ COPY item (id, sku, price, name, descr, image, volume_ml, weight_g, shipping_vol
 -- Name: item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: steve
 --
 
-SELECT pg_catalog.setval('item_id_seq', 1, false);
+SELECT pg_catalog.setval('item_id_seq', 2, true);
 
 
 --

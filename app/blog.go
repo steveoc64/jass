@@ -16,9 +16,9 @@ func blog(context *router.Context) {
 	sTemplate := MustGetTemplate("jass-blog")
 	sTemplate.ExecuteEl(doc.QuerySelector(".jass-blog"), &Session)
 
-	// set background images on each blog-item
 	for _, v := range Session.Blogs {
-		print("looking for blog-", v.ID)
+		// set background images on each blog-item
+		// print("looking for blog-", v.ID)
 		i := doc.QuerySelector(fmt.Sprintf(`[name="blog-image-%d"]`, v.ID))
 		if i != nil {
 			bgi := fmt.Sprintf("url(/img/models/%s)", v.Image)
@@ -27,6 +27,9 @@ func blog(context *router.Context) {
 		} else {
 			print("not found")
 		}
+
+		// and add a clickhandler onto the titlebar
+
 	}
 
 	fadeIn("jass-blog")

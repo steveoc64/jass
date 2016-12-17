@@ -1,7 +1,7 @@
 {{range $key,$value := .Items}}
 <div class="jass-sale-item" data-sku="{{$value.SKU}}">
 	<div class="sale-image">
-		<img src="{{$value.Image}}">
+		<img src="/img/items/{{$value.Image}}">
 	</div>
 	<div class="sale-name">
 		{{$value.Name}}

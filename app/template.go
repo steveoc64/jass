@@ -33,7 +33,9 @@ func init() {
 	if err = g.AddTemplate("jass-blog", `{{range $key,$value := .Blogs}}
 <div class="blog-item" name="blog-{{$value.ID}}">
 	<div class="blog-item-pic" name="blog-image-{{$value.ID}}"></div>
-	<div class="blog-item-title">{{$value.Name}}</div>
+	<div class="blog-item-title" name="blog-title-{{$value.ID}}" data-id="{{$value.ID}}">
+		{{$value.Name}}
+	</div>
 </div>
 {{end}}
 
@@ -50,7 +52,7 @@ func init() {
 	if err = g.AddTemplate("sale-items", `{{range $key,$value := .Items}}
 <div class="jass-sale-item" data-sku="{{$value.SKU}}">
 	<div class="sale-image">
-		<img src="{{$value.Image}}">
+		<img src="/img/items/{{$value.Image}}">
 	</div>
 	<div class="sale-name">
 		{{$value.Name}}
