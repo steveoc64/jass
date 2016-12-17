@@ -121,7 +121,7 @@ install: sv
 	./terminate
 	cp -Rv dist/* ~/jass/current
 	cd ~/jass/current && nohup ./jass-server &
-	tail -f -n 200 ~/logs/jass/* ~/jass/current/nohup.out
+	# tail -f -n 200 ~/logs/jass/* ~/jass/current/nohup.out
 
 tail:
 	tail -f -n 200 ~/logs/jass/* ~/jass/current/nohup.out
