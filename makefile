@@ -130,9 +130,16 @@ data:
 	pg_dump jass > database/jass.sql
 	scp -P 446 database/jass.sql freebsd@bsd:/home/freebsd/jass.sql
 
-loaddata:
+loadtempdata:
 	./terminate
 	dropdb jass
 	createdb jass
 	psql jass < ~/jass.sql
+	cd ~/jass/current && nohup ./jass-server &
+
+loaddata:
+	./terminate
+	dropdb jass
+	createdb jass
+	psql jass < database/jass.sql
 
