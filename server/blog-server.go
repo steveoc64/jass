@@ -12,7 +12,7 @@ func getBlogs(c echo.Context) error {
 
 	blogs := []shared.Blog{}
 
-	err := DB.SQL(`select * from blog order by id desc`).QueryStructs(&blogs)
+	err := DB.SQL(`select * from blog order by post_order desc`).QueryStructs(&blogs)
 	if err != nil {
 		println(err.Error())
 		return c.String(http.StatusNotFound, err.Error())

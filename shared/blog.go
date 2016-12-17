@@ -4,6 +4,7 @@ import "time"
 
 type Blog struct {
 	ID              int       `db:"id"`
+	PostOrder       int       `db:"post_order"`
 	Image           string    `db:"image"`
 	Date            time.Time `db:"date"`
 	Name            string    `db:"name"`
