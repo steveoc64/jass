@@ -56,6 +56,7 @@ create unique index item_sku on item (sku);
 
 create table blog (
 	id serial not null primary key,
+	post_order int not null default 0,
 	image text not null default '', 
 	date timestamptz not null default localtimestamp,
 	name text not null default '',
