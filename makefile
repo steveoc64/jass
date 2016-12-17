@@ -1,6 +1,7 @@
 all: sassgen templegen app-assets appjs sv run
 	echo all done
 
+
 build: sassgen templegen app-assets appjs sv 
 
 get: 
@@ -128,3 +129,10 @@ tail:
 data:
 	pg_dump jass > database/jass.sql
 	scp -P 446 database/jass.sql freebsd@bsd:/home/freebsd/jass.sql
+
+loaddata:
+	./terminate
+	dropdb jass
+	createdb jass
+	psql jass < ~/jass.sql
+

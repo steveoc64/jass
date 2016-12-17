@@ -311,10 +311,11 @@ SELECT pg_catalog.setval('address_id_seq', 1, false);
 --
 
 COPY blog (id, image, date, name, title, content, share_twitter, share_facebook, share_instagram, share_google_plus) FROM stdin;
-3	model-003.jpg	2016-12-16 16:53:46.398967+10:30	Destroying the Spell.	He did not dare approach her.	To him she seemed so beautiful, so seductive, so different from ordinary people, that he could not understand why no one was as disturbed as he by the clicking of her heels on the paving stones, why no one else’s heart was wild with the breeze stirred by the sighs of her veils, why everyone did not go mad with the movements of her braid, the flight of her hands, the gold of her laughter. He had not missed a single one of her gestures, not one of the indications of her character, but he did not dare approach her for fear of destroying the spell.	0	0	0	0
 4	model-004.jpg	2016-12-16 17:00:59.789943+10:30	The perfect imperfections.	True essense of beauty.	There is nothing more rare, nor more beautiful, than a woman being unapologetically herself; comfortable in her perfect imperfection. To me, that is the true essence of beauty.	0	0	0	0
+2	model-005.jpg	2016-12-16 16:43:52.52166+10:30	I stared at her	When I see you the world stops.	The first time I saw you, my heart fell. The second time I saw you, my heart fell. The third time fourth time fifth time and every time since, my heart has fallen.\nI stared at her.\nYou are the most beautiful woman I have ever seen. Your hair, your eyes, your lips, your body that you haven’t grown into, the way you walk, smile, laugh, the way your cheeks drop when you’re mad or upset, the way you drag your feet when you’re tired. Every single thing about you is beautiful.\nI stared at her.\nWhen I see you the world stops. It stops and all that exists for me is you and my eyes staring at you. There’s nothing else. No noise, no other people, no thoughts or worries, no yesterday, no tomorrow. The world just stops and it is a beautiful place and there is only you. Just you, and my eyes staring at you.\nI stared.\nWhen you’re gone, the world starts again, and I don’t like it as much. I can live in it, but I don’t like it. I just walk around in it and wait to see you again and wait for it to stop again. I love it when it stops. It’s the best ******* thing I’ve ever known or ever felt, the best thing, and that, beautiful Girl, is why I stare at you.	0	0	0	0
+3	model-008.jpg	2016-12-16 16:53:46.398967+10:30	Destroying the Spell.	He did not dare approach her.	To him she seemed so beautiful, so seductive, so different from ordinary people, that he could not understand why no one was as disturbed as he by the clicking of her heels on the paving stones, why no one else’s heart was wild with the breeze stirred by the sighs of her veils, why everyone did not go mad with the movements of her braid, the flight of her hands, the gold of her laughter. He had not missed a single one of her gestures, not one of the indications of her character, but he did not dare approach her for fear of destroying the spell.	0	0	0	0
 1	model-000.jpg	2016-12-16 16:38:30.312353+10:30	She was art.	She was my personal gallery.	She was art. The type of art that makes you feel a thousand things at the same time. The type of art that everyone wants to see. Her smile more worth than a Picasso. Eyes gorgeous like the starry night. My Mona Lisa. She was my personal gallery.	0	0	0	0
-2	model-002.jpg	2016-12-16 16:43:52.52166+10:30	I stared at her	When I see you the world stops.	The first time I saw you, my heart fell. The second time I saw you, my heart fell. The third time fourth time fifth time and every time since, my heart has fallen.\nI stared at her.\nYou are the most beautiful woman I have ever seen. Your hair, your eyes, your lips, your body that you haven’t grown into, the way you walk, smile, laugh, the way your cheeks drop when you’re mad or upset, the way you drag your feet when you’re tired. Every single thing about you is beautiful.\nI stared at her.\nWhen I see you the world stops. It stops and all that exists for me is you and my eyes staring at you. There’s nothing else. No noise, no other people, no thoughts or worries, no yesterday, no tomorrow. The world just stops and it is a beautiful place and there is only you. Just you, and my eyes staring at you.\nI stared.\nWhen you’re gone, the world starts again, and I don’t like it as much. I can live in it, but I don’t like it. I just walk around in it and wait to see you again and wait for it to stop again. I love it when it stops. It’s the best ******* thing I’ve ever known or ever felt, the best thing, and that, beautiful Girl, is why I stare at you.	0	0	0	0
+5	model-003.jpg	2016-12-17 11:36:28.373041+10:30	Deep down to her soul.	No, she wasn’t beautiful.	She was beautiful, but not like those girls in the magazines. She was beautiful, for the way she thought. She was beautiful, for the sparkle in her eyes when she talked about something she loved. She was beautiful, for her ability to make other people smile even if she was sad. No, she wasn’t beautiful for something as temporary as her looks. She was beautiful, deep down to her soul.	0	0	0	0
 \.
 
 
@@ -322,7 +323,7 @@ COPY blog (id, image, date, name, title, content, share_twitter, share_facebook,
 -- Name: blog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: steve
 --
 
-SELECT pg_catalog.setval('blog_id_seq', 4, true);
+SELECT pg_catalog.setval('blog_id_seq', 5, true);
 
 
 --
@@ -392,6 +393,18 @@ COPY tags (blog_id, tag) FROM stdin;
 4	#worldofjass
 4	#myjass
 4	#hidenomore
+5	#jass
+5	#chamelee
+5	#perfumes
+5	#worldofjass
+5	#myjass
+5	#hidenomore
+5	#jass
+5	#chamelee
+5	#perfumes
+5	#worldofjass
+5	#myjass
+5	#hidenomore
 \.
 
 
