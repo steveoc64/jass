@@ -58,3 +58,18 @@ func main() {
 		Session.Navigate("/blog")
 	})
 }
+
+func getDivOffset(el dom.Element) int {
+	retval := float64(0.0)
+	pel := el.(dom.HTMLElement).OffsetParent()
+	if pel != nil {
+		for {
+			retval += el.(dom.HTMLElement).OffsetTop()
+			el = el.(dom.HTMLElement).OffsetParent()
+			if el == nil {
+				return int(retval)
+			}
+		}
+	}
+	return int(retval)
+}

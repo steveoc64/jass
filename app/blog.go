@@ -10,6 +10,7 @@ import (
 )
 
 var FocusedBlogElement = 0
+var JBOffset = 0
 
 func blog(context *router.Context) {
 	w := dom.GetWindow()
@@ -18,6 +19,9 @@ func blog(context *router.Context) {
 	// Load up em templates
 	sTemplate := MustGetTemplate("jass-blog")
 	sTemplate.ExecuteEl(doc.QuerySelector(".jass-blog"), &Session)
+
+	JBOffset = (int)(doc.QuerySelector(".header-pad").(*dom.HTMLDivElement).OffsetHeight())
+	print("JBO", JBOffset)
 
 	for _, v := range Session.Blogs {
 		// set background images on each blog-item
@@ -31,14 +35,20 @@ func blog(context *router.Context) {
 			// add a clickhandler to the blog image
 			i.AddEventListener("click", false, func(evt dom.Event) {
 				id, _ := strconv.Atoi(evt.Target().GetAttribute("data-id"))
-				print("clicked on blog item", id)
+				// w := dom.GetWindow()
 
+				divOffset := getDivOffset(i)
+				print("divOffset", divOffset)
+				print("JBOffset", JBOffset)
+
+				print("clicked on blog item", id)
 				if id == FocusedBlogElement {
 					print("clicked on active element")
 					FocusedBlogElement = 0
-					doc.QuerySelector(".jass-logo-small-box").(*dom.HTMLDivElement).Focus()
+					// doc.QuerySelector(".jass-logo-small-box").(*dom.HTMLDivElement).Focus()
 				} else {
 					print("clicked on new blog item")
+					w.ScrollTo(0, divOffset-JBOffset-2)
 					i.Focus()
 					FocusedBlogElement = id
 				}
