@@ -77,6 +77,15 @@ func (s *GlobalSessionData) FindItem(sku string) *shared.Item {
 	return nil
 }
 
+func (s *GlobalSessionData) GetBlog(id int) *shared.Blog {
+	for i, v := range s.Blogs {
+		if v.ID == id {
+			return &s.Blogs[i]
+		}
+	}
+	return nil
+}
+
 var Session GlobalSessionData
 
 func (s *GlobalSessionData) Navigate(url string) {
