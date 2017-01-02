@@ -56,6 +56,10 @@ func main() {
 	doc.QuerySelector("[name=opt-b]").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/blog")
 	})
+	doc.QuerySelector("[name=opt-m]").AddEventListener("click", false, func(evt dom.Event) {
+		evt.PreventDefault()
+		js.Global.Get("location").Set("href", "https://shop.polymer-project.org/list/ladies_outerwear")
+	})
 }
 
 func getDivOffset(el dom.Element) int {
