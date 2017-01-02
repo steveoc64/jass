@@ -3,15 +3,20 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"time"
 
 	"./shared"
 	"github.com/go-humble/router"
+	"github.com/gopherjs/gopherjs/js"
 	"honnef.co/go/js/dom"
 )
 
 var FocusedBlogElement = 0
 var JBOffset = 0
 var LastBlogViewed = 0
+var blogItemHeight = 0
+var lastY = 0
+var lastH = 0
 
 func blog(context *router.Context) {
 	w := dom.GetWindow()
@@ -25,10 +30,10 @@ func blog(context *router.Context) {
 	// print("JBO", JBOffset)
 
 	if LastBlogViewed != 0 {
-		i := doc.QuerySelector(fmt.Sprintf(`[name="blog-image-%d"]`, LastBlogViewed)).(*dom.HTMLDivElement)
-		divOffset := getDivOffset(i)
-		w.ScrollTo(0, divOffset-JBOffset-2)
-		i.Focus()
+		// i := doc.QuerySelector(fmt.Sprintf(`[name="blog-%d"]`, LastBlogViewed)).(*dom.HTMLDivElement)
+		// divOffset := getDivOffset(i)
+		// w.ScrollTo(0, divOffset-JBOffset-2)
+		// i.Focus()
 		FocusedBlogElement = LastBlogViewed
 	}
 
@@ -46,36 +51,83 @@ func blog(context *router.Context) {
 				// w := dom.GetWindow()
 
 				divOffset := getDivOffset(i)
-				// print("divOffset", divOffset)
-				// print("JBOffset", JBOffset)
-
-				// print("clicked on blog item", id)
 				if id == FocusedBlogElement {
-					// print("clicked on active element")
-					// FocusedBlogElement = 0
-					// doc.QuerySelector(".jass-logo-small-box").(*dom.HTMLDivElement).Focus()
+					print("clicked on active element")
+					newThing := fmt.Sprintf("/blog/%d", id)
+					LastBlogViewed = id
+					Session.Navigate(newThing)
 				} else {
-					// print("clicked on new blog item")
+					print("clicked on new blog item")
 					w.ScrollTo(0, divOffset-JBOffset-2)
-					i.Focus()
+					// i.Focus()
 					FocusedBlogElement = id
 				}
-				newThing := fmt.Sprintf("/blog/%d", id)
-				LastBlogViewed = id
-				// print("nav to ", newThing)
-				Session.Navigate(newThing)
-				// Session.Navigate(fmt.Sprintf("/blog/%d", id))
 			})
 		} else {
 			print("not found")
 		}
 
 		// and add a clickhandler onto the titlebar
-
 	}
 
 	fadeIn("jass-blog")
 	noButtons()
+
+	if scrollFunc != nil {
+		w.RemoveEventListener("scroll", false, scrollFunc)
+	}
+	scrollFunc = w.AddEventListener("scroll", false, blogScroller)
+
+	// Get the height of the first blog element
+	blogItemHeight = (int)(doc.QuerySelector("[name=blog-1]").(*dom.HTMLDivElement).OffsetHeight())
+	highlightItem(1)
+}
+
+var scrollFunc func(*js.Object)
+
+func blogScroller(evt dom.Event) {
+	w := dom.GetWindow()
+	y := w.ScrollY()
+
+	// print("window scroll event", y, blogItemHeight, y/blogItemHeight)
+	if blogItemHeight == 0 {
+		return
+	}
+	theItem := (y / blogItemHeight) + 1
+
+	highlightItem(theItem)
+	lastY = y
+}
+
+func highlightItem(i int) {
+	w := dom.GetWindow()
+	doc := w.Document()
+
+	if i != lastH {
+		el := doc.QuerySelector(fmt.Sprintf("[name=blog-%d]", lastH))
+		if el != nil {
+			el.Class().Remove("blog-highlight")
+		}
+		el = doc.QuerySelector(fmt.Sprintf("[name=blog-image-%d]", lastH))
+		if el != nil {
+			el.Class().Remove("highlight")
+		}
+		el = doc.QuerySelector(fmt.Sprintf("[name=blog-title-%d]", lastH))
+		if el != nil {
+			el.Class().Remove("highlight")
+		}
+		print("highlight item", i)
+		elname := fmt.Sprintf("[name=blog-%d]", i)
+		el = doc.QuerySelector(elname)
+		el.Class().Add("blog-highlight")
+		elname = fmt.Sprintf("[name=blog-image-%d]", i)
+		el = doc.QuerySelector(elname)
+		el.Class().Add("highlight")
+		elname = fmt.Sprintf("[name=blog-title-%d]", i)
+		el = doc.QuerySelector(elname)
+		el.Class().Add("highlight")
+		lastH = i
+	}
 }
 
 func getBlogs() {
@@ -83,16 +135,6 @@ func getBlogs() {
 	GETJson("/api/blog", &Session.Blogs)
 
 	print("blogs is", Session.Blogs)
-}
-
-func blogScrollHandler() {
-	w := dom.GetWindow()
-	doc := w.Document()
-	jb := doc.QuerySelector(".jass-blog")
-	jb.AddEventListener("scroll", false, func(evt dom.Event) {
-		// print("scroll on blog")
-	})
-
 }
 
 func blogItem(context *router.Context) {
@@ -110,8 +152,15 @@ func blogItem(context *router.Context) {
 	print("el = ", el)
 	sTemplate.ExecuteEl(doc.QuerySelector(".jass-blog-article"), theBlog)
 
+	doc.QuerySelector(".jass-blog").Class().Add("hidden")
+	w.ScrollTo(0, 0)
+
 	fadeIn("jass-blog-article")
 	noButtons()
+
+	go func() {
+		time.Sleep(2 * time.Second)
+	}()
 
 	doc.QuerySelector(".jass-blog-article").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/blog")

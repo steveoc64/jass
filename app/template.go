@@ -31,16 +31,14 @@ func init() {
 	}
 
 	if err = g.AddTemplate("jass-blog-article", `<div class="blog-article">
-
-	<div class="blog-article-header">Header</div>
-	<div class="blog-article-header">{{.Image}}</div>
-	<div class="blog-article-title">{{.Title}}</div>
 	<div class="blog-article-name">{{.Name}}</div>
+	<div class="blog-article-image">
+		<img src="/img/models/{{.Image}}">
+	</div>
+	<div class="blog-article-title">{{.Title}}</div>
 	<div class="blog-article-content">{{.Content}}</div>
-
-
 </div>
-`); err != nil {
+<div class="jass-logo-small"> </div>`); err != nil {
 		panic(err)
 	}
 
@@ -51,9 +49,7 @@ func init() {
 		{{$value.Name}}
 	</div>
 </div>
-{{end}}
-
-<div class="jass-logo-small-box"> </div>`); err != nil {
+{{end}}`); err != nil {
 		panic(err)
 	}
 

@@ -35,7 +35,6 @@ func main() {
 	getBlogs()
 	doSplashPage()
 	showTopMenu()
-	blogScrollHandler()
 
 	doc.QuerySelector("#option-shop").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/shop")
