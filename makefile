@@ -28,6 +28,7 @@ get:
 	go get -u github.com/nfnt/resize
 	go get -u gopkg.in/gomail.v2
 	go get -u github.com/logpacker/PayPal-Go-SDK
+	go get -u github.com/gopherjs/jquery
 	mkdir -p scripts
 	mkdir -p backup
 
