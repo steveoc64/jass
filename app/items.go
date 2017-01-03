@@ -7,14 +7,14 @@ import (
 
 func getItems() {
 	Session.Items = []shared.Item{}
-	GETJson("/api/items", &Session.Items)
-	// print("looks like we got", Session.Items)
+	GetJSON("/api/items", &Session.Items, func() {
+		print("/api/items complete", Session.Items)
+		w := dom.GetWindow()
+		doc := w.Document()
 
-	w := dom.GetWindow()
-	doc := w.Document()
-
-	doc.QuerySelector(".jass-sales-bar").AddEventListener("click", false, func(evt dom.Event) {
-		print("clicksed on sales bar")
-		Session.Navigate("/cart")
+		doc.QuerySelector(".jass-sales-bar").AddEventListener("click", false, func(evt dom.Event) {
+			print("clicksed on sales bar")
+			Session.Navigate("/cart")
+		})
 	})
 }

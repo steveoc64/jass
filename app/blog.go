@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"./shared"
+
 	"github.com/go-humble/router"
 	"github.com/gopherjs/gopherjs/js"
 	"honnef.co/go/js/dom"
@@ -131,10 +132,11 @@ func highlightItem(i int) {
 }
 
 func getBlogs() {
+	print("blogs starts as", Session.Blogs)
 	Session.Blogs = []shared.Blog{}
-	GETJson("/api/blog", &Session.Blogs)
-
-	print("blogs is", Session.Blogs)
+	GetJSON("/api/blog", &Session.Blogs, func() {
+		print("/api/blog complete", Session.Blogs)
+	})
 }
 
 func blogItem(context *router.Context) {

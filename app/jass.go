@@ -2,8 +2,11 @@ package main
 
 import (
 	"github.com/gopherjs/gopherjs/js"
+	"github.com/gopherjs/jquery"
 	"honnef.co/go/js/dom"
 )
+
+var jQuery = jquery.NewJQuery
 
 func main() {
 	w := dom.GetWindow()
@@ -60,6 +63,8 @@ func main() {
 		evt.PreventDefault()
 		js.Global.Get("location").Set("href", "https://shop.polymer-project.org/list/ladies_outerwear")
 	})
+
+	print("Your current jQuery version is: " + jQuery().Jquery)
 }
 
 func getDivOffset(el dom.Element) int {

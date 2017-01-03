@@ -80,13 +80,14 @@ dist/assets.log: assets/*.html assets/img/*  assets/fonts/* assets/*.webmanifest
 
 appjs: dist/public/jass.js
 
-dist/public/jass.js: app/*.go shared/*.go 
+dist/public/jass.js: app/*.go shared/*.go makefile app/*.inc.js
 	@mplayer -quiet ../audio/frontend-compile.ogg 2> /dev/null > /dev/null &
 	@mkdir -p dist/public/js
 	#cd app && gosimple
 	# @echo -n Before :
 	# @ls -l dist/public/jass.js
-	GOOS=linux gopherjs build app/*.go -o dist/public/jass.js -m
+	GOOS=linux gopherjs build app/*.go app/*.inc.js -o dist/public/jass.js -m
+	gopher-count dist/public/jass.js | sort -n
 	@ls -l dist/public/jass.js
 
 remake: 
