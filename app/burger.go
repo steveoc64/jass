@@ -11,8 +11,7 @@ func initBurger() {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	sTemplate := MustGetTemplate("slidemenu")
-	sTemplate.ExecuteEl(doc.QuerySelector("#slidemenu-div"), &Session)
+	ldTemplate("slidemenu", "#slidemenu-div", &Session)
 	sc := doc.QuerySelector("#slidemenu").Class()
 	sc.Remove("cbp-spmenu-open")
 
@@ -58,6 +57,12 @@ func initBurger() {
 	doc.QuerySelector("#menu-about").AddEventListener("click", false, func(evt dom.Event) {
 		evt.PreventDefault()
 		w.Open("https://www.facebook.com/worldofjass", "facebook", "")
+	})
+
+	doc.QuerySelector("#menu-ambassadors").AddEventListener("click", false, func(evt dom.Event) {
+		evt.PreventDefault()
+		w.Open("https://www.youtube.com/watch?v=AkZZbcfOJJM&list=PLczWL7gMyRhr7ow79N_YHJiwCV6r9nE5i", "ambassadors", "")
+		// w.Open("https://theworldofjass.wordpress.com", "worldofjass", "")
 	})
 
 	// doc.QuerySelector("#menu-instagram").AddEventListener("click", false, func(evt dom.Event) {

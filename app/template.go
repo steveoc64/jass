@@ -20,6 +20,17 @@ func init() {
 	var err error
 	g := temple.NewGroup()
 
+	if err = g.AddTemplate("about", `<img src="img/flowerGS.png" class="constrainer">
+<img src="img/chamelee.png">
+<span>
+	Eau de Parfum
+</span>
+<p>
+I’m barely human. I’m more like a creature; to me, everything gives off a scent! Thoughts, moments, feelings, movements, words left unsaid, words barely spoken; they all have a distinct sense, distinct fragrances! Both a smell and a touch! To inhale is to capture, to experience! I can perceive and I can “touch” in so many odd ways! And so I am made up of all these scents, all these feelings! An illumination of nerve endings. I am Chamelee'.
+</p>`); err != nil {
+		panic(err)
+	}
+
 	if err = g.AddTemplate("cart", `{{range $key,$value := .CartItems}}
 <div>
 	{{$value}}

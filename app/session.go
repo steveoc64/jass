@@ -5,6 +5,7 @@ import (
 
 	"./shared"
 	"github.com/go-humble/router"
+	"github.com/gopherjs/gopherjs/js"
 	"honnef.co/go/js/dom"
 )
 
@@ -27,6 +28,7 @@ type GlobalSessionData struct {
 	CartTotal            float64
 	CartItemCount        int
 	CartItems            []shared.Item
+	ScrollFunc           func(*js.Object)
 }
 
 func (s *GlobalSessionData) GetCartTotal() string {
@@ -89,6 +91,14 @@ func (s *GlobalSessionData) GetBlog(id int) *shared.Blog {
 var Session GlobalSessionData
 
 func (s *GlobalSessionData) Navigate(url string) {
+	w := dom.GetWindow()
+
+	// kill off any scroller function
+	if s.ScrollFunc != nil {
+		print("remove scroll handler")
+		w.RemoveEventListener("scroll", false, s.ScrollFunc)
+		s.ScrollFunc = nil
+	}
 
 	// print("Navigate to", url)
 	// On navigate, clear out any subscriptions on events

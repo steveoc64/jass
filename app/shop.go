@@ -6,13 +6,7 @@ import (
 )
 
 func drawSalesBar() {
-	w := dom.GetWindow()
-	doc := w.Document()
-
-	// print("drawing sales bar with", Session)
-
-	sTemplate := MustGetTemplate("sales-bar")
-	sTemplate.ExecuteEl(doc.QuerySelector(".jass-sales-bar"), &Session)
+	ldTemplate("sales-bar", ".jass-sales-bar", &Session)
 }
 
 func shop(context *router.Context) {
