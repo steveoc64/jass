@@ -232,18 +232,24 @@ func blogArticleScroller(evt dom.Event) {
 	// 	print("has crossed over")
 	// }
 
-	print("scroll article", y, articleState)
-	if y < 50 {
+	// print("scroll article", y, articleState)
+	if y < 120 {
 		if articleState > 0 {
 			print("de-compress")
 			doc.QuerySelector(".blog-article").Class().Remove("blog-compress")
+			w.Scroll(0, 0)
 		}
 		articleState = 0
 	} else {
 		if articleState == 0 {
 			print("compress")
 			doc.QuerySelector(".blog-article").Class().Add("blog-compress")
+			doc.QuerySelector(".blog-article-title2").Class().Remove("hidden")
 		}
 		articleState = 1
+		if y > 240 && articleState == 1 {
+			doc.QuerySelector(".blog-article-title2").Class().Add("hidden")
+			articleState = 2
+		}
 	}
 }

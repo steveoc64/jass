@@ -24,14 +24,19 @@ body
 		object-fit: contain
 	span
 		// font-weight: 800
-		font-size: 2rem
+		font-size: 1.8rem
 		font-family: 'Raleway'
-		letter-spacing: 1.2rem
+		letter-spacing: 1rem
+		@media screen and (max-width: 320px)
+			font-size: 1.2rem
+			letter-spacing: .6rem
 	img: 
 		max-height: 300px
 
 .constrainer
-	max-height: 200px
+	max-height: 180px
+	@media screen and (max-height: 320px)
+		max-height: 120px	
 	
 // Images and things
 .jass-logo-container
@@ -69,6 +74,7 @@ body
 	z-index: 88
 
 .jass-logo-small
+	position: relative
 	align-items: center
 	height: 8rem
 	width: 100%
@@ -79,7 +85,7 @@ body
 	background-position-x: center
 	background-position-y: center
 	background-size: contain
-	z-index: 88
+	// z-index: 88
 
 .saturate
 	-webkit-filter: saturate(3)
@@ -127,7 +133,7 @@ body
 
 .jass-green-top
 	border-top: 2px solid $jass-green
-	
+
 .jass-options
 	font-family: 'JosefinSans', sans-serif
 	font-weight: 500
@@ -142,8 +148,11 @@ body
 		justify-content: space-around
 		// border-bottom: 1px solid $jass-shade
 		height: 2.8rem
-		padding-left: 25vw
-		padding-right: 25vw
+		padding-left: 20vw
+		padding-right: 20vw
+		@media screen and (max-width: 580px)
+			padding-left: 10vw
+			padding-right: 10vw
 		@media(orientation: portrait)
 			height: 5rem
 			padding-left: 1rem 
@@ -479,22 +488,20 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 			bottom: 3rem
 
 .blog-article
+	position: absolute
+	top: 5rem
 	transition: all 2s
 	text-align: center
 
 	.blog-article-name
-		// position: absolute
-		// position: fixed
-		// top: 5rem
 		font-size: 5rem
 		padding-left: 2rem
 		font-family: 'JosefinSans', sans-serif
 		font-weight: 800
 		color: white
-		// background-color: lighter($blog-title-bg, 10%)
 		background-color: $blog-title-light
 		width: 100vw
-
+		transition: all .8s
 
 	.blog-article-image
 		padding: 0 0 0 4rem 
@@ -502,6 +509,7 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 		display: flex
 		justify-content: center
 		height: 75vh
+		transition: all .4s
 		img 
 			max-height: 80vh
 			max-width: 80vw
@@ -509,7 +517,22 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 			margin-top: .5rem
 			margin-bottom: .5rem
 			object-fit: cover
+			// transition: all 2s
 
+	.blog-article-title2
+		display: none
+		font-size: 3.8rem
+		padding-left: 2rem
+		margin-left: 2rem
+		font-family: 'JosefinSans', sans-serif
+		font-weight: 800
+		background-color: rgba(82, 156, 46, 0.24)
+		position: absolute
+		top: 24rem
+		position: fixed
+		top: 14rem
+		text-align: left
+		// transition: all .2s
 	.blog-article-title
 		// position: relative
 		// top: 8.2rem
@@ -519,14 +542,58 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 		font-family: 'JosefinSans', sans-serif
 		font-weight: 800
 		background-color: rgba(82, 156, 46, 0.24)
+		// transition: all .6s
 
 	.blog-article-content
 		font-family: 'JosefinSans', sans-serif
 		font-size: 3.2rem
 		color: black
 		padding: 4rem
+		transition: all .2s
+		margin-bottom: 6rem
+
+	.jass-logo-small
+		opacity: .6
+		z-index: -1	
+		position: fixed
+		top: 5rem
 
 .blog-compress
+	// position: fixed
+	// top: 5rem
+	.jass-logo-small 
+		opacity: .8
+		z-index: 2
+		position: absolute
+		bottom: 1rem
+		top: unset
 	.blog-article-name
 		position: fixed
+		// position: absolute
+		top: 3rem
 		text-align: left
+		padding-top: 2rem
+		padding-bottom: 2rem
+	.blog-article-title
+		display: hidden
+	.blog-article-title2
+		display: block
+		// margin-top: 20rem
+		// position: fixed
+		// text-align: left
+	.blog-article-content
+		margin-top: 24rem
+	.blog-article-image
+		display: none
+		position: fixed
+		// position: absolute
+		// top: 26rem
+		top: 18rem
+		top: 6rem
+		justify-content: flex-end
+		padding-right: 1rem
+		// @media screen and (orientation: landscape)
+			// top: 6rem
+		img 
+			max-height: 11rem
+			opacity: .6

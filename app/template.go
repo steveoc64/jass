@@ -21,7 +21,7 @@ func init() {
 	g := temple.NewGroup()
 
 	if err = g.AddTemplate("about", `<img src="img/flowerGS.png" class="constrainer">
-<img src="img/chamelee.png">
+<!-- <img src="img/chamelee.png"> -->
 <span>
 	Eau de Parfum
 </span>
@@ -47,9 +47,10 @@ I’m barely human. I’m more like a creature; to me, everything gives off a sc
 		<img src="/img/models/{{.Image}}">
 	</div>
 	<div class="blog-article-title">{{.Title}}</div>
+	<div class="blog-article-title2 hidden">{{.Title}}</div>
 	<div class="blog-article-content">{{.Content}}</div>
-</div>
-<div class="jass-logo-small"> </div>`); err != nil {
+	<div class="jass-logo-small"> </div>
+</div>`); err != nil {
 		panic(err)
 	}
 
