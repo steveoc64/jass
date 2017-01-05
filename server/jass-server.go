@@ -19,7 +19,12 @@ var DB *runner.DB
 
 func printLog(c echo.Context, s ...interface{}) {
 	r := c.Request()
-	log.Println(r.RemoteAddr, r.Method, r.URL.Path, s)
+	realIP := r.Header["X-Real-IP"]
+	theIP := r.RemoteAddr
+	if len(realIP) > 0 {
+		theIP = realIP[0]
+	}
+	log.Println(theIP, r.Method, r.URL.Path, s)
 }
 
 func main() {
