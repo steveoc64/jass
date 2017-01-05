@@ -17,6 +17,11 @@ import (
 var e *echo.Echo
 var DB *runner.DB
 
+func printLog(c echo.Context, s ...interface{}) {
+	r := c.Request()
+	log.Println(r.RemoteAddr, r.Method, r.URL.Path, s)
+}
+
 func main() {
 
 	rand.Seed(time.Now().UTC().UnixNano())
@@ -29,6 +34,14 @@ func main() {
 	e.Static("/", "public")
 	e.GET("/api/items", getItems)
 	e.GET("/api/blog", getBlogs)
+
+	// Track specific connections from different services
+	e.GET("/blog", blogTracker)
+	e.GET("/blog/", blogTracker)
+	e.GET("/blog/:id", blogIDTracker)
+	e.GET("/blog/:id/", blogIDTracker)
+	e.GET("/about", aboutTracker)
+	e.GET("/about/", aboutTracker)
 
 	// Start up the mail server
 	if Config.MailServer == "" {
@@ -50,6 +63,7 @@ func main() {
 				// log.Println("Not Found", err.Error())
 				// We are usually here due to an F5 refresh, in which case
 				// the URL is not expected to be there
+				println("not found", context.Path(), context.Request().URL.Path)
 				context.Redirect(http.StatusMovedPermanently, "/")
 			default:
 				// TODO handle any other case

@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"time"
 
 	"./shared"
 
@@ -68,8 +67,13 @@ func showBlog() {
 			// print("got it, set BGI", bgi)
 			i.Style().SetProperty("background-image", bgi, "")
 
-			i.AddEventListener("click", false, func(evt dom.Event) {
-				id, _ := strconv.Atoi(evt.Target().GetAttribute("data-id"))
+			doc.QuerySelector(fmt.Sprintf("[name=blog-%d]", v.ID)).AddEventListener("click", false, func(evt dom.Event) {
+				evt.PreventDefault()
+				id, err := strconv.Atoi(evt.Target().GetAttribute("data-id"))
+				if err != nil {
+					print("not clicked on specific blog thing")
+					return
+				}
 				// w := dom.GetWindow()
 
 				if id == FocusedBlogElement {
@@ -161,11 +165,23 @@ func highlightItem(i int) {
 func getBlogs() {
 	Session.Blogs = []shared.Blog{}
 	GetJSON("/api/blog", &Session.Blogs, func() {
-		print("/api/blog complete", Session.Blogs)
+		print("/api/blog complete - getBlogs", Session.Blogs)
 	})
 }
 
 func blogItem(context *router.Context) {
+	if len(Session.Blogs) == 0 {
+		GetJSON("/api/blog", &Session.Blogs, func() {
+			// print("/api/blog complete", Session.Blogs)
+			print("/api/blog complete")
+			showBlogItem(context)
+		})
+	} else {
+		showBlogItem(context)
+	}
+}
+
+func showBlogItem(context *router.Context) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
@@ -177,28 +193,46 @@ func blogItem(context *router.Context) {
 	}
 
 	id, _ := strconv.Atoi(context.Params["id"])
-	// print("in blog item", id)
+	print("in blog item", id)
 	theBlog := Session.GetBlog(id)
-	// print("the blog is", theBlog)
+	print("the blog is", theBlog)
+
+	// ldTemplate("jass-blog", ".jass-blog", &Session)
 
 	ldTemplate("jass-blog-article", ".jass-blog-article", theBlog)
+	print("loaded template into jass-blog-article")
 
 	doc.QuerySelector(".jass-blog").Class().Add("hidden")
 	w.ScrollTo(0, 0)
 	fadeIn("jass-blog-article")
 	noButtons()
 
-	go func() {
-		time.Sleep(2 * time.Second)
+	// go func() {
+	// 	time.Sleep(2 * time.Second)
+	// }()
 
-	}()
-
-	blogHeaderEnds = getDivEnd(doc.QuerySelector(".blog-article-name"))
-	navEnds = getDivEnd(doc.QuerySelector(".navigation"))
-	// print("article name ends at", blogHeaderEnds)
+	// print("looking for .blog-article-name")
+	// ela := doc.QuerySelector(".blog-article-name")
+	// print("ela =", ela)
+	// if ela == nil {
+	// 	print("cant find article name")
+	// 	blogHeaderEnds = 80
+	// } else {
+	// 	blogHeaderEnds = getDivEnd(doc.QuerySelector(".blog-article-name"))
+	// }
+	// navEnds = getDivEnd(doc.QuerySelector(".navigation"))
+	// // print("article name ends at", blogHeaderEnds)
 
 	doc.QuerySelector(".jass-blog-article").AddEventListener("click", false, func(evt dom.Event) {
-		Session.Navigate("/blog")
+		evt.PreventDefault()
+		t := evt.Target()
+		switch t.TagName() {
+		case "I":
+			// print("clicked on icon ... stay here")
+		default:
+			// print("clicked in general - go back")
+			Session.Navigate("/blog")
+		}
 	})
 
 	if Session.ScrollFunc != nil {
@@ -206,50 +240,75 @@ func blogItem(context *router.Context) {
 		Session.ScrollFunc = nil
 	}
 
-	Session.ScrollFunc = w.AddEventListener("scroll", false, blogArticleScroller)
-	blogArticleTitle = doc.QuerySelector(".blog-article-title").(*dom.HTMLDivElement)
-	blogArticleTitleTop = getDivOffset(blogArticleTitle)
+	doc.QuerySelector(".blog-article").AddEventListener("scroll", false, blogArticleScroller)
+	// Session.ScrollFunc = w.AddEventListener("scroll", false, blogArticleScroller)
+	// blogArticleTitle = doc.QuerySelector(".blog-article-title").(*dom.HTMLDivElement)
+	// blogArticleTitleTop = getDivOffset(blogArticleTitle)
 	articleState = 0
 }
 
-var blogArticleTitle = &dom.HTMLDivElement{}
-var blogArticleTitleTop = 0
-var blogHeaderEnds = 0
-var navEnds = 0
+// var blogArticleTitle = &dom.HTMLDivElement{}
+// var blogArticleTitleTop = 0
+// var blogHeaderEnds = 0
+// var navEnds = 0
 var articleState = 0
+var lastAY = 0
 
 func blogArticleScroller(evt dom.Event) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	y := w.ScrollY()
-
-	// target := blogArticleTitleTop - navEnds - blogHeaderEnds
-	// print("window scroll event", y, navEnds, blogHeaderEnds, blogArticleTitleTop)
-	// if y < target {
-	// 	print("still in top part")
-	// } else {
-	// 	print("has crossed over")
-	// }
+	y := jQuery(".blog-article").ScrollTop()
+	theClass := doc.QuerySelector(".blog-article").Class()
+	// print("scroll =", y)
 
 	// print("scroll article", y, articleState)
-	if y < 120 {
+	if y < 80 {
 		if articleState > 0 {
-			print("de-compress")
-			doc.QuerySelector(".blog-article").Class().Remove("blog-compress")
-			w.Scroll(0, 0)
+			theClass.Remove("faded")
+			theClass.Remove("faded2")
 		}
 		articleState = 0
-	} else {
-		if articleState == 0 {
-			print("compress")
-			doc.QuerySelector(".blog-article").Class().Add("blog-compress")
-			doc.QuerySelector(".blog-article-title2").Class().Remove("hidden")
+	} else if y < 120 {
+		switch articleState {
+		case 0:
+			// all good
+		case 1:
+			if y < lastAY {
+				theClass.Remove("faded")
+				theClass.Remove("faded2")
+				articleState = 0
+			}
+		case 2:
+			theClass.Remove("faded")
+			theClass.Remove("faded2")
+			articleState = 0
+		}
+	} else if y < 240 {
+		switch articleState {
+		case 0:
+			theClass.Add("faded")
+		case 1:
+			// do nothing
+		case 2:
+			theClass.Remove("faded2")
 		}
 		articleState = 1
-		if y > 240 && articleState == 1 {
-			doc.QuerySelector(".blog-article-title2").Class().Add("hidden")
-			articleState = 2
+	} else {
+		switch articleState {
+		case 0:
+			theClass.Add("faded")
+			theClass.Add("faded2")
+		case 1:
+			theClass.Add("faded2")
+		case 2:
+			if y < lastAY {
+				// scrolled backwards
+				theClass.Remove("faded2")
+			}
+			// do nothing
 		}
+		articleState = 2
 	}
+	lastAY = y
 }

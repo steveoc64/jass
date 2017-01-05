@@ -92,7 +92,7 @@ func closeBurger() {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	sc := doc.QuerySelector("#slidemenu").Class()
+	sc := doc.QuerySelector("#slidemenu-div").Class()
 	// sc.Remove("fade-in")
 	// sc.Add("fade-out")
 	go func() {

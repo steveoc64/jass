@@ -20,7 +20,7 @@ func init() {
 	var err error
 	g := temple.NewGroup()
 
-	if err = g.AddTemplate("about", `<img src="img/flowerGS.png" class="constrainer">
+	if err = g.AddTemplate("about", `<img src="/img/flowerGS.png" class="constrainer">
 <!-- <img src="img/chamelee.png"> -->
 <span>
 	Eau de Parfum
@@ -41,21 +41,54 @@ I’m barely human. I’m more like a creature; to me, everything gives off a sc
 		panic(err)
 	}
 
-	if err = g.AddTemplate("jass-blog-article", `<div class="blog-article">
-	<div class="blog-article-name">{{.Name}}</div>
+	if err = g.AddTemplate("jass-blog-article", `<div class="blog-article-name">{{.Name}}</div>
+<div class="blog-article">
 	<div class="blog-article-image">
 		<img src="/img/models/{{.Image}}">
 	</div>
 	<div class="blog-article-title">{{.Title}}</div>
-	<div class="blog-article-title2 hidden">{{.Title}}</div>
 	<div class="blog-article-content">{{.Content}}</div>
+
+	<div class="blog-shares">
+		<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{.GetURL}}+{{.Name}}" data-size="large">
+			<i class="fa fa-twitter-square fa-3x"></i>
+		</a>
+		<div class="fb-share-button"
+			data-href="{{.GetURL}}"
+			data-layout="button"
+			data-size="large"
+			data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank"
+			href="https://www.facebook.com/sharer/sharer.php?u={{.GetURL}}&src=sdkpreparse">
+				<i class="fa fa-facebook-square fa-3x"></i>
+			</a>
+		</div>
+
+		<div class="fb-like"
+		 data-href="{{.GetURL}}"
+		 data-layout="standard"
+		 data-action="recommend"
+		 data-size="small"
+		 data-show-faces="true"
+		 data-share="true">
+				<i class="fa fa-facebook-square fa-3x"></i>
+		</div>
+
+		<div class="g-plusone" data-annotation="inline" data-width="300">
+			<i class="fa fa-google-plus-square fa-3x"></i>	
+		</div>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+	</div>
+
 	<div class="jass-logo-small"> </div>
-</div>`); err != nil {
+</div>
+
+`); err != nil {
 		panic(err)
 	}
 
 	if err = g.AddTemplate("jass-blog", `{{range $key,$value := .Blogs}}
-<div class="blog-item" name="blog-{{$value.ID}}">
+<div class="blog-item" name="blog-{{$value.ID}}" data-id="{{$value.ID}}">
 	<div class="blog-item-pic" name="blog-image-{{$value.ID}}" data-id="{{$value.ID}}"></div>
 	<div class="blog-item-title" name="blog-title-{{$value.ID}}" data-id="{{$value.ID}}">
 		{{$value.Name}}

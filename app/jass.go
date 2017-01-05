@@ -7,11 +7,13 @@ import (
 )
 
 var jQuery = jquery.NewJQuery
+var codeVersion = "0.1.0"
 
 func main() {
 	w := dom.GetWindow()
 	doc := w.Document()
 
+	print("Booting up jass -", codeVersion)
 	w.ScrollTo(0, 0)
 
 	initRouter()
@@ -36,7 +38,7 @@ func main() {
 
 	// getItems()
 	// getBlogs()
-	doSplashPage()
+	// doSplashPage()
 	showTopMenu()
 
 	doc.QuerySelector("#option-shop").AddEventListener("click", false, func(evt dom.Event) {
@@ -68,10 +70,22 @@ func main() {
 		w.Open("https://www.youtube.com/watch?v=AkZZbcfOJJM&list=PLczWL7gMyRhr7ow79N_YHJiwCV6r9nE5i", "ambassadors", "")
 	})
 
-	// print("Your current jQuery version is: " + jQuery().Jquery)
+	print("jQuery version -", jQuery().Jquery)
+
+	// Now nav to wherever we should be
+	loc := w.Location()
+	// print("current loc", loc.Pathname)
+	if loc.Pathname != "/" {
+		// print("nav to", loc.Pathname)
+		Session.Navigate(loc.Pathname)
+	}
 }
 
 func getDivOffset(el dom.Element) int {
+	if el == nil {
+		print("getting offset of invalid element")
+		return 0
+	}
 	retval := float64(0.0)
 	pel := el.(dom.HTMLElement).OffsetParent()
 	if pel != nil {
@@ -96,6 +110,12 @@ func ldTemplate(tmpl string, selector string, data interface{}) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	sTemplate := MustGetTemplate(tmpl)
-	sTemplate.ExecuteEl(doc.QuerySelector(selector), data)
+	el := doc.QuerySelector(selector)
+	if el == nil {
+		print("no such element", selector)
+	} else {
+		print("load template", tmpl, "into", selector)
+		sTemplate := MustGetTemplate(tmpl)
+		sTemplate.ExecuteEl(el, data)
+	}
 }

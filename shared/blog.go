@@ -1,6 +1,9 @@
 package shared
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Blog struct {
 	ID              int       `db:"id"`
@@ -14,4 +17,8 @@ type Blog struct {
 	ShareFacebook   int       `db:"share_facebook"`
 	ShareInstagram  int       `db:"share_instagram"`
 	ShareGooglePlus int       `db:"share_google_plus"`
+}
+
+func (b *Blog) GetURL() string {
+	return fmt.Sprintf("https://jass.com.au/blog/%d", b.ID)
 }

@@ -17,19 +17,19 @@
 
     <!-- Fonts -->
     <!-- <script src="https://use.fontawesome.com/ee68b0acc1.js"></script> -->
-    <link rel="stylesheet" href="fonts/Roboto.css">   
-    <link rel="stylesheet" href="fonts/Raleway.css">   
-    <link rel="stylesheet" href="fonts/Josefin.css">   
-    <link rel="stylesheet" href="fonts/Catamaran.css">   
-    <link rel="stylesheet" href="fonts/Aref.css">   
-    <link rel="stylesheet" href="css/font-awesome.min.css">   
+    <link rel="stylesheet" href="/fonts/Roboto.css">   
+    <link rel="stylesheet" href="/fonts/Raleway.css">   
+    <link rel="stylesheet" href="/fonts/Josefin.css">   
+    <link rel="stylesheet" href="/fonts/Catamaran.css">   
+    <link rel="stylesheet" href="/fonts/Aref.css">   
+    <link rel="stylesheet" href="/css/font-awesome.min.css">   
     <!-- <link href="https://fonts.googleapis.com/css?family=Domine|Playfair+Display:700i" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet"> -->
 
 
     <!-- Styles -->
     <!-- <link type="text/css" rel="stylesheet" href="css/treeview.css"/> -->
-    <link type="text/css" rel="stylesheet" href="css/jass.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/jass.css"/>
 
     <!-- Load c3.css -->
     <!-- <link href="css/c3.min.css" rel="stylesheet" type="text/css"> -->
@@ -48,7 +48,7 @@
     <nav class="navigation">
         <!-- <a class="navigation-title" href="#" id="homepage"> -->
           <!-- <img src="img/jass-invert-cropped.jpg" class="jass-logo-top hidden"> -->
-          <img src="img/chamelee.png" class="jass-logo-top fade-in three">
+          <img src="/img/chamelee.png" class="jass-logo-top fade-in three">
         <!-- </a> -->
         <a class="hamburger hamburger--arrow hidden" aria-label="Menu" aria-controls="navigation">
           <span class="hamburger-box">
@@ -100,5 +100,36 @@
 <div class="md-overlay"></div>
   
 </body>
-<script src="jass.js"></script>
+<!-- Add our code -->
+<script src="/jass.js"></script>
+
+<!-- Twitter share button -->
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<!-- Faceworld share button -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </html>

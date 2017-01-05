@@ -66,4 +66,5 @@ func initRouter() {
 
 func defaultRoute(context *router.Context) {
 	// print("Nav to Default Route")
+	doSplashPage()
 }

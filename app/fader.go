@@ -40,6 +40,7 @@ func fadeIn(element ...string) {
 	// fade in all the things
 	for _, theElement := range element {
 		doc.QuerySelector("." + theElement).Class().SetString(theElement + " fade-in fast")
+		// print("set visible fade in for", theElement)
 	}
 
 	// fade out everything else
@@ -67,6 +68,7 @@ func fadeIn(element ...string) {
 					// print("hiding", v)
 					el := doc.QuerySelector("." + v)
 					if el != nil {
+						// print("adding hidden to", v)
 						el.Class().Add("hidden")
 					}
 				}
