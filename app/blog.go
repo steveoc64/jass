@@ -269,10 +269,11 @@ func blogArticleScroller(evt dom.Event) {
 			theClass.Remove("faded2")
 		}
 		articleState = 0
-	} else if y < 120 {
+	} else if y < 240 {
 		switch articleState {
 		case 0:
-			// all good
+			theClass.Add("faded")
+			articleState = 1
 		case 1:
 			if y < lastAY {
 				theClass.Remove("faded")
@@ -280,20 +281,9 @@ func blogArticleScroller(evt dom.Event) {
 				articleState = 0
 			}
 		case 2:
-			theClass.Remove("faded")
 			theClass.Remove("faded2")
-			articleState = 0
+			articleState = 1
 		}
-	} else if y < 240 {
-		switch articleState {
-		case 0:
-			theClass.Add("faded")
-		case 1:
-			// do nothing
-		case 2:
-			theClass.Remove("faded2")
-		}
-		articleState = 1
 	} else {
 		switch articleState {
 		case 0:
