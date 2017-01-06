@@ -114,7 +114,7 @@ func ldTemplate(tmpl string, selector string, data interface{}) {
 	if el == nil {
 		print("no such element", selector)
 	} else {
-		print("load template", tmpl, "into", selector)
+		// print("load template", tmpl, "into", selector)
 		sTemplate := MustGetTemplate(tmpl)
 		sTemplate.ExecuteEl(el, data)
 	}

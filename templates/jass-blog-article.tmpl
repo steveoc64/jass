@@ -10,33 +10,16 @@
 		<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{.GetURL}}+{{.Name}}" data-size="large">
 			<i class="fa fa-twitter-square fa-3x"></i>
 		</a>
-		<div class="fb-share-button"
-			data-href="{{.GetURL}}"
-			data-layout="button"
-			data-size="large"
-			data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank"
-			href="https://www.facebook.com/sharer/sharer.php?u={{.GetURL}}&src=sdkpreparse">
-				<i class="fa fa-facebook-square fa-3x"></i>
-			</a>
-		</div>
 
-		<div class="fb-like"
-		 data-href="{{.GetURL}}"
-		 data-layout="standard"
-		 data-action="recommend"
-		 data-size="small"
-		 data-show-faces="true"
-		 data-share="true">
-				<i class="fa fa-facebook-square fa-3x"></i>
+
+		<div class="fb-like" data-href="{{.GetURL}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+		<i class="fa fa-facebook-square fa-3x"></i>	
 		</div>
 
 		<div class="g-plusone" data-annotation="inline" data-width="300">
 			<i class="fa fa-google-plus-square fa-3x"></i>	
 		</div>
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
 	</div>
 
 	<div class="jass-logo-small"> </div>
 </div>
-

@@ -9,6 +9,9 @@ body
 	flex-wrap: nowrap
 	justify-content: center
 
+	a,div
+		flex: 0 0 4rem	
+
 // About box
 .jass-about
 	display: flex
@@ -519,7 +522,7 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 
 	// a,i,.twitter-share-button
 	a,i
-		flex: 0 0 4rem
+		// flex: 0 0 4rem
 		color: rgba(33, 123, 13, 0.74)
 
 	.blog-article-image
@@ -528,7 +531,7 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 		display: flex
 		justify-content: center
 		height: 75vh
-		transition: all 1s
+		transition: all .6s
 		opacity: 1
 		z-index: -1
 		margin-top: 8rem
@@ -541,7 +544,7 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 			object-fit: contain
 			z-index: -2
 			flex: 0
-			transition: all 1.2s
+			transition: all .6s
 
 	.blog-article-title
 		// position: relative
@@ -555,15 +558,18 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 		font-weight: 800
 		background-color: rgba(82, 156, 46, 0.24)
 		transition: all 2s
+		color: rgba(33, 123, 13, 0.74)
 		// transition: all .6s
 
 	.blog-article-content
 		font-family: 'JosefinSans', sans-serif
-		font-size: 3.2rem
+		font-size: 3rem
 		color: black
 		padding: 4rem
 		transition: all .2s
 		// margin-bottom: 6rem
+		@media screen and (max-width: 320px)
+			font-size: 2.6rem
 
 	.jass-logo-small
 		// opacity: .6
@@ -574,12 +580,20 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 .faded
 	.blog-article-image
 		img
+			margin-top: 35vh
+			opacity: 0.6
+			max-width: 40vw
+			max-height: 40vh
+
+.faded2
+	.blog-article-image
+		img
+			margin-top: 55vh
 			opacity: 0.1
 			max-width: 20vw
 			max-height: 20vh
-
-.faded2
 	.blog-article-title
 		opacity: .1
 		font-size: .2rem
+
 

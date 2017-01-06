@@ -104,7 +104,9 @@
 <script src="/jass.js"></script>
 
 <!-- Twitter share button -->
+<!-- 
 <script>window.twttr = (function(d, s, id) {
+    console.log("loading twitworld widgery", s, id)
   var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
   if (d.getElementById(id)) return t;
   js = d.createElement(s);
@@ -118,18 +120,46 @@
   };
 
   return t;
-}(document, "script", "twitter-wjs"));</script>
+}(document, "script", "twitter-wjs"));
+</script>
 
-<!-- Faceworld share button -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
+ --><!-- Faceworld SDK via jQuery -->
+<!-- 
+$(document).ready(function() {
+  $.ajaxSetup({ cache: true });
+  $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+    FB.init({
+      appId: '{548844651985808}',
+      version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+    });     
+    $('#loginbutton,#feedbutton').removeAttr('disabled');
+    FB.getLoginStatus(updateStatusCallback);
+  });
+});
 
+ -->
 
+ <!-- Vanilla Faceworld SDK -->
+ <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      // appId      : '548844651985808',
+      appId: '548857485317858',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Google API -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </html>

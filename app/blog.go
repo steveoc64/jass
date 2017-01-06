@@ -7,6 +7,7 @@ import (
 	"./shared"
 
 	"github.com/go-humble/router"
+	"github.com/gopherjs/gopherjs/js"
 	"honnef.co/go/js/dom"
 )
 
@@ -207,6 +208,9 @@ func showBlogItem(context *router.Context) {
 	fadeIn("jass-blog-article")
 	noButtons()
 
+	// blogArticleImage = doc.QuerySelector(".blog-article-image")
+	// blogArticleImage = jQuery(".blog-article-image")
+
 	// go func() {
 	// 	time.Sleep(2 * time.Second)
 	// }()
@@ -245,6 +249,43 @@ func showBlogItem(context *router.Context) {
 	// blogArticleTitle = doc.QuerySelector(".blog-article-title").(*dom.HTMLDivElement)
 	// blogArticleTitleTop = getDivOffset(blogArticleTitle)
 	articleState = 0
+
+	// Add social buttons
+
+	// Twitworld
+	doc.QuerySelector(".fa-twitter-square").AddEventListener("click", false, func(evt dom.Event) {
+		print("clicked on the twitworld thing")
+		w.Open(fmt.Sprintf(`%s?text=%s %s`,
+			"https://twitter.com/intent/tweet",
+			theBlog.GetURL(),
+			theBlog.Name),
+			"twitter",
+			"menubar=0,resizable=1,width=400,height=280")
+	})
+
+	// Faceworld
+	doc.QuerySelector(".fa-facebook-square").AddEventListener("click", false, func(evt dom.Event) {
+		print("clicked on the faceworld thing")
+		FB := js.Global.Get("FB")
+		print("fb", FB)
+		jQuery("loginbutton,#feedbutton").RemoveAttr("disabled")
+		FB.Call("getLoginStatus", func(r interface{}) {
+			print("in update status callback", r)
+		})
+		FB.Call("ui", js.M{
+			"method": "share",
+			"href":   theBlog.GetURL(),
+		}, func(r interface{}) {
+			print("completed UI call", r)
+		})
+	})
+
+	// GWorld
+	doc.QuerySelector(".fa-google-plus-square").AddEventListener("click", false, func(evt dom.Event) {
+		print("clicked on the googleworld thing")
+		gapi := js.Global.Get("gapi")
+		print("google api is", gapi)
+	})
 }
 
 // var blogArticleTitle = &dom.HTMLDivElement{}
@@ -253,6 +294,7 @@ func showBlogItem(context *router.Context) {
 // var navEnds = 0
 var articleState = 0
 var lastAY = 0
+var blogArticleImage = jQuery
 
 func blogArticleScroller(evt dom.Event) {
 	w := dom.GetWindow()
@@ -261,6 +303,9 @@ func blogArticleScroller(evt dom.Event) {
 	y := jQuery(".blog-article").ScrollTop()
 	theClass := doc.QuerySelector(".blog-article").Class()
 	// print("scroll =", y)
+
+	bai := jQuery(".blog-article-image")
+	print("bai height", bai.Height(), bai.Offset())
 
 	// print("scroll article", y, articleState)
 	if y < 80 {
@@ -272,6 +317,7 @@ func blogArticleScroller(evt dom.Event) {
 	} else if y < 240 {
 		switch articleState {
 		case 0:
+
 			theClass.Add("faded")
 			articleState = 1
 		case 1:
