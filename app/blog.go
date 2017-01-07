@@ -42,7 +42,7 @@ func showBlog() {
 	if ww >= 1280 {
 		blogCols = 3
 	}
-	print("blog cols =", blogCols)
+	// print("blog cols =", blogCols)
 
 	// Load up em templates
 	ldTemplate("jass-blog", ".jass-blog", &Session)
@@ -55,13 +55,13 @@ func showBlog() {
 		i := doc.QuerySelector(fmt.Sprintf(`[name="blog-%d"]`, LastBlogViewed)).(*dom.HTMLDivElement)
 		divOffset := getDivOffset(i)
 		w.ScrollTo(0, divOffset-JBOffset-2)
-		i.Focus()
+		// i.Focus()
 		FocusedBlogElement = LastBlogViewed
 	}
 
 	for _, v := range Session.Blogs {
 		// set background images on each blog-item
-		// print("looking for blog-", v.ID)
+		// print("looking for blog-image", v.ID)
 		i := doc.QuerySelector(fmt.Sprintf(`[name="blog-image-%d"]`, v.ID)).(*dom.HTMLDivElement)
 		if i != nil {
 			bgi := fmt.Sprintf("url(/img/models/%s)", v.Image)
@@ -90,7 +90,7 @@ func showBlog() {
 					// w.ScrollTo(0, divOffset-JBOffset-2)
 					// print("scrolls to ", divOffset, divOffset-JBOffset+10)
 					// i.Focus()
-					// FocusedBlogElement = id
+					FocusedBlogElement = id
 				}
 			})
 
@@ -118,10 +118,46 @@ func showBlog() {
 		Session.ScrollFunc = nil
 	}
 
+	doc.QuerySelector(".blog-footer").AddEventListener("click", false, func(evt dom.Event) {
+		tag := evt.Target().TagName()
+		c := evt.Target().Class()
+		// print("cliked in blog footer", tag)
+		switch tag {
+		case "I":
+			if c.Contains("fa-twitter-square") {
+				w.Open("https://twitter.com/worldofjass/", "twitter", "")
+			} else if c.Contains("fa-facebook-square") {
+				w.Open("https://www.facebook.com/worldofjass/", "facebook", "")
+			} else if c.Contains("fa-google-plus-square") {
+				w.Open("https://plus.google.com/114254388513381629021", "googleplus", "")
+			} else if c.Contains("fa-youtube-square") {
+				w.Open("https://www.youtube.com/watch?v=AkZZbcfOJJM&list=PLczWL7gMyRhr7ow79N_YHJiwCV6r9nE5i", "youtube", "")
+			} else if c.Contains("fa-instagram") {
+				w.Open("https://www.instagram.com/worldofjass/", "instagram", "")
+			} else if c.Contains("fa-pinterest-square") {
+				w.Open("https://au.pinterest.com/worldofjass/", "pinterest", "")
+			}
+		case "SPAN", "IMG":
+			evt.CurrentTarget().Class().Toggle("clikked")
+		case "DIV":
+			if c.Contains("backbtn") {
+				c.Toggle("clikked")
+			}
+			href := evt.Target().GetAttribute("data-href")
+			if href != "" {
+				Session.Navigate(href)
+			}
+		}
+	})
 	Session.ScrollFunc = w.AddEventListener("scroll", false, blogScroller)
 
+	// Links to social btns
+
 	// Get the height of the first blog element
-	blogItemHeight = (int)(doc.QuerySelector("[name=blog-1]").(*dom.HTMLDivElement).OffsetHeight())
+	blogItemHeight = 600
+	if el := doc.QuerySelector("[name=blog-1"); el != nil {
+		blogItemHeight = (int)(el.(*dom.HTMLDivElement).OffsetHeight())
+	}
 	// print("blogitemheight", blogItemHeight)
 	blogItemHeight += 16 // 8px margin
 	highlightItem(0)
@@ -151,11 +187,13 @@ func highlightItem(i int) {
 
 	// print("highlightitem", i, Session.Blogs[i].ID)
 
-	el := doc.QuerySelector(fmt.Sprintf("[name=blog-%d]", Session.Blogs[lastH].ID))
-	if el != nil {
-		el.Class().Remove("highlight")
+	if lastH >= 0 && lastH < len(Session.Blogs) {
+		el := doc.QuerySelector(fmt.Sprintf("[name=blog-%d]", Session.Blogs[lastH].ID))
+		if el != nil {
+			el.Class().Remove("highlight")
+		}
 	}
-	el = doc.QuerySelector(fmt.Sprintf("[name=blog-%d]", Session.Blogs[i].ID))
+	el := doc.QuerySelector(fmt.Sprintf("[name=blog-%d]", Session.Blogs[i].ID))
 	if el != nil {
 		el.Class().Add("highlight")
 	}
@@ -198,34 +236,13 @@ func showBlogItem(context *router.Context) {
 	theBlog := Session.GetBlog(id)
 	print("the blog is", theBlog)
 
-	// ldTemplate("jass-blog", ".jass-blog", &Session)
-
 	ldTemplate("jass-blog-article", ".jass-blog-article", theBlog)
-	print("loaded template into jass-blog-article")
+	// print("loaded template into jass-blog-article")
 
 	doc.QuerySelector(".jass-blog").Class().Add("hidden")
 	w.ScrollTo(0, 0)
 	fadeIn("jass-blog-article")
 	noButtons()
-
-	// blogArticleImage = doc.QuerySelector(".blog-article-image")
-	// blogArticleImage = jQuery(".blog-article-image")
-
-	// go func() {
-	// 	time.Sleep(2 * time.Second)
-	// }()
-
-	// print("looking for .blog-article-name")
-	// ela := doc.QuerySelector(".blog-article-name")
-	// print("ela =", ela)
-	// if ela == nil {
-	// 	print("cant find article name")
-	// 	blogHeaderEnds = 80
-	// } else {
-	// 	blogHeaderEnds = getDivEnd(doc.QuerySelector(".blog-article-name"))
-	// }
-	// navEnds = getDivEnd(doc.QuerySelector(".navigation"))
-	// // print("article name ends at", blogHeaderEnds)
 
 	doc.QuerySelector(".jass-blog-article").AddEventListener("click", false, func(evt dom.Event) {
 		evt.PreventDefault()
@@ -245,20 +262,23 @@ func showBlogItem(context *router.Context) {
 	}
 
 	doc.QuerySelector(".blog-article").AddEventListener("scroll", false, blogArticleScroller)
-	// Session.ScrollFunc = w.AddEventListener("scroll", false, blogArticleScroller)
-	// blogArticleTitle = doc.QuerySelector(".blog-article-title").(*dom.HTMLDivElement)
-	// blogArticleTitleTop = getDivOffset(blogArticleTitle)
 	articleState = 0
 
 	// Add social buttons
+	addSocialButtons(theBlog.GetURL(), theBlog.Name)
+}
+
+func addSocialButtons(url, name string) {
+	w := dom.GetWindow()
+	doc := w.Document()
 
 	// Twitworld
 	doc.QuerySelector(".fa-twitter-square").AddEventListener("click", false, func(evt dom.Event) {
 		print("clicked on the twitworld thing")
 		w.Open(fmt.Sprintf(`%s?text=%s %s`,
 			"https://twitter.com/intent/tweet",
-			theBlog.GetURL(),
-			theBlog.Name),
+			url,
+			name),
 			"twitter",
 			"menubar=0,resizable=1,width=400,height=280")
 	})
@@ -274,7 +294,8 @@ func showBlogItem(context *router.Context) {
 		})
 		FB.Call("ui", js.M{
 			"method": "share",
-			"href":   theBlog.GetURL(),
+			"href":   url,
+			"quote":  fmt.Sprintf("Chamelee Blog - %s\n%s", name, url),
 		}, func(r interface{}) {
 			print("completed UI call", r)
 		})
@@ -283,15 +304,15 @@ func showBlogItem(context *router.Context) {
 	// GWorld
 	doc.QuerySelector(".fa-google-plus-square").AddEventListener("click", false, func(evt dom.Event) {
 		print("clicked on the googleworld thing")
-		gapi := js.Global.Get("gapi")
-		print("google api is", gapi)
+		w.Open("https://plus.google.com/share?url="+url,
+			"gplus",
+			"menubar=no,toolbar=no,resizable=yes,scrollbar=yes,width=600,height=480")
+		// gapi := js.Global.Get("gapi")
+		// print("google api is", gapi)
+		// gapi.Get("plusone").Call("go")
 	})
 }
 
-// var blogArticleTitle = &dom.HTMLDivElement{}
-// var blogArticleTitleTop = 0
-// var blogHeaderEnds = 0
-// var navEnds = 0
 var articleState = 0
 var lastAY = 0
 var blogArticleImage = jQuery
@@ -302,16 +323,15 @@ func blogArticleScroller(evt dom.Event) {
 
 	y := jQuery(".blog-article").ScrollTop()
 	theClass := doc.QuerySelector(".blog-article").Class()
+	nameClass := doc.QuerySelector(".blog-article-name").Class()
 	// print("scroll =", y)
 
-	bai := jQuery(".blog-article-image")
-	print("bai height", bai.Height(), bai.Offset())
-
-	// print("scroll article", y, articleState)
 	if y < 80 {
 		if articleState > 0 {
 			theClass.Remove("faded")
 			theClass.Remove("faded2")
+			nameClass.Remove("shrink1")
+			nameClass.Remove("shrink2")
 		}
 		articleState = 0
 	} else if y < 240 {
@@ -319,15 +339,19 @@ func blogArticleScroller(evt dom.Event) {
 		case 0:
 
 			theClass.Add("faded")
+			nameClass.Add("shrink1")
 			articleState = 1
 		case 1:
 			if y < lastAY {
 				theClass.Remove("faded")
 				theClass.Remove("faded2")
+				nameClass.Remove("shrink1")
+				nameClass.Remove("shrink2")
 				articleState = 0
 			}
 		case 2:
 			theClass.Remove("faded2")
+			nameClass.Remove("shrink2")
 			articleState = 1
 		}
 	} else {
@@ -335,12 +359,16 @@ func blogArticleScroller(evt dom.Event) {
 		case 0:
 			theClass.Add("faded")
 			theClass.Add("faded2")
+			nameClass.Add("shrink")
+			nameClass.Add("shrink2")
 		case 1:
 			theClass.Add("faded2")
+			nameClass.Add("shrink2")
 		case 2:
 			if y < lastAY {
 				// scrolled backwards
 				theClass.Remove("faded2")
+				nameClass.Remove("shrink2")
 			}
 			// do nothing
 		}
