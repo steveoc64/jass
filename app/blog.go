@@ -326,7 +326,12 @@ func blogArticleScroller(evt dom.Event) {
 	nameClass := doc.QuerySelector(".blog-article-name").Class()
 	// print("scroll =", y)
 
-	if y < 80 {
+	if y == 0 {
+		theClass.Remove("faded")
+		theClass.Remove("faded2")
+		nameClass.Remove("shrink1")
+		nameClass.Remove("shrink2")
+	} else if y < 80 {
 		if articleState > 0 {
 			theClass.Remove("faded")
 			theClass.Remove("faded2")
@@ -337,7 +342,6 @@ func blogArticleScroller(evt dom.Event) {
 	} else if y < 240 {
 		switch articleState {
 		case 0:
-
 			theClass.Add("faded")
 			nameClass.Add("shrink1")
 			articleState = 1
@@ -345,13 +349,13 @@ func blogArticleScroller(evt dom.Event) {
 			if y < lastAY {
 				theClass.Remove("faded")
 				theClass.Remove("faded2")
-				nameClass.Remove("shrink1")
-				nameClass.Remove("shrink2")
+				// nameClass.Remove("shrink1")
+				// nameClass.Remove("shrink2")
 				articleState = 0
 			}
 		case 2:
 			theClass.Remove("faded2")
-			nameClass.Remove("shrink2")
+			// nameClass.Remove("shrink2")
 			articleState = 1
 		}
 	} else {
@@ -368,7 +372,6 @@ func blogArticleScroller(evt dom.Event) {
 			if y < lastAY {
 				// scrolled backwards
 				theClass.Remove("faded2")
-				nameClass.Remove("shrink2")
 			}
 			// do nothing
 		}
