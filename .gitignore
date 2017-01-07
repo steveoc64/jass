@@ -3,6 +3,7 @@
 *.a
 *.so
 *.diff
+app/template.go
 
 # Folders
 _obj
