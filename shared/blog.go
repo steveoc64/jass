@@ -2,6 +2,7 @@ package shared
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -17,6 +18,10 @@ type Blog struct {
 	ShareFacebook   int       `db:"share_facebook"`
 	ShareInstagram  int       `db:"share_instagram"`
 	ShareGooglePlus int       `db:"share_google_plus"`
+}
+
+func (b *Blog) GetLines() []string {
+	return strings.Split(b.Content, "\n")
 }
 
 func (b *Blog) GetURL() string {

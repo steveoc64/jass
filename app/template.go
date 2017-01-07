@@ -69,7 +69,7 @@ I’m barely human. I’m more like a creature; to me, everything gives off a sc
 		<img src="/img/models/{{.Image}}">
 	</div>
 	<div class="blog-article-title">{{.Title}}</div>
-	<div class="blog-article-content">{{.Content}}</div>
+	<div class="blog-article-content">{{range .GetLines}} {{.}}<br> {{end}}</div>
 
 	<div class="blog-shares">
 		<div>
