@@ -23,6 +23,20 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
+
+
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -321,6 +335,8 @@ COPY blog (id, image, date, name, title, content, share_twitter, share_facebook,
 3	model-008.jpg	2016-12-16 16:53:46.398967+10:30	Destroying the Spell.	He did not dare approach her.	To him she seemed so beautiful, so seductive, so different from ordinary people, that he could not understand why no one was as disturbed as he by the clicking of her heels on the paving stones, why no one else’s heart was wild with the breeze stirred by the sighs of her veils, why everyone did not go mad with the movements of her braid, the flight of her hands, the gold of her laughter. He had not missed a single one of her gestures, not one of the indications of her character, but he did not dare approach her for fear of destroying the spell.	0	0	0	0	70
 8	model-006.jpg	2016-12-17 12:04:14.487447+10:30	Love, of Course, is Personal.	Many compositions smell great in the first few minutes.	If you’ve tried several perfumes, you know things can go wrong. Many compositions smell great in the first few minutes, then fade rapidly to a murmur or an unpleasant twang you can never quite wash off. Some seem to attack with what feels like an icepick in the eye. Others smell nice for an hour in the middle but boring at start and finish. Some veer uncomfortably sweet, and some fall to pieces, with various parts hanging there in the air but not really cooperating in any useful way. Some never get around to being much of anything at all. The way you can love a person for one quality despite myriad faults, you can sometimes love a perfume for one particular moment or effect, even if the rest is trash. Yet in the thousands of perfumes that exist, some express their ideas seamlessly and eloquently from top to bottom and give a beautiful view from any angle. A rare subset of them always seem to have something new and interesting to say, even if you encounter them daily. Those are the greats. By these criteria, one can certainly admire a perfume without necessarily loving it. Love, of course, is personal.	0	0	0	0	30
 2	model-005.jpg	2016-12-16 16:43:52.52166+10:30	I stared at her	When I see you the world stops.	The first time I saw you, my heart fell. The second time I saw you, my heart fell. The third time fourth time fifth time and every time since, my heart has fallen.\nI stared at her.\nYou are the most beautiful woman I have ever seen. Your hair, your eyes, your lips, your body that you haven’t grown into, the way you walk, smile, laugh, the way your cheeks drop when you’re mad or upset, the way you drag your feet when you’re tired. Every single thing about you is beautiful.\nI stared at her.\nWhen I see you the world stops. It stops and all that exists for me is you and my eyes staring at you. There’s nothing else. No noise, no other people, no thoughts or worries, no yesterday, no tomorrow. The world just stops and it is a beautiful place and there is only you. Just you, and my eyes staring at you.\nI stared.\nWhen you’re gone, the world starts again, and I don’t like it as much. I can live in it, but I don’t like it. I just walk around in it and wait to see you again and wait for it to stop again. I love it when it stops. It’s the best ******* thing I’ve ever known or ever felt, the best thing, and that, beautiful Girl, is why I stare at you.	0	0	0	0	80
+11	model-011.jpg	2017-01-06 15:23:59.455188+10:30	I miss you.	She is wishing for you to be her's forever	When she is quiet, millions of things are running in Her mind. When she is not arguing, She is in deep thought. When she looks at you with eyes full of questions, She is wondering how long you will be around. When she answers “I’m fine” after a few seconds, She is not fine. When you tell her why you are late, She is wondering why you are lying. When she lays on your chest, She is wishing for you to be hers forever. When she calls you everyday, She is seeking your attention. When she texts you everyday, She wants you to reply and tell her that she is missed. When she says “I love you”, She really means it. When she says that she can’t live without you, She has made up her mind that you are her future. When she says “I miss you”, no one in this world can miss you more than she does.\n\n	0	0	0	0	110
+10	model-010.jpg	2017-01-06 15:22:07.080608+10:30	Lost in the sight of her.	Lost in my thoughts, lost in the sight of her.	It slowly began to dawn on me that I had been staring at her for an impossible amount of time. Lost in my thoughts, lost in the sight of her. But her face didn’t look offended or amused. It almost looked as if she were studying the lines of my face, almost as if she were waiting. I wanted to take her hand. I wanted to brush her cheek with my fingertips. I wanted to tell her that she was the most beautiful thing that I had ever seen. The sight of her yawning to the back of her hand was enough to drive the breath from me. How I sometimes lost the sense of her words in the sweet fluting of her voice. I wanted to say that if she were with me then somehow nothing could ever be wrong for me again. In that breathless second I almost asked her. I felt the question boiling up from my chest. I remember drawing a breath then hesitating–what could I say? Come away with me? Stay with me? Coffee? No. Sudden certainty tightened in my chest like a cold fist. What could I ask her? What could I offer? Nothing. Anything I said would sound foolish, a child’s fantasy. I closed my mouth and looked across the water. Inches away, Chamelee did the same. I could feel the heat of her. She smelled like road dust, and honey, and the smell the air holds seconds before a heavy summer rain.\n\nThe closeness of her was the sweetest, sharpest thing I had ever known.\n\nNeither of us spoke.\n\nI closed my eyes.\n\n	0	0	0	0	100
 \.
 
 
@@ -328,7 +344,7 @@ COPY blog (id, image, date, name, title, content, share_twitter, share_facebook,
 -- Name: blog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: steve
 --
 
-SELECT pg_catalog.setval('blog_id_seq', 9, true);
+SELECT pg_catalog.setval('blog_id_seq', 11, true);
 
 
 --

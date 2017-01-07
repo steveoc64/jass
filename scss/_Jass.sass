@@ -9,8 +9,11 @@ body
 	flex-wrap: nowrap
 	justify-content: center
 
-	a,div
-		flex: 0 0 4rem	
+	div
+		flex: 0 0 6rem	
+		color: $jass-green-solid
+		a 
+			color: $jass-green-solid
 
 // About box
 .jass-about
@@ -18,7 +21,7 @@ body
 	flex-wrap: wrap
 	justify-content: center
 	width: 100vw
-	height: 65vh
+	height: 100vh
 	padding-right: 10vw
 	padding-left: 10vw
 	overflow: auto
@@ -406,6 +409,8 @@ body
 
 $blog-title-bg: rgba(66, 103, 48, 0.4)
 $blog-title-light: rgba(86, 162, 49, 0.4)
+$blog-title-light-real: rgba(86, 162, 49, 0.6)
+$blog-title-light-solid: rgba(86, 162, 49, 0.8)
 
 .jass-blog
 	display: flex 
@@ -419,6 +424,66 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 	padding-bottom: 12rem
 
 	.blog-header
+
+	.blog-footer
+		background-color: #333
+		color: white
+		position: fixed
+		height: 4rem
+		width: 100vw
+		bottom: 0
+		font-family: 'Roboto', sans-serif
+		font-size: 2rem
+		display: flex
+		flex-wrap: wrap
+		justify-content: center
+		align-items: flex-end
+		z-index: 200
+		transition: all .3s
+		&:hover
+			background-color: #444
+
+		img 
+			max-height: 4rem
+			max-width: 4rem
+			flex: 0 0 6rem
+			object-fit: contain
+		span
+			flex: 1 0 calc(100vw - 6rem)
+			padding-left: 4rem
+			opacity: .6
+			transition: opacity 1s
+		div
+			display: none 
+
+		&.clikked
+			height: 32rem
+			align-items: flex-start
+			span
+				opacity: .8
+			div 
+				display: flex
+				flex: 1 0 40vw
+				flex-direction: column
+				flex-wrap: nowrap
+				font-size: 1.6rem
+				padding-left: 2rem
+				// border: 1px solid $jass-green
+				// border-radius: 6px
+				color: $jass-green
+				div
+					flex: 0
+					color: #ccc
+					&:hover
+						color: white
+				i
+					flex: 0
+					color: #ccc
+					padding: .4rem
+					@media screen and (max-height: 320)
+						padding: .2rem
+					&:hover
+						color: white
 
 	.blog-item
 		position: relative
@@ -511,6 +576,14 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 	width: 100vw
 	transition: all .8s
 	z-index: 2
+	display: flex
+	align-items: center
+	&.shrink1
+		font-size: 4rem
+		background-color: $blog-title-light-real
+	&.shrink2
+		font-size: 3rem
+		background-color: $blog-title-light-solid
 
 .blog-article
 	// position: absolute
@@ -522,7 +595,6 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 
 	// a,i,.twitter-share-button
 	a,i
-		// flex: 0 0 4rem
 		color: rgba(33, 123, 13, 0.74)
 
 	.blog-article-image
@@ -570,6 +642,7 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 		// margin-bottom: 6rem
 		@media screen and (max-width: 320px)
 			font-size: 2.6rem
+
 
 	.jass-logo-small
 		// opacity: .6

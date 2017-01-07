@@ -31,6 +31,10 @@ type GlobalSessionData struct {
 	ScrollFunc           func(*js.Object)
 }
 
+func (s *GlobalSessionData) GetURL() string {
+	return "https://jass.com.au"
+}
+
 func (s *GlobalSessionData) GetCartTotal() string {
 	// print("cart total", s.CartTotal)
 	if s.CartTotal == 0.0 {

@@ -14,7 +14,6 @@ func showTopMenu() {
 	doc.QuerySelector(".hamburger").Class().Remove("hidden")
 	doc.QuerySelector(".jass-logo-top").AddEventListener("click", false, func(evt dom.Event) {
 		print("Clicked on logo")
-		w.ScrollTo(0, 0)
-		doSplashPage()
+		Session.Navigate("/")
 	})
 }

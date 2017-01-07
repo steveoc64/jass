@@ -27,7 +27,27 @@ func init() {
 </span>
 <p>
 I’m barely human. I’m more like a creature; to me, everything gives off a scent! Thoughts, moments, feelings, movements, words left unsaid, words barely spoken; they all have a distinct sense, distinct fragrances! Both a smell and a touch! To inhale is to capture, to experience! I can perceive and I can “touch” in so many odd ways! And so I am made up of all these scents, all these feelings! An illumination of nerve endings. I am Chamelee'.
-</p>`); err != nil {
+</p>
+
+<div class="blog-shares">
+		<div>
+			<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{.GetURL}}+{{.Name}}" data-size="large">
+				<i class="fa fa-twitter-square fa-3x"></i>
+			</a>
+		</div>
+
+		<div class="fb-like" data-href="{{.GetURL}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+		<i class="fa fa-facebook-square fa-3x"></i>	
+		</div>
+
+		<div class="g-plusone" data-width="300" data-href="{{.GetURL}}">
+			<a href="https://plus.google.com/share?url={{.GetURL}}">
+			<i class="fa fa-google-plus-square fa-3x"></i>	
+			</a>
+		</div>
+</div>
+
+<div class="jass-logo-small"> </div>`); err != nil {
 		panic(err)
 	}
 
@@ -41,7 +61,9 @@ I’m barely human. I’m more like a creature; to me, everything gives off a sc
 		panic(err)
 	}
 
-	if err = g.AddTemplate("jass-blog-article", `<div class="blog-article-name">{{.Name}}</div>
+	if err = g.AddTemplate("jass-blog-article", `<div class="blog-article-name">
+	<span>{{.Name}}</span>
+</div>
 <div class="blog-article">
 	<div class="blog-article-image">
 		<img src="/img/models/{{.Image}}">
@@ -50,17 +72,20 @@ I’m barely human. I’m more like a creature; to me, everything gives off a sc
 	<div class="blog-article-content">{{.Content}}</div>
 
 	<div class="blog-shares">
-		<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{.GetURL}}+{{.Name}}" data-size="large">
-			<i class="fa fa-twitter-square fa-3x"></i>
-		</a>
-
+		<div>
+			<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{.GetURL}}+{{.Name}}" data-size="large">
+				<i class="fa fa-twitter-square fa-3x"></i>
+			</a>
+		</div>
 
 		<div class="fb-like" data-href="{{.GetURL}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true">
 		<i class="fa fa-facebook-square fa-3x"></i>	
 		</div>
 
-		<div class="g-plusone" data-annotation="inline" data-width="300">
+		<div class="g-plusone" data-width="300" data-href="{{.GetURL}}">
+			<a href="https://plus.google.com/share?url={{.GetURL}}">
 			<i class="fa fa-google-plus-square fa-3x"></i>	
+			</a>
 		</div>
 	</div>
 
@@ -77,7 +102,33 @@ I’m barely human. I’m more like a creature; to me, everything gives off a sc
 		{{$value.Name}}
 	</div>
 </div>
-{{end}}`); err != nil {
+{{end}}
+<div class="blog-footer backbtn">
+	<img src="/img/flowerGS.png">
+	<span class="backbtn">
+		Discover More ...
+	</span>
+
+	<div class="backbtn">
+		More
+		<div data-href="/about">About</div>
+		<div data-href="/shop">Shop Chamelee</div>
+		<div data-href="/ambassadors">Ambassadors</div>
+		<div data-href="/terms">Terms&Conditions</div>
+		<div data-href="/privacy">Privacy Policy</div>
+		<div></div>
+		<div data-href="/contact">Contact Us</div>
+	</div>
+	<div class="backbtn">
+		Follow us
+		<i class="fa fa-instagram fa-2x"></i>
+		<i class="fa fa-facebook-square fa-2x"></i>	
+		<i class="fa fa-twitter-square fa-2x"></i>
+		<i class="fa fa-pinterest-square fa-2x"></i>
+		<i class="fa fa-google-plus-square fa-2x"></i>	
+		<i class="fa fa-youtube-square fa-2x"></i>	
+	</div>
+</div>`); err != nil {
 		panic(err)
 	}
 
