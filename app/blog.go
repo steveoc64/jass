@@ -237,12 +237,13 @@ func showBlogItem(context *router.Context) {
 	print("the blog is", theBlog)
 
 	ldTemplate("jass-blog-article", ".jass-blog-article", theBlog)
-	// print("loaded template into jass-blog-article")
+	print("loaded template into jass-blog-article")
 
 	doc.QuerySelector(".jass-blog").Class().Add("hidden")
 	w.ScrollTo(0, 0)
 	fadeIn("jass-blog-article")
 	noButtons()
+	print("this")
 
 	doc.QuerySelector(".jass-blog-article").AddEventListener("click", false, func(evt dom.Event) {
 		evt.PreventDefault()
@@ -256,15 +257,19 @@ func showBlogItem(context *router.Context) {
 		}
 	})
 
+	print("that")
+
 	if Session.ScrollFunc != nil {
 		w.RemoveEventListener("scroll", false, Session.ScrollFunc)
 		Session.ScrollFunc = nil
 	}
 
+	print("maybe")
 	doc.QuerySelector(".blog-article").AddEventListener("scroll", false, blogArticleScroller)
 	articleState = 0
 
 	// Add social buttons
+	print("here")
 	addSocialButtons(theBlog.GetURL(), theBlog.Name)
 }
 
@@ -272,8 +277,10 @@ func addSocialButtons(url, name string) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
+	print("adding social buttons")
+
 	// Twitworld
-	doc.QuerySelector(".fa-twitter-square").AddEventListener("click", false, func(evt dom.Event) {
+	doc.QuerySelector(".share-twitter").AddEventListener("click", false, func(evt dom.Event) {
 		print("clicked on the twitworld thing")
 		w.Open(fmt.Sprintf(`%s?text=%s %s`,
 			"https://twitter.com/intent/tweet",
@@ -284,7 +291,7 @@ func addSocialButtons(url, name string) {
 	})
 
 	// Faceworld
-	doc.QuerySelector(".fa-facebook-square").AddEventListener("click", false, func(evt dom.Event) {
+	doc.QuerySelector(".share-facebook").AddEventListener("click", false, func(evt dom.Event) {
 		print("clicked on the faceworld thing")
 		FB := js.Global.Get("FB")
 		print("fb", FB)
@@ -302,7 +309,7 @@ func addSocialButtons(url, name string) {
 	})
 
 	// GWorld
-	doc.QuerySelector(".fa-google-plus-square").AddEventListener("click", false, func(evt dom.Event) {
+	doc.QuerySelector(".share-google").AddEventListener("click", false, func(evt dom.Event) {
 		print("clicked on the googleworld thing")
 		w.Open("https://plus.google.com/share?url="+url,
 			"gplus",

@@ -74,17 +74,17 @@ I’m barely human. I’m more like a creature; to me, everything gives off a sc
 	<div class="blog-shares">
 		<div>
 			<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{.GetURL}}+{{.Name}}" data-size="large">
-				<i class="fa fa-twitter-square fa-3x"></i>
+				<i class="share-twitter fa fa-twitter-square fa-3x"></i>
 			</a>
 		</div>
 
 		<div class="fb-like" data-href="{{.GetURL}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true">
-		<i class="fa fa-facebook-square fa-3x"></i>	
+		<i class="share-facebook fa fa-facebook-square fa-3x"></i>	
 		</div>
 
 		<div class="g-plusone" data-width="300" data-href="{{.GetURL}}">
 			<a href="https://plus.google.com/share?url={{.GetURL}}">
-			<i class="fa fa-google-plus-square fa-3x"></i>	
+			<i class="share-google fa fa-google-plus-square fa-3x"></i>	
 			</a>
 		</div>
 	</div>
