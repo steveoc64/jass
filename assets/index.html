@@ -1,4 +1,84 @@
 <!doctype html>
+<!-- 
+  __  __ _       _     _                     __  ____      _                             _   
+ |  \/  (_)_ __ (_)___| |_ _ __ _   _  ___  / _|/ ___|___ | | ___  _   _ _ __ _ __   ___| |_ 
+ | |\/| | | '_ \| / __| __| '__| | | |/ _ \| |_| |   / _ \| |/ _ \| | | | '__| '_ \ / _ \ __|
+ | |  | | | | | | \__ \ |_| |  | |_| | (_) |  _| |__| (_) | | (_) | |_| | |_ | | | |  __/ |_ 
+ |_|  |_|_|_| |_|_|___/\__|_|   \__, |\___/|_|  \____\___/|_|\___/ \__,_|_(_)|_| |_|\___|\__|
+                                |___/                                                        
+
+                                https://ministryofcolour.net
+                                github.com/ministry-of-colour/jass
+
+                                Adelaide - Tokyo - Singapore
+
+                                We mostly Code in Go
+                                We do our best work on Linux
+                                We prefer to deploy on FreeBSD
+                                We dont do Agile
+
+==============================================================================================
+MIT License
+
+Copyright (c) 2017 Ministry of Colour
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+  ==========================================================================
+  Welcome to the Chamelee site code base.
+
+  If you are reading this from doing a "view source" to see how this works, 
+  you might find it a bit of a wild goose chase for starters.
+
+  All is not lost though.
+
+  This is an SPA (single page app), with the following lifecycle :
+    - App loads once, via this index.html
+    - App loads "jass.js" code bundle
+    - jass.js code bundle then executes the app
+    - page transitions within the SPA are managed by jass.js, which
+      loads template content into the various DIVs below
+    - On rare occassions, the SPA may make an AJAX request to the 
+      sever to GET or POST data between screens
+    - All HTML pages are generated on the fly, at the front end, 
+      by running data through embedded templates. There are NO 
+      async loads of pages as external objects 
+    - The embedded templates are bundled inside the jass.js code bundle
+      as compiled strings
+
+  If you are looking for the code, please note that this application is written
+  entirely in Go.
+
+  ??? say again ???
+
+  The front end, as well as the backend for this app is written in the Go language,
+  with the front end components compiled to JS using GopherJS (http://gopherjs.org)
+
+  There is NO Javascript involved here (at least not directly), so ..
+  welcome to the brave new world of web dev without Javascript.
+ 
+  The original source code for both the front end and backend is published
+  under an MIT Licence, and available via github.com/ministry-of-colour/jass
+
+ -->
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -16,30 +96,12 @@
     <title>Jass Perfumes</title>
 
     <!-- Fonts -->
-    <!-- <script src="https://use.fontawesome.com/ee68b0acc1.js"></script> -->
-    <!-- <link rel="stylesheet" href="/fonts/Roboto.css">    -->
-    <!-- <link rel="stylesheet" href="/fonts/Raleway.css">    -->
-    <!-- <link rel="stylesheet" href="/fonts/Josefin.css">    -->
-    <!-- <link rel="stylesheet" href="/fonts/Catamaran.css">    -->
-    <!-- <link rel="stylesheet" href="/fonts/Aref.css">    -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">   
-    <!-- <link href="https://fonts.googleapis.com/css?family=Domine|Playfair+Display:700i" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300|Raleway|Roboto:400" rel="stylesheet">
 
 
     <!-- Styles -->
-    <!-- <link type="text/css" rel="stylesheet" href="css/treeview.css"/> -->
     <link type="text/css" rel="stylesheet" href="/css/jass.css"/>
-
-    <!-- Load c3.css -->
-    <!-- <link href="css/c3.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- <link href="css/c3.css" rel="stylesheet" type="text/css"> -->
-
-    <!-- Load d3.js and c3.js -->
-    <!-- <script src="js/d3.min.js" charset="utf-8"></script> -->
-    <!-- <script src="js/c3.js"></script> -->
-    <!-- <script src="js/c3.min.js"></script> -->
   </head>
 
 <body id="app" onresize="resize()">
@@ -47,11 +109,8 @@
   <div class="wrapper">
 
     <nav class="navigation">
-        <!-- <a class="navigation-title" href="#" id="homepage"> -->
-          <!-- <img src="img/jass-invert-cropped.jpg" class="jass-logo-top hidden"> -->
-          <img src="/img/chamelee.png" class="jass-logo-top fade-in three">
-          <i class="loadspinner fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-        <!-- </a> -->
+        <img src="/img/chamelee.png" class="jass-logo-top fade-in three">
+        <i class="loadspinner fa fa-spinner fa-pulse fa-3x fa-fw"></i>
         <a class="hamburger hamburger--arrow hidden" aria-label="Menu" aria-controls="navigation">
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
@@ -66,6 +125,22 @@
     <div class="jass-logo-container">
       <div class="jass-logo-box fade-in fast"></div>
     </div>
+
+    <!-- 
+    NOTE - It might seem odd that we have a dozen hidden DIVs here
+    for overlaying content, when a single DIV could easily be used
+    to load different templates into.
+
+    Hovever - In the case of this site only, we fade out the existing
+    panel and fade in the new panel simultaneously for a dreamy 
+    UX effect whenever the user transitions between 2 pages on the site.
+
+    Hence - lots of DIVs, hope you understand.
+
+    The Fading API is very simple though - a call to fadeIn("panel1","panel2",...)
+    does all the heavy lifting by fading out all and fading in the newly requested
+    panels.  Code for this is in app/fader.go
+    -->
 
     <div class="jass-splash-box hidden"></div>
     <div class="jass-about hidden"></div>
@@ -105,7 +180,21 @@
 <div class="md-overlay"></div>
   
 </body>
-<!-- Add our code -->
+
+<!--
+  Add our code bundle. 
+  Note that our code bundle includes jquery 3.1.1.
+
+  Dont bother attempting to load and decipher the jass.js
+  bundle - as this is compiled output from the gopherjs Go -> JS transpiler
+
+  If you want to see the ACTUAL source code that generates
+  this bundle, its all there to be found on GitHub
+
+  https://github.com/ministry-of-colour/jass
+    ... then look in the "app" directory for the app code
+-->
+
 <script src="/jass.js"></script>
 
 <!-- Faceworld SDK via jQuery -->
@@ -114,8 +203,8 @@ $(document).ready(function() {
   $.ajaxSetup({ cache: true });
   $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
     FB.init({
-      appId: '548844651985808',
-      // appId: '548857485317858',  
+      appId: '548844651985808',     // Live APP ID for running against jass.com.au
+      // appId: '548857485317858',  // Test APP ID for running against localhost
       version: 'v2.8'
     });     
   });
@@ -125,3 +214,17 @@ $(document).ready(function() {
 <!-- Google API -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </html>
+
+<!-- 
+  __  __ _       _     _                     __  ____      _                             _   
+ |  \/  (_)_ __ (_)___| |_ _ __ _   _  ___  / _|/ ___|___ | | ___  _   _ _ __ _ __   ___| |_ 
+ | |\/| | | '_ \| / __| __| '__| | | |/ _ \| |_| |   / _ \| |/ _ \| | | | '__| '_ \ / _ \ __|
+ | |  | | | | | | \__ \ |_| |  | |_| | (_) |  _| |__| (_) | | (_) | |_| | |_ | | | |  __/ |_ 
+ |_|  |_|_|_| |_|_|___/\__|_|   \__, |\___/|_|  \____\___/|_|\___/ \__,_|_(_)|_| |_|\___|\__|
+                                |___/                                                        
+
+                                https://ministryofcolour.net
+                                github.com/ministry-of-colour/jass
+
+                                Adelaide - Tokyo - Singapore
+ -->

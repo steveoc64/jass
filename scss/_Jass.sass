@@ -1,6 +1,11 @@
 body 
 	cursor: pointer
 
+.loadspinner
+	position: fixed
+	top: 0
+	right: 80px
+
 $jass-nav-height: 5rem
 $jass-footer-height: 4rem
 $jass-container-height: calc(100vh - 9rem)
@@ -161,6 +166,7 @@ $jass-container-height: calc(100vh - 9rem)
 	.option-row
 		display: flex
 		width: 100%
+		max-width: 1280px
 		flex-wrap: nowrap
 		justify-content: space-around
 		// border-bottom: 1px solid $jass-shade
@@ -444,7 +450,7 @@ $jass-container-height: calc(100vh - 9rem)
 			flex: 0
 			color: white
 			opacity: 0
-			padding-right: 1rem
+			padding-right: 1.8rem
 	div
 		display: none 
 		hr 
@@ -681,6 +687,15 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 
 
 	.jass-logo-small
+		width: 100%
+		display: flex
+		justify-content: space-around
+		i 
+			color: #444
+			&.none-such
+				opacity: .1
+
+
 		// opacity: .6
 		// z-index: -1	
 		// position: fixed

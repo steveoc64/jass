@@ -11,4 +11,6 @@ func contact(context *router.Context) {
 
 	print("in contact function")
 	ldTemplate("contact", ".jass-contact", &Session)
+	fadeIn("jass-contact")
+	noButtons()
 }

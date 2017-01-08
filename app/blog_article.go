@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/go-humble/router"
@@ -31,12 +32,19 @@ func showBlogItem(context *router.Context) {
 	}
 
 	id, _ := strconv.Atoi(context.Params["id"])
-	// print("in blog item", id)
 	theBlog := Session.GetBlog(id)
-	// print("the blog is", theBlog)
 
 	ldTemplate("jass-blog-article", ".jass-blog-article", theBlog)
 	// print("loaded template into jass-blog-article")
+
+	prevBlog := Session.PrevBlog(id)
+	nextBlog := Session.NextBlog(id)
+	if prevBlog == -1 {
+		doc.QuerySelector(".fa-chevron-left").Class().Add("none-such")
+	}
+	if nextBlog == -1 {
+		doc.QuerySelector(".fa-chevron-right").Class().Add("none-such")
+	}
 
 	doc.QuerySelector(".jass-blog").Class().Add("hidden")
 	w.ScrollTo(0, 0)
@@ -50,6 +58,18 @@ func showBlogItem(context *router.Context) {
 		switch t.TagName() {
 		case "I":
 			// print("clicked on icon ... stay here")
+			c := t.Class()
+			if c.Contains("fa-chevron-right") {
+				print("goto next blog")
+				if nextBlog != -1 {
+					Session.Navigate(fmt.Sprintf("/blog/%d", nextBlog))
+				}
+			} else if c.Contains("fa-chevron-left") {
+				if prevBlog != -1 {
+					Session.Navigate(fmt.Sprintf("/blog/%d", prevBlog))
+				}
+			}
+
 		default:
 			// print("clicked in general - go back")
 			if t.Class().Contains("gotop") {

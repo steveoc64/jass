@@ -31,6 +31,30 @@ type GlobalSessionData struct {
 	ScrollFunc           func(*js.Object)
 }
 
+func (s *GlobalSessionData) NextBlog(id int) int {
+	for i, v := range s.Blogs {
+		if v.ID == id {
+			if (i + 1) >= len(s.Blogs) {
+				return -1 // no next blog
+			}
+			return s.Blogs[i+1].ID
+		}
+	}
+	return -1
+}
+
+func (s *GlobalSessionData) PrevBlog(id int) int {
+	for i, v := range s.Blogs {
+		if v.ID == id {
+			if i == 0 {
+				return -1 // no prev blog
+			}
+			return s.Blogs[i-1].ID
+		}
+	}
+	return -1
+}
+
 func (s *GlobalSessionData) GetURL() string {
 	return "https://jass.com.au"
 }

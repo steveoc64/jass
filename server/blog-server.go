@@ -35,6 +35,9 @@ func blogTracker(c echo.Context) error {
 func blogIDTracker(c echo.Context) error {
 	req := c.Request()
 	id, _ := strconv.Atoi(c.Param("id"))
+	if id < 1 {
+		return c.Redirect(http.StatusMovedPermanently, "/")
+	}
 	printLog(c, "direct blog article, id=", id, "ref=", req.Referer())
 	return c.File("public/index.html")
 }
