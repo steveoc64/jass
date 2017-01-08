@@ -1,8 +1,14 @@
 package main
 
-import "github.com/go-humble/router"
+import (
+	"github.com/go-humble/router"
+	// "honnef.co/go/js/dom"
+)
 
 func contact(context *router.Context) {
+	// w := dom.GetWindow()
+	// doc := w.Document()
+
 	print("in contact function")
-	// showButtons("shop", "discover")
+	ldTemplate("contact", ".jass-contact", &Session)
 }

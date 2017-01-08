@@ -14,11 +14,11 @@ var elements = []string{
 	"jass-sale-items",
 	"jass-sales-bar",
 	"jass-cart",
-	"jass-model-cycle",
 	"jass-options",
 	"jass-blog",
 	"jass-blog-article",
 	"jass-about",
+	"jass-contact",
 }
 
 func fadeIn(element ...string) {

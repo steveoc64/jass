@@ -62,6 +62,9 @@ func main() {
 	doc.QuerySelector("[name=opt-b]").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/blog")
 	})
+	doc.QuerySelector("[name=opt-c]").AddEventListener("click", false, func(evt dom.Event) {
+		Session.Navigate("/contact")
+	})
 	doc.QuerySelector("[name=opt-about]").AddEventListener("click", false, func(evt dom.Event) {
 		Session.Navigate("/about")
 	})
