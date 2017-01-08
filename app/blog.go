@@ -21,6 +21,7 @@ var blogCols = 1
 var lastBlogScroll = time.Time{}
 var scrollThreshold = 100 * time.Millisecond
 var headerClass = &dom.TokenList{}
+var boundBlogEvents = false
 
 func blog(context *router.Context) {
 	Session.Blogs = []shared.Blog{}
