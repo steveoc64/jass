@@ -139,14 +139,16 @@ func blogScroller(evt dom.Event) {
 	w := dom.GetWindow()
 	y := w.ScrollY()
 
-	now := time.Now()
-	elapsed := now.Sub(lastBlogScroll)
-	lastBlogScroll = now
-	if elapsed < scrollThreshold {
-		return
+	if false {
+		now := time.Now()
+		elapsed := now.Sub(lastBlogScroll)
+		lastBlogScroll = now
+		if elapsed < scrollThreshold {
+			return
+		}
 	}
 
-	print("window scroll event", y, blogItemHeight, y/blogItemHeight)
+	// print("window scroll event", y, blogItemHeight, y/blogItemHeight)
 	if blogItemHeight == 0 {
 		return
 	}
