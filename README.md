@@ -32,8 +32,9 @@ SOFTWARE.
 
 # Ministry of Colour
 
-Chamelee is proudly bought to you by MinistryOfColour
+The Chamelee launch website is another production from MinistryOfColour
 
+https://github.com/ministry-of-colour
 https://ministryofcolour.net
 
 
@@ -45,14 +46,17 @@ https://ministryofcolour.net
  |_|  |_|_|_| |_|_|___/\__|_|   \__, |\___/|_|  \____\___/|_|\___/ \__,_|_(_)|_| |_|\___|\__|
                                 |___/                                                        
 
+
                                 https://ministryofcolour.net
                                 github.com/ministry-of-colour/jass
 
                                 Adelaide - Tokyo - Singapore
 
-                                We mostly Code in Go
-                                We do our best work on Linux
+                                We work with Linux
+                                We code in Go / C / Haskell / R - whatever makes sense
                                 We prefer to deploy on FreeBSD
-                                We share our code openly
+                                We share our code openly under an MIT licence
+
                                 We dont do Agile
+                                No recruitment agencies
 ```
