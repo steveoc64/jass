@@ -8,6 +8,8 @@ import (
 	"honnef.co/go/js/dom"
 )
 
+var boundBlogArticleEvents = false
+
 func blogItem(context *router.Context) {
 	if len(Session.Blogs) == 0 {
 		GetJSON("/api/blog", &Session.Blogs, func() {
@@ -19,6 +21,9 @@ func blogItem(context *router.Context) {
 		showBlogItem(context)
 	}
 }
+
+var prevBlog = -1
+var nextBlog = -1
 
 func showBlogItem(context *router.Context) {
 	w := dom.GetWindow()
@@ -37,8 +42,8 @@ func showBlogItem(context *router.Context) {
 	ldTemplate("jass-blog-article", ".jass-blog-article", theBlog)
 	// print("loaded template into jass-blog-article")
 
-	prevBlog := Session.PrevBlog(id)
-	nextBlog := Session.NextBlog(id)
+	prevBlog = Session.PrevBlog(id)
+	nextBlog = Session.NextBlog(id)
 	if prevBlog == -1 {
 		doc.QuerySelector(".fa-chevron-left").Class().Add("none-such")
 	}
@@ -51,45 +56,52 @@ func showBlogItem(context *router.Context) {
 	fadeIn("jass-blog-article")
 	noButtons()
 
-	doc.QuerySelector(".jass-blog-article").AddEventListener("click", false, func(evt dom.Event) {
-		evt.PreventDefault()
-		t := evt.Target()
-		print("clikked on", t.TagName(), t.Class().String())
-		switch t.TagName() {
-		case "I":
-			// print("clicked on icon ... stay here")
-			c := t.Class()
-			if c.Contains("fa-chevron-right") {
-				print("goto next blog")
-				if nextBlog != -1 {
-					Session.Navigate(fmt.Sprintf("/blog/%d", nextBlog))
-				}
-			} else if c.Contains("fa-chevron-left") {
-				if prevBlog != -1 {
-					Session.Navigate(fmt.Sprintf("/blog/%d", prevBlog))
-				}
-			}
+	if !boundBlogArticleEvents {
 
-		default:
-			// print("clicked in general - go back")
-			if t.Class().Contains("gotop") {
-				print("clikked on gotop")
-				el := jQuery("blog-article")
-				print("el", el)
-				jQuery(".blog-article").Call("scrollTop", 0)
-			} else if t.Class().Contains("jass-logo-small") {
-				Session.Navigate("/blog")
+		doc.QuerySelector(".jass-blog-article").AddEventListener("click", false, func(evt dom.Event) {
+			evt.PreventDefault()
+			t := evt.Target()
+			// print("clikked on", t.TagName(), t.Class().String())
+			switch t.TagName() {
+			case "I":
+				// print("clicked on icon ... stay here")
+				c := t.Class()
+				if c.Contains("fa-chevron-right") {
+					// print("goto next blog")
+					if nextBlog != -1 {
+						Session.Navigate(fmt.Sprintf("/blog/%d", nextBlog))
+						return
+					}
+				} else if c.Contains("fa-chevron-left") {
+					if prevBlog != -1 {
+						Session.Navigate(fmt.Sprintf("/blog/%d", prevBlog))
+						return
+					}
+				}
+
+			default:
+				// print("clicked in general - go back")
+				if t.Class().Contains("gotop") {
+					// print("clikked on gotop")
+					el := jQuery("blog-article")
+					print("el", el)
+					jQuery(".blog-article").Call("scrollTop", 0)
+				} else if t.Class().Contains("jass-logo-small") {
+					Session.Navigate("/blog")
+					return
+				}
 			}
+		})
+		boundBlogArticleEvents = true
+
+		if Session.ScrollFunc != nil {
+			w.RemoveEventListener("scroll", false, Session.ScrollFunc)
+			Session.ScrollFunc = nil
 		}
-	})
 
-	if Session.ScrollFunc != nil {
-		w.RemoveEventListener("scroll", false, Session.ScrollFunc)
-		Session.ScrollFunc = nil
+		doc.QuerySelector(".blog-article").AddEventListener("scroll", false, blogArticleScroller)
+		articleState = 0
 	}
-
-	doc.QuerySelector(".blog-article").AddEventListener("scroll", false, blogArticleScroller)
-	articleState = 0
 
 	// Add social buttons
 	addSocialButtons(theBlog.GetURL(), theBlog.Name)
