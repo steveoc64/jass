@@ -74,6 +74,7 @@ dist/assets.log: assets/*.html assets/img/*  assets/fonts/* assets/*.webmanifest
 	@mkdir -p dist/public/css dist/public/font dist/public/js
 	cp assets/*.html dist/public
 	cp assets/*.webmanifest dist/public
+	cp assets/favicon.ico dist/public
 	cp -R assets/img dist/public
 	cp -R assets/fonts dist/public
 	cp -R assets/css dist/public

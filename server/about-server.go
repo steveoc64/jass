@@ -7,3 +7,9 @@ func aboutTracker(c echo.Context) error {
 	printLog(c, "direct about, ref=", req.Referer())
 	return c.File("public/index.html")
 }
+
+func contactTracker(c echo.Context) error {
+	req := c.Request()
+	printLog(c, "direct contact, ref=", req.Referer())
+	return c.File("public/index.html")
+}
