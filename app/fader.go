@@ -19,6 +19,7 @@ var elements = []string{
 	"jass-blog-article",
 	"jass-about",
 	"jass-contact",
+	"jass-model-cycle",
 }
 
 func fadeIn(element ...string) {
