@@ -26,6 +26,8 @@ func fadeIn(element ...string) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
+	doc.QuerySelector(".jass-footer").Class().Remove("clikked")
+
 	// fade in the initial element
 
 	showThis := func(theElement string) bool {

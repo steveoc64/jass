@@ -19,6 +19,7 @@ func main() {
 	initRouter()
 	initForms()
 	initBurger()
+	initFooter()
 
 	Session.LastWidth = dom.GetWindow().InnerWidth()
 	Session.Orientation = "Landscape"

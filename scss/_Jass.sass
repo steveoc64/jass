@@ -1,8 +1,12 @@
 body 
 	cursor: pointer
 
+$jass-nav-height: 5rem
+$jass-footer-height: 4rem
+$jass-container-height: calc(100vh - 9rem)
+
 .header-pad
-	padding-top: 5rem	
+	padding-top: $jass-nav-height
 
 .blog-shares
 	display: flex
@@ -21,7 +25,7 @@ body
 	flex-wrap: wrap
 	justify-content: center
 	width: 100vw
-	height: 100vh
+	height: $jass-container-height
 	padding-right: 10vw
 	padding-left: 10vw
 	overflow: auto
@@ -53,7 +57,7 @@ body
 // Images and things
 .jass-logo-container
 	width: 100vw
-	height: calc(100vh - 5rem - 7rem)
+	height: $jass-container-height
 	padding: 3rem
 
 .jass-logo-box
@@ -124,7 +128,7 @@ body
 	background-size: contain
 	width: 99vw
 	max-width: 99vw
-	height: calc(100vh - 5rem + 1rem)
+	height: $jass-container-height
 	cursor: pointer
 	@media (orientation: portrait)
 		background-position-y: center
@@ -137,7 +141,7 @@ body
 	background-position: bottom
 	width: 99vw
 	max-width: 99vw
-	height: calc(100vh - 5rem - 5rem)
+	height: $jass-container-height
 	background-size: contain
 	border-bottom: .3rem solid $jass-green
 	@media (orientation: portrait)
@@ -150,7 +154,7 @@ body
 	font-family: 'Josefin Sans', sans-serif
 	font-weight: 500
 	position: absolute
-	bottom: 2rem
+	bottom: 3rem
 	width: 100%
 
 	.option-row
@@ -209,7 +213,7 @@ body
 	display: flex
 	flex-wrap: none
 	flex-direction: column
-	height: calc(100vh - 11rem)
+	height: $jass-container-height
 	@media screen and (min-width: 560px)
 		flex-basis: calc((100vw - 8rem)/2)
 	@media screen and (min-width: 992px )
@@ -280,7 +284,7 @@ body
 	color: cyan
 
 .jass-cart
-	height: calc(100vh - 9rem - 10rem)
+	height: $jass-container-height
 
 
 .jass-sale-items-old
@@ -295,13 +299,13 @@ body
 		list-style: none
 		list-style-type: none
 		display: inline
-		max-width: calc(100vh - 4rem)
+		max-width: $jass-container-height
 		@media (orientation: landscape)
 			max-width: calc(50vw - 3rem)
 
 	img
-		max-width: calc(100vh - 4rem)
-		max-height: calc(100vh - 13rem)
+		max-width: calc(100vw - 4rem)
+		max-height: $jass-container-height
 		@media (orientation: portrait)
 			max-width: calc(50vw - 3rem)
 
@@ -344,7 +348,7 @@ body
 	position: absolute
 	border: 3px solid $jass-green
 	border-radius: 2rem
-	top: calc(100vh + 5rem)
+	top: $jass-container-height
 	padding: 3rem
 	margin: 3rem
 
@@ -358,7 +362,7 @@ body
 // option bar and buttons contained therein
 .jass-option-bar
 	position: absolute
-	top: calc(100vh - 7rem)
+	top: calc(100vh - 8rem)
 	top: 75vh
 	top: 64vh
 	top: 50vh
@@ -407,6 +411,75 @@ body
 		color: #1b95e0
 		transition: .3s
 
+.jass-footer
+	background-color: #333
+	color: white
+	position: fixed
+	height: 4rem
+	width: 100vw
+	bottom: 0
+	font-family: 'Roboto', sans-serif
+	font-size: 2rem
+	display: flex
+	flex-wrap: wrap
+	justify-content: center
+	align-items: flex-end
+	z-index: 200
+	transition: all .3s
+	&:hover
+		background-color: #444
+
+	img 
+		max-height: 4rem
+		max-width: 4rem
+		flex: 0 0 6rem
+		object-fit: contain
+	span
+		flex: 1
+		padding-left: 4rem
+		opacity: .6
+		transition: opacity 1s
+		&.footer-x
+			flex: 0
+			color: white
+			opacity: 0
+			padding-right: 1rem
+	div
+		display: none 
+
+	&.clikked
+		height: 32rem
+		align-items: flex-start
+		span
+			opacity: .8
+			flex: 1 0 60vw
+			&.footer-x
+				opacity: 1
+				flex: 0 
+		div 
+			display: flex
+			flex: 1 0 40vw
+			flex-direction: column
+			flex-wrap: nowrap
+			font-size: 1.6rem
+			padding-left: 2rem
+			// border: 1px solid $jass-green
+			// border-radius: 6px
+			color: $jass-green
+			div
+				flex: 0
+				color: #ccc
+				&:hover
+					color: white
+			i
+				flex: 0
+				color: #ccc
+				padding: .4rem
+				@media screen and (max-height: 320)
+					padding: .2rem
+				&:hover
+					color: white
+
 
 $blog-title-bg: rgba(66, 103, 48, 0.4)
 $blog-title-light: rgba(86, 162, 49, 0.4)
@@ -423,69 +496,10 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 	padding-left: 4rem
 	padding-right: 4rem
 	padding-bottom: 12rem
+	// height: $jass-container-height
+	// top: $jass-nav-height
 
 	.blog-header
-
-	.blog-footer
-		background-color: #333
-		color: white
-		position: fixed
-		height: 4rem
-		width: 100vw
-		bottom: 0
-		font-family: 'Roboto', sans-serif
-		font-size: 2rem
-		display: flex
-		flex-wrap: wrap
-		justify-content: center
-		align-items: flex-end
-		z-index: 200
-		transition: all .3s
-		&:hover
-			background-color: #444
-
-		img 
-			max-height: 4rem
-			max-width: 4rem
-			flex: 0 0 6rem
-			object-fit: contain
-		span
-			flex: 1 0 calc(100vw - 6rem)
-			padding-left: 4rem
-			opacity: .6
-			transition: opacity 1s
-		div
-			display: none 
-
-		&.clikked
-			height: 32rem
-			align-items: flex-start
-			span
-				opacity: .8
-			div 
-				display: flex
-				flex: 1 0 40vw
-				flex-direction: column
-				flex-wrap: nowrap
-				font-size: 1.6rem
-				padding-left: 2rem
-				// border: 1px solid $jass-green
-				// border-radius: 6px
-				color: $jass-green
-				div
-					flex: 0
-					color: #ccc
-					&:hover
-						color: white
-				i
-					flex: 0
-					color: #ccc
-					padding: .4rem
-					@media screen and (max-height: 320)
-						padding: .2rem
-					&:hover
-						color: white
-
 	.blog-item
 		position: relative
 		// border: 1px solid white
@@ -493,7 +507,7 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 		background-size: cover
 		flex: 1 0 auto
 		flex-basis: 100%
-		height: calc(100vh - 12rem)
+		height: $jass-container-height
 		max-height: 600px
 		// height: 600px
 		margin: 8px
@@ -523,9 +537,9 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 				bottom: 3rem
 
 		.blog-item-pic
-			transition: all .6s ease-in
-			-webkit-filter: saturate(0.3) opacity(.8) blur(1px)
-			filter: saturate(0.3) opacity(.8) blur(1px)
+			transition: all .4s ease-in
+			-webkit-filter: saturate(0.3) opacity(.8) 
+			filter: saturate(0.3) opacity(.8)
 			background-size: cover
 			background-position-x: 25%
 			height: 100%
@@ -551,10 +565,10 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 
 	.highlight
 		.blog-item-pic
-			-webkit-filter: saturate(1.2) opacity(1) blur(0)
-			filter: saturate(1.2) opacity(1) blur(0)
-			-webkit-transform: scale(1.1)
-			transform: scale(1.1)
+			-webkit-filter: saturate(1.2) opacity(1)
+			filter: saturate(1.2) opacity(1)
+			// -webkit-transform: scale(1.1)
+			// transform: scale(1.1)
 			// background-position-x: center
 			background-position-x: 75%
 
@@ -563,7 +577,7 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 			bottom: 3rem
 
 .jass-blog-article
-	height: calc(100vh - 5rem)
+	height: $jass-container-height
 
 .blog-article-name
 	position: fixed
@@ -591,7 +605,7 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 	// top: 5rem
 	transition: all 2s
 	text-align: center
-	height: calc(100vh - 5rem)
+	height: $jass-container-height
 	overflow-y: auto
 
 	// a,i,.twitter-share-button
@@ -647,7 +661,7 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 
 	.jass-logo-small
 		// opacity: .6
-		z-index: -1	
+		// z-index: -1	
 		// position: fixed
 		// top: 5rem
 

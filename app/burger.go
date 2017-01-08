@@ -1,8 +1,6 @@
 package main
 
 import (
-	"time"
-
 	"github.com/gopherjs/gopherjs/js"
 	"honnef.co/go/js/dom"
 )
@@ -92,13 +90,9 @@ func closeBurger() {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	sc := doc.QuerySelector("#slidemenu-div").Class()
-	// sc.Remove("fade-in")
-	// sc.Add("fade-out")
-	go func() {
-		time.Sleep(200 * time.Millisecond)
-		sc.Remove("cbp-spmenu-open")
-	}()
+	if s := doc.QuerySelector(".cbp-spmenu"); s != nil {
+		s.Class().Remove("cbp-spmenu-open")
+	}
 	doc.QuerySelector(".hamburger").Class().Remove("is-active")
 }
 
@@ -106,9 +100,8 @@ func openBurger() {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	sc := doc.QuerySelector("#slidemenu").Class()
-	sc.Add("cbp-spmenu-open")
-	// sc.Remove("fade-out")
-	// sc.Add("fade-in")
-	// sc.Add("fast")
+	if s := doc.QuerySelector(".cbp-spmenu"); s != nil {
+		s.Class().Add("cbp-spmenu-open")
+	}
+	doc.QuerySelector(".hamburger").Class().Add("is-active")
 }

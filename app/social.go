@@ -12,7 +12,7 @@ func addSocialButtons(url, name string) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	print("adding social buttons")
+	// print("adding social buttons")
 
 	// Twitworld
 	doc.QuerySelector(".share-twitter").AddEventListener("click", false, func(evt dom.Event) {
