@@ -4,7 +4,6 @@ body
 $jass-nav-height: 5rem
 $jass-footer-height: 4rem
 $jass-container-height: calc(100vh - 9rem)
-
 .header-pad
 	padding-top: $jass-nav-height
 
@@ -448,6 +447,10 @@ $jass-container-height: calc(100vh - 9rem)
 			padding-right: 1rem
 	div
 		display: none 
+		hr 
+			border-top: 1px solid $jass-green
+			opacity: .4
+			margin: .3rem 2rem .3rem 2rem
 
 	&.clikked
 		height: 32rem
@@ -500,6 +503,22 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 	padding-bottom: 12rem
 	// height: $jass-container-height
 	// top: $jass-nav-height
+
+	.blog-header
+		display: none
+		position: fixed
+		top: 4rem
+		width: 100%
+		z-index: 40
+		opacity: 0
+		background-color: white
+		color: black
+		font-size: 3rem
+		text-align: center
+		transition: all 2s
+		&.showme
+			display: block
+			opacity: .8
 
 	.blog-header
 	.blog-item

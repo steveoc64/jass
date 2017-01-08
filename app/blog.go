@@ -20,6 +20,7 @@ var lastH = 0
 var blogCols = 1
 var lastBlogScroll = time.Time{}
 var scrollThreshold = 100 * time.Millisecond
+var headerClass = &dom.TokenList{}
 
 func blog(context *router.Context) {
 	Session.Blogs = []shared.Blog{}
@@ -52,6 +53,13 @@ func showBlog() {
 
 	JBOffset = (int)(doc.QuerySelector(".header-pad").(*dom.HTMLDivElement).OffsetHeight())
 	// print("JBO", JBOffset)
+
+	header := doc.QuerySelector(".blog-header")
+	headerClass = header.Class()
+	headerClass.Remove("showme")
+	header.AddEventListener("click", false, func(dom.Event) {
+		w.ScrollTo(0, 0)
+	})
 
 	if LastBlogViewed != -1 {
 		highlightItem(LastBlogViewed - 1)
@@ -146,6 +154,12 @@ func blogScroller(evt dom.Event) {
 		if elapsed < scrollThreshold {
 			return
 		}
+	}
+
+	if y == 0 {
+		headerClass.Remove("showme")
+	} else {
+		headerClass.Add("showme")
 	}
 
 	// print("window scroll event", y, blogItemHeight, y/blogItemHeight)
