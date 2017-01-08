@@ -154,8 +154,10 @@ $jass-container-height: calc(100vh - 9rem)
 	font-family: 'Josefin Sans', sans-serif
 	font-weight: 500
 	position: absolute
-	bottom: 3rem
+	bottom: 5rem
 	width: 100%
+	@media screen and (max-height: 480px)
+		display: none
 
 	.option-row
 		display: flex
