@@ -19,89 +19,76 @@
 
                                 We dont do Agile
                                 No recruitment agencies
-
-==============================================================================================
-MIT License
-
-Copyright (c) 2017 Ministry of Colour
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-  ==========================================================================
-  Welcome to the Chamelee site code base.
-
-  If you are reading this from doing a "view source" to see how this works, 
-  you might find it a bit of a wild goose chase for starters.
-
-  All is not lost though.
-
-  This is an SPA (single page app), with the following lifecycle :
-    - App loads once, via this index.html
-    - App loads "jass.js" code bundle
-    - jass.js code bundle then executes the app
-    - page transitions within the SPA are managed by jass.js, which
-      loads template content into the various DIVs below
-    - On rare occassions, the SPA may make an AJAX request to the 
-      sever to GET or POST data between screens
-    - All HTML pages are generated on the fly, at the front end, 
-      by running data through embedded templates. There are NO 
-      async loads of pages as external objects 
-    - The embedded templates are bundled inside the jass.js code bundle
-      as compiled strings
-
-  If you are looking for the code, please note that this application is written
-  entirely in Go.
-
-  ??? say again ???
-
-  The front end, as well as the backend for this app is written in the Go language,
-  with the front end components compiled to JS using GopherJS (http://gopherjs.org)
-
-  There is NO Javascript involved here (at least not directly), so ..
-  welcome to the brave new world of web dev without Javascript.
- 
-  The original source code for both the front end and backend is published
-  under an MIT Licence, and available via github.com/ministry-of-colour/jass
-
  -->
 
 
 <html lang="en">
   <head>
+    <meta name="author" content="Ministry of Colour  https://ministryofcolour.net">
+    <meta name="github" content="https://github.com/ministry-of-colour/jass">
+    <meta name="licence" content="MIT Licence, Copyright (2017) Ministry of Colour">
+    
+    <meta name="readme" content="
+===================================================================================
+    Developers README
+===================================================================================
+Welcome to the Chamelee site code base.
+
+If you are reading this from doing a view source to see how this works, 
+you might find it a bit of a wild goose chase for starters.
+
+All is not lost though.
+
+This is an SPA (single page app), with the following lifecycle :
+  - App loads once, via this index.html
+  - App loads jass.js code bundle
+  - jass.js code bundle then executes the app
+  - page transitions within the SPA are managed by jass.js, which
+    loads template content into the various DIVs below
+  - On rare occassions, the SPA may make an AJAX request to the 
+    sever to GET or POST data between screens
+  - All HTML pages are generated on the fly, at the front end, 
+    by running data through embedded templates. There are NO 
+    async loads of pages as external objects 
+  - The embedded templates are bundled inside the jass.js code bundle
+    as compiled strings
+
+If you are looking for the code, please note that this application is written
+entirely in Go.
+
+??? say again ???
+
+The front end, as well as the backend for this app is written in the Go language,
+with the front end components compiled to JS using GopherJS (http://gopherjs.org)
+
+There is NO Javascript involved here (at least not directly), so ..
+welcome to the brave new world of web dev without Javascript.
+
+The original source code for both the front end and backend is published
+under an MIT Licence, and available via github.com/ministry-of-colour/jass
+===================================================================================
+">
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="application-name" content="Jass Perfumes">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="description" content="Perfume is magic. It’s mystery. We recreate the smell of a flower. Of wood. Of grass. We capture the essence of life. Liquefy it. We store memories. We make dreams,” he told her once. “What we do is a wonder, an art, and we have a responsibility to do it well">
+    
     <link rel="manifest" href="jass.webmanifest">
+    <meta name="application-name" content="Jass Perfumes">
+    <meta name="description" content="Perfume is magic. It’s mystery. We recreate the smell of a flower. Of wood. Of grass. We capture the essence of life. Liquefy it. We store memories. We make dreams,” he told her once. “What we do is a wonder, an art, and we have a responsibility to do it well">
+
     <!-- <link rel="icon" href="img/favicon.png" type="image/x-icon"> -->
     <link rel="icon" sizes="16x16 32x32 48x48 200x200" href="img/jass.png">
     <title>Jass Perfumes</title>
 
-    <!-- Fonts -->
+    <!-- Fonts via CDN -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">   
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300|Raleway|Roboto:400" rel="stylesheet">
-
 
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="/css/jass.css"/>
