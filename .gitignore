@@ -4,6 +4,7 @@
 *.so
 *.diff
 app/template.go
+ascii.art
 
 # Folders
 _obj

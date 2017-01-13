@@ -6,6 +6,7 @@ build: sassgen templegen app-assets appjs sv
 
 get: 
 	go get -u honnef.co/go/simple/cmd/gosimple
+	go get -u github.com/steveoc64/gopher-count
 	go get -u github.com/gopherjs/gopherjs
 	go get -u github.com/gopherjs/websocket
 	go get -u github.com/go-humble/temple
