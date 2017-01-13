@@ -1,0 +1,15 @@
+{
+        "Debug": false,
+        "DataSourceName": "user=postgres password=your-password-here dbname=jass sslmode=disable",
+        "WebPort": 8830,
+        "MailServer": "",
+        "MailUser": "",
+        "MailPasswd": "",
+        "MailPort": 25,
+        "SMSServer": "https://api.smsbroadcast.com.au/api-adv.php",
+        "SMSUser": "your sms username",
+        "SMSPasswd": "your sms password",
+        "SMSOn": false,
+	"Disqus": true
+}
+

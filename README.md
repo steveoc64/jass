@@ -53,10 +53,10 @@ https://ministryofcolour.net
                                 Adelaide - Tokyo - Singapore
 
                                 We work with Linux
-                                We code in Go / C / Haskell / R - whatever makes sense
-                                We prefer to deploy on FreeBSD
+                                We code in Go & C 
+                                We deploy on FreeBSD
                                 We share our code openly under an MIT licence
 
                                 We dont do Agile
-                                No recruitment agencies
+                                No recruitment agencies please
 ```
