@@ -130,7 +130,8 @@ func showBlog() {
 		Session.ScrollFunc = nil
 	}
 
-	Session.ScrollFunc = w.AddEventListener("scroll", false, blogScroller)
+	// Session.ScrollFunc = w.AddEventListener("scroll", false, blogScroller)
+	doc.QuerySelector(".blog-container").AddEventListener("scroll", false, blogScroller)
 
 	// Links to social btns
 
@@ -149,18 +150,16 @@ func showBlog() {
 	highlightItem(0)
 }
 
-func blogScroller(evt dom.Event) {
-	w := dom.GetWindow()
-	y := w.ScrollY()
+// var bt = &dom.HTMLDivElement{}
 
-	if false {
-		now := time.Now()
-		elapsed := now.Sub(lastBlogScroll)
-		lastBlogScroll = now
-		if elapsed < scrollThreshold {
-			return
-		}
-	}
+func blogScroller(evt dom.Event) {
+	// bt = evt.Target().(*dom.HTMLDivElement)
+	w := dom.GetWindow()
+	w.RequestAnimationFrame(doBlogScroll)
+}
+
+func doBlogScroll(t time.Duration) {
+	y := jQuery(".blog-container").ScrollTop()
 
 	if y == 0 {
 		headerClass.Remove("showme")

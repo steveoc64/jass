@@ -492,6 +492,7 @@ $jass-container-height: calc(100vh - 9rem)
 		border-top: 2px solid #54a255
 		padding-top: 1rem
 		span
+			color: white
 			opacity: .8
 			flex: 1 0 60vw
 			&.footer-x
@@ -540,7 +541,8 @@ $blog-title-light: rgba(86, 162, 49, 0.4)
 $blog-title-light-real: rgba(86, 162, 49, 0.6)
 $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 
-.jass-blog
+// .jass-blog
+.blog-container
 	display: flex 
 	flex-wrap: wrap
 	flex-direction: row
@@ -550,6 +552,8 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 	padding-left: 4rem
 	padding-right: 4rem
 	padding-bottom: 12rem
+	height: calc(100vh - 9rem)
+	overflow: auto
 	// height: $jass-container-height
 	// top: $jass-nav-height
 
@@ -650,8 +654,8 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 	height: $jass-container-height
 
 .blog-article-name
-	position: fixed
-	top: 5rem
+	// position: fixed
+	// top: 5rem
 	font-size: 5rem
 	padding-left: 2rem
 	font-family: 'Josefin Sans', sans-serif
@@ -669,9 +673,13 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 		font-size: 4rem
 		background-color: $blog-title-light-real
 	&.shrink2
+		position: fixed
+		top: 5rem
 		font-size: 3rem
 		background-color: $blog-title-light-solid
 		background-color: rgb(145, 202, 117)
+		span 
+			padding-right: 5rem
 		i 
 			display: block
 			position: absolute
@@ -766,6 +774,7 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 		// margin-bottom: 10rem
 		i 
 			color: #444
+			flex: 1
 			&.none-such
 				opacity: .1
 
@@ -779,16 +788,20 @@ $blog-title-light-solid: rgba(86, 162, 49, 0.8)
 	.blog-article-image
 		.image-box
 			justify-content: flex-end
+			margin-top: 4rem
 			img
 				// margin-top: 35vh
 				opacity: 0.8
 				max-width: 70vw
+				// height: 20rem
+				// object-fit: cover
 				// max-height: 70vh
 
 .faded2
 	.blog-article-image
 		.image-box
 			justify-content: flex-end
+			margin-top: 4rem
 			img
 				// margin-top: 35vh
 				opacity: 0.6

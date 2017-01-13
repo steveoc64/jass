@@ -46,6 +46,7 @@ func main() {
 	e.GET("/blog/:id", blogIDTracker)
 	e.GET("/blog/:id/", blogIDTracker)
 	e.GET("/about", aboutTracker)
+	e.GET("/privacy", privacyTracker)
 	e.GET("/contact", contactTracker)
 
 	// Start up the mail server
