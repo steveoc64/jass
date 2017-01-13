@@ -59,6 +59,8 @@ func showBlog() {
 	headerClass = header.Class()
 	headerClass.Remove("showme")
 	header.AddEventListener("click", false, func(dom.Event) {
+		print("clikked on blogheader")
+		// doc.QuerySelector(".blog-container").Underlying().Set("scrollTop", 0)
 		w.ScrollTo(0, 0)
 	})
 
@@ -130,8 +132,8 @@ func showBlog() {
 		Session.ScrollFunc = nil
 	}
 
-	// Session.ScrollFunc = w.AddEventListener("scroll", false, blogScroller)
-	doc.QuerySelector(".blog-container").AddEventListener("scroll", false, blogScroller)
+	Session.ScrollFunc = w.AddEventListener("scroll", false, blogScroller)
+	// doc.QuerySelector(".blog-container").AddEventListener("scroll", false, blogScroller)
 
 	// Links to social btns
 
@@ -139,15 +141,19 @@ func showBlog() {
 	blogItemHeight = 600
 	if el := doc.QuerySelector("[name=blog-1"); el != nil {
 		blogItemHeight = (int)(el.(*dom.HTMLDivElement).OffsetHeight())
-		print("calced height to be ", blogItemHeight)
+		// print("calced height to be ", blogItemHeight)
 	} else {
 		// print("blogitemheight", blogItemHeight)
 		blogItemHeight += 16 // 8px margin
 	}
-	bih := jQuery("[name=blog-1]").Height()
-	print("bih = ", bih)
-	print("bih2 = ", blogItemHeight)
+	// bih := jQuery("[name=blog-1]").Height()
+	// print("bih = ", bih)
+	// print("bih2 = ", blogItemHeight)
 	highlightItem(0)
+
+	doc.QuerySelector(".jass-logo-small").AddEventListener("click", false, func(evt dom.Event) {
+		Session.Navigate("/")
+	})
 }
 
 // var bt = &dom.HTMLDivElement{}
@@ -156,10 +162,12 @@ func blogScroller(evt dom.Event) {
 	// bt = evt.Target().(*dom.HTMLDivElement)
 	w := dom.GetWindow()
 	w.RequestAnimationFrame(doBlogScroll)
+	// doBlogScroll(1)
 }
 
 func doBlogScroll(t time.Duration) {
-	y := jQuery(".blog-container").ScrollTop()
+	// y := jQuery(".blog-container").ScrollTop()
+	y := dom.GetWindow().ScrollY()
 
 	if y == 0 {
 		headerClass.Remove("showme")
