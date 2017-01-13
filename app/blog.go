@@ -138,9 +138,14 @@ func showBlog() {
 	blogItemHeight = 600
 	if el := doc.QuerySelector("[name=blog-1"); el != nil {
 		blogItemHeight = (int)(el.(*dom.HTMLDivElement).OffsetHeight())
+		print("calced height to be ", blogItemHeight)
+	} else {
+		// print("blogitemheight", blogItemHeight)
+		blogItemHeight += 16 // 8px margin
 	}
-	// print("blogitemheight", blogItemHeight)
-	blogItemHeight += 16 // 8px margin
+	bih := jQuery("[name=blog-1]").Height()
+	print("bih = ", bih)
+	print("bih2 = ", blogItemHeight)
 	highlightItem(0)
 }
 
@@ -182,6 +187,9 @@ func highlightItem(i int) {
 	doc := w.Document()
 
 	// print("highlightitem", i, Session.Blogs[i].ID)
+	if i < 0 || i >= len(Session.Blogs) {
+		return
+	}
 
 	if lastH >= 0 && lastH < len(Session.Blogs) {
 		el := doc.QuerySelector(fmt.Sprintf("[name=blog-%d]", Session.Blogs[lastH].ID))

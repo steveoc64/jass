@@ -13,3 +13,9 @@ func contactTracker(c echo.Context) error {
 	printLog(c, "direct contact, ref=", req.Referer())
 	return c.File("public/index.html")
 }
+
+func privacyTracker(c echo.Context) error {
+	req := c.Request()
+	printLog(c, "direct privacy, ref=", req.Referer())
+	return c.File("public/index.html")
+}

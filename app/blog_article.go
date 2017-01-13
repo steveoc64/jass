@@ -51,8 +51,14 @@ func showBlogItem(context *router.Context) {
 
 	doc.QuerySelector(".jass-blog").Class().Add("hidden")
 	w.ScrollTo(0, 0)
+
+	// banh := jQuery(".blog-article-name").Height()
+	// print("banh =", banh)
 	fadeIn("jass-blog-article")
 	noButtons()
+
+	// set top margin on blog-image
+	// jQuery(".blog-article").SetCss("margin-top", banh)
 
 	doc.QuerySelector(".gotop").AddEventListener("click", false, func(dom.Event) {
 		jQuery(".blog-article").Call("scrollTop", 0)

@@ -4,7 +4,9 @@
 </div>
 <div class="blog-article">
 	<div class="blog-article-image">
-		<img src="/img/models/{{.Image}}">
+		<div class="image-box">
+			<img src="/img/models/{{.Image}}">
+		</div>
 	</div>
 	<div class="blog-article-title">{{.Title}}</div>
 	<div class="blog-article-content">{{range .GetLines}} {{.}}<br> {{end}}</div>

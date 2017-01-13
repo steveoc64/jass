@@ -59,6 +59,7 @@ func initRouter() {
 	Session.Router.HandleFunc("/blog", blog)
 	Session.Router.HandleFunc("/blog/{id}", blogItem)
 	Session.Router.HandleFunc("/about", about)
+	Session.Router.HandleFunc("/privacy", privacy)
 
 	Session.Router.Start()
 
