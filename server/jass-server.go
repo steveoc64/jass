@@ -78,7 +78,7 @@ func main() {
 	}
 
 	e.Use(middleware.Recover())
-	e.Use(middleware.Gzip())
+	// e.Use(middleware.Gzip())
 	e.Debug = Config.Debug
 	// echocors.Init(e, Config.Debug)
 

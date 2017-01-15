@@ -18,6 +18,7 @@ type Blog struct {
 	ShareFacebook   int       `db:"share_facebook"`
 	ShareInstagram  int       `db:"share_instagram"`
 	ShareGooglePlus int       `db:"share_google_plus"`
+	Archived        bool      `db:"archived"`
 }
 
 func (b *Blog) GetLines() []string {
