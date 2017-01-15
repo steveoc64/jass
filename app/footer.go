@@ -13,7 +13,7 @@ func initFooter() {
 	doc.QuerySelector(".jass-footer").AddEventListener("click", false, func(evt dom.Event) {
 		tag := evt.Target().TagName()
 		c := evt.Target().Class()
-		// print("cliked in blog footer", tag)
+		print("cliked in blog footer", tag)
 		switch tag {
 		case "I":
 			if c.Contains("fa-twitter-square") {
@@ -28,6 +28,8 @@ func initFooter() {
 				w.Open("https://www.instagram.com/worldofjass/", "instagram", "")
 			} else if c.Contains("fa-pinterest-square") {
 				w.Open("https://au.pinterest.com/worldofjass/", "pinterest", "")
+			} else if c.Contains("fa-chevron-down") {
+				evt.CurrentTarget().Class().Remove("clikked")
 			}
 		case "SPAN", "IMG":
 			evt.CurrentTarget().Class().Toggle("clikked")
