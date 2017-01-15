@@ -53,7 +53,7 @@ https://ministryofcolour.net
                                 Adelaide - Tokyo - Singapore
 
                                 We work with Linux
-                                We code in Go & C 
+                                We code in Go, C, PostgreSQL
                                 We deploy on FreeBSD
                                 We share our code openly under an MIT licence
 

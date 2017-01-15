@@ -3,8 +3,8 @@ body
 
 .loadspinner
 	position: fixed
-	top: 0
-	right: 80px
+	top: 5px
+	left: 3px
 
 $jass-nav-height: 5rem
 $jass-footer-height: 4rem
@@ -485,14 +485,37 @@ $jass-container-height: calc(100vh - 9rem)
 	&.clikked
 		height: 32rem
 		align-items: flex-start
-		background-color: rgb(183, 212, 176)
-		background-color: rgba(66,103,48,0.6)
+		// background-color: rgb(183, 212, 176)
+		// background-color: rgba(66,103,48,0.6)
 		background-color: rgba(41, 78, 23, 0.85)
 		// border-top: 2px solid rgb(12, 103, 13)
 		border-top: 2px solid #54a255
 		padding-top: 1rem
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9db80+0,96c56f+100;Green+3D+%232 */
+		background: rgba(169,219,128,.8); /* Old browsers */
+		background: -moz-linear-gradient(top,  rgba(169,219,128,.8) 0%, rgba(150,197,111,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  rgba(169,219,128,.8) 0%,rgba(150,197,111,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  rgba(169,219,128,.8) 0%,rgba(150,197,111,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* IE6-9 */
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4e391+0,61c419+50,b4e391+100;Green+3D */
+		background: rgba(180,227,145,.8); /* Old browsers */
+		background: -moz-linear-gradient(left,  rgba(180,227,145,1) 0%, rgba(97,196,25,1) 50%, rgba(180,227,145,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left,  rgba(180,227,145,1) 0%,rgba(97,196,25,1) 50%,rgba(180,227,145,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right,  rgba(180,227,145,1) 0%,rgba(97,196,25,1) 50%,rgba(180,227,145,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=1 ); /* IE6-9 */
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4e391+0,5ace79+50,b4e391+100 */
+		background: rgb(180,227,145); /* Old browsers */
+		background: -moz-linear-gradient(left,  rgba(180,227,145,1) 0%, rgba(90,206,121,1) 50%, rgba(180,227,145,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left,  rgba(180,227,145,1) 0%,rgba(90,206,121,1) 50%,rgba(180,227,145,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right,  rgba(180,227,145,1) 0%,rgba(90,206,121,1) 50%,rgba(180,227,145,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=1 ); /* IE6-9 */
+
+
+
 		span
-			color: white
+			color: black
 			opacity: .8
 			flex: 1 0 60vw
 			&.footer-x
@@ -511,21 +534,22 @@ $jass-container-height: calc(100vh - 9rem)
 			font-size: 2rem
 			font-weight: 800
 			color: #99f99a
+			color: black
 			div
 				flex: 0
 				// color: #ccc
-				color: #333
 				color: #ddd
+				color: #333
 				font-size: 1.6rem
 				&:hover
 					// color: white
 					color: black
-					color: white
 			i
 				flex: 0
 				// color: #ccc
-				color: #333
 				color: #ddd
+				color: black
+				color: #333
 				padding: .4rem
 				font-size: 2.6rem
 				@media screen and (max-height: 320)
@@ -534,6 +558,7 @@ $jass-container-height: calc(100vh - 9rem)
 					// color: white
 					color: black
 					color: white
+					color: black
 
 
 $blog-title-bg: rgba(66, 103, 48, 0.4)
