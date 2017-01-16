@@ -15,6 +15,46 @@ create table users (
 	sms_alerts bool default false
 );
 
+create table admin_users (
+	id serial not null primary key,
+	username text,
+	pw text
+);
+
+create table admin_login (
+	user_id int,
+	date timestamptz not null default localtimestamp,
+	ip_addr text,
+	user_agent text,
+	referrer text
+);
+
+create table referrer (
+	id serial not null primary key,
+	name text,
+	url text
+);
+
+create table ref_hit (
+	ref_id int,
+	date timestamptz not null default localtimestamp,
+	ip_addr text,
+	user_agent text
+);
+
+create table uplink (
+	id int serial not null primary key,
+	name text,
+	url text
+);
+
+create table up_hit (
+	id int not null primary key,
+	date timestamptz not null default localtimestamp,
+	ip_addr text,
+	user_agent text
+);
+
 create table address (
 	id serial not null primary key,
 	date timestamptz not null default localtimestamp,
@@ -38,6 +78,66 @@ create table sale_order_item (
 	order_id int not null,
 	item_id int not null,
 	qty int not null
+);
+
+create table category (
+	id serial not null primary key,
+	name text,
+	descr text
+);
+
+create table product (
+	id serial not null primary key,
+	cat_id int not null,
+	name text,
+	descr text,
+	image text,
+	volume_ml int default 0,
+	weight_g int default 0,
+	shipping_volume_ml int default 0,
+	shipping_weight_g int default 0,
+	shipping_code int
+);
+
+create table shipping_code (
+	id serial not null primary key,
+	name text,
+	descr text
+);
+
+create table region (
+	id serial not null primary key,
+	name text,
+	descr text
+);
+
+create table postage (
+	shipping_code int not null,
+	region_id int not null,
+	date timestamptz not null default localtimestamp,
+	cost numeric(12,2),
+	price numeric(12,2),
+	eta_days int default 5,
+	max_days int default 30,
+	has_tracking bool default false
+);
+
+create table carrier (
+	id serial not null primary key,
+	name text,
+	descr text,
+	contact_name text,
+	phone text,
+	email text,
+	address text,
+	www text
+);
+
+create table newsletter (
+	id serial not null primary key,
+	date timestamptz not null default localtimestamp,
+	name text,
+	content text
 );
 
 create table item (
@@ -65,7 +165,8 @@ create table blog (
 	share_twitter int not null default 0,
 	share_facebook int not null default 0,
 	share_instagram int not null default 0,
-	share_google_plus int not null default 0
+	share_google_plus int not null default 0,
+	archived bool default false
 );
 
 create table tags (

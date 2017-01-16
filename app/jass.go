@@ -37,9 +37,6 @@ func main() {
 		Session.Resize()
 	})
 
-	// getItems()
-	// getBlogs()
-	// doSplashPage()
 	showTopMenu()
 
 	doc.QuerySelector("#option-shop").AddEventListener("click", false, func(evt dom.Event) {

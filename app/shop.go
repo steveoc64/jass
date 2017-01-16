@@ -13,6 +13,7 @@ func shop(context *router.Context) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
+	getProducts()
 	drawSalesBar()
 
 	// Load up em templates
