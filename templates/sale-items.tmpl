@@ -1,7 +1,8 @@
-{{range $key,$value := .Items}}
-<div class="jass-sale-item" data-sku="{{$value.SKU}}">
+Sale Items
+{{range $key,$value := .Products}}
+<div class="jass-sale-item" data-id="{{$value.ID}}">
 	<div class="sale-image">
-		<img src="/img/items/{{$value.Image}}">
+		<img src="/img/product/{{$value.Image}}">
 	</div>
 	<div class="sale-name">
 		{{$value.Name}}

@@ -97,6 +97,7 @@ create table product (
 	shipping_volume_ml int default 0,
 	shipping_weight_g int default 0,
 	shipping_code int
+	price numeric(12,2) default 1.0
 );
 
 create table shipping_code (

@@ -1,48 +1,39 @@
 package main
 
 import (
+	"./shared"
 	"github.com/go-humble/router"
 	"honnef.co/go/js/dom"
 )
 
 func drawSalesBar() {
+	w := dom.GetWindow()
+	doc := w.Document()
+
 	ldTemplate("sales-bar", ".jass-sales-bar", &Session)
+	doc.QuerySelector(".jass-sales-bar").AddEventListener("click", false, func(evt dom.Event) {
+		print("clicksed on sales bar")
+		Session.Navigate("/cart")
+	})
 }
 
 func shop(context *router.Context) {
 	w := dom.GetWindow()
 	doc := w.Document()
 
-	getProducts()
-	drawSalesBar()
+	Session.Products = []shared.Product{}
+	GetJSON("/api/products", &Session.Products, func() {
+		print("/api/products complete", Session.Products)
+		drawSalesBar()
 
-	// Load up em templates
-	sTemplate := MustGetTemplate("sale-items")
-	sTemplate.ExecuteEl(doc.QuerySelector(".jass-sale-items"), &Session)
+		// Load up em templates
+		sTemplate := MustGetTemplate("sale-items")
+		sTemplate.ExecuteEl(doc.QuerySelector(".jass-sale-items"), &Session)
 
-	// fade in multiple elements
-	fadeIn("jass-sales-bar", "jass-sale-items")
-	noButtons()
-
-	// Add callbacks to add to cart
-	for _, v := range doc.QuerySelectorAll(".jass-sale-item") {
-		v.AddEventListener("click", false, func(evt dom.Event) {
-			// c := evt.Target().Class()
-			cc := evt.CurrentTarget().Class()
-			// print("cliksed on ", c.String(), cc.String())
-			if cc.String() == "jass-sale-item" {
-				sku := evt.CurrentTarget().GetAttribute("data-sku")
-				// sku := doc.QuerySelector(fmt.Sprintf(`[data-sku="%s"]`, v.SKU)).GetAttribute("data-sku")
-				// print("clicked on thing with sku", sku)
-				theItem := Session.FindItem(sku)
-				// print("the Item = ", theItem)
-				Session.AddToCart(theItem)
-				drawSalesBar()
-				// } else {
-				// print("ignoring click to", c.String())
-			}
-		})
-	}
+		// fade in multiple elements
+		fadeIn("jass-sales-bar", "jass-sale-items")
+		noButtons()
+	})
 }
 
 func cart(context *router.Context) {

@@ -1,9 +1,6 @@
 package shared
 
-import (
-	"fmt"
-	"time"
-)
+import "time"
 
 type SaleOrder struct {
 	ID        int       `db:"id"`
@@ -11,14 +8,6 @@ type SaleOrder struct {
 	UserID    int       `db:"user_id"`
 	AddressID int       `db:"address_id"`
 	Items     []*SaleOrderItem
-}
-
-func (t SaleOrder) ModelId() string {
-	return fmt.Sprintf("%d", t.ID)
-}
-
-func (t SaleOrder) RootURL() string {
-	return "/api/order"
 }
 
 type SaleOrderItem struct {

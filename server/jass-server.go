@@ -37,7 +37,7 @@ func main() {
 	e = echo.New()
 	e.Debug = true
 	e.Static("/", "public")
-	e.GET("/api/items", getItems)
+	e.GET("/api/products", getProducts)
 	e.GET("/api/blog", getBlogs)
 
 	// Track specific connections from different services

@@ -23,7 +23,7 @@ type GlobalSessionData struct {
 	LastWidth            int
 	Orientation          string
 	wasSubmobile         bool
-	Items                []shared.Item
+	Products             []shared.Product
 	Blogs                []shared.Blog
 	CartTotal            float64
 	CartItemCount        int
@@ -96,15 +96,6 @@ func (s *GlobalSessionData) AddToCart(item *shared.Item) {
 		s.CartItems = append(s.CartItems, *item)
 	}
 
-}
-
-func (s *GlobalSessionData) FindItem(sku string) *shared.Item {
-	for i, v := range s.Items {
-		if sku == v.SKU {
-			return &s.Items[i]
-		}
-	}
-	return nil
 }
 
 func (s *GlobalSessionData) GetBlog(id int) *shared.Blog {
