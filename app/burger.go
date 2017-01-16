@@ -39,12 +39,16 @@ func initBurger() {
 	doc.QuerySelector("#menu-fragrances").AddEventListener("click", false, func(evt dom.Event) {
 		evt.PreventDefault()
 		closeBurger()
+		Session.SelectCat = "Fragrance"
+		Session.SelectCatID = 1
 		Session.Navigate("/shop")
 	})
 
 	doc.QuerySelector("#menu-skincare").AddEventListener("click", false, func(evt dom.Event) {
 		evt.PreventDefault()
 		closeBurger()
+		Session.SelectCat = "Skincare"
+		Session.SelectCatID = 2
 		Session.Navigate("/shop")
 	})
 
@@ -54,6 +58,8 @@ func initBurger() {
 		if evt.Underlying().Get("shiftKey").Bool() {
 			js.Global.Get("location").Set("href", "https://shop.polymer-project.org/list/ladies_outerwear")
 		} else {
+			Session.SelectCat = "Merchandise"
+			Session.SelectCatID = 3
 			Session.Navigate("/shop")
 		}
 	})

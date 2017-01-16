@@ -38,6 +38,7 @@ func main() {
 	e.Debug = true
 	e.Static("/", "public")
 	e.GET("/api/products", getProducts)
+	e.GET("/api/category", getCategory)
 	e.GET("/api/blog", getBlogs)
 
 	// Track specific connections from different services

@@ -11,6 +11,7 @@ var elements = []string{
 	// "jass-logo-small-box",
 	"jass-logo-container",
 	"jass-splash-box",
+	"jass-sale-cats",
 	"jass-sale-items",
 	"jass-sales-bar",
 	"jass-cart",

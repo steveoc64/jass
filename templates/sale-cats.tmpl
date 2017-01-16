@@ -1,0 +1,5 @@
+<div>
+{{range $key,$value := .Category}}
+	<span class="sale-category" data-id="{{$value.ID}}">{{$value.Name}}</span>
+{{end}}
+</div>

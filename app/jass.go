@@ -47,12 +47,22 @@ func main() {
 	})
 
 	// Top row of options - shopping options
-	doc.QuerySelector("[name=opt-shop]").AddEventListener("click", false, func(evt dom.Event) {
+	doc.QuerySelector("[name=opt-fragrance]").AddEventListener("click", false, func(evt dom.Event) {
+		Session.SelectCat = "Fragrance"
+		Session.SelectCatID = 1
+		Session.Navigate("/shop")
+	})
+	doc.QuerySelector("[name=opt-skincare]").AddEventListener("click", false, func(evt dom.Event) {
+		Session.SelectCat = "Skincare"
+		Session.SelectCatID = 2
 		Session.Navigate("/shop")
 	})
 	doc.QuerySelector("[name=opt-merch]").AddEventListener("click", false, func(evt dom.Event) {
-		evt.PreventDefault()
-		js.Global.Get("location").Set("href", "https://shop.polymer-project.org/list/ladies_outerwear")
+		Session.SelectCat = "Merchandise"
+		Session.SelectCatID = 3
+		Session.Navigate("/shop")
+		// evt.PreventDefault()
+		// js.Global.Get("location").Set("href", "https://shop.polymer-project.org/list/ladies_outerwear")
 	})
 
 	// Bottom row of options - blog and other links
@@ -117,6 +127,9 @@ func ldTemplate(tmpl string, selector string, data interface{}) {
 	} else {
 		// print("load template", tmpl, "into", selector)
 		sTemplate := MustGetTemplate(tmpl)
-		sTemplate.ExecuteEl(el, data)
+		err := sTemplate.ExecuteEl(el, data)
+		if err != nil {
+			print("Template Error", err.Error())
+		}
 	}
 }

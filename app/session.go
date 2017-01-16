@@ -24,11 +24,21 @@ type GlobalSessionData struct {
 	Orientation          string
 	wasSubmobile         bool
 	Products             []shared.Product
+	Category             []shared.Category
 	Blogs                []shared.Blog
 	CartTotal            float64
 	CartItemCount        int
 	CartItems            []shared.Item
 	ScrollFunc           func(*js.Object)
+	SelectCat            string
+	SelectCatID          int
+}
+
+func (s *GlobalSessionData) CategoryOK(cat_id int) bool {
+	if s.SelectCatID == 0 {
+		return true
+	}
+	return s.SelectCatID == cat_id
 }
 
 func (s *GlobalSessionData) NextBlog(id int) int {
@@ -125,6 +135,8 @@ func (s *GlobalSessionData) Navigate(url string) {
 	s.Router.Navigate(url)
 	s.URL = url
 	s.RedrawOnResize = false
+
+	dom.GetWindow().Document().QuerySelector(".jass-footer").Class().Remove("hidden")
 }
 
 func (s *GlobalSessionData) Nav(url string) {

@@ -201,40 +201,77 @@ $jass-container-height: calc(100vh - 9rem)
 .green-base
 	border-bottom: .3rem solid $jass-green
 
+.jass-sale-cats
+	position: fixed
+	top: 9rem
+	z-index: 22
+	background: rgba(255, 255, 255, 0.78)
+	border-bottom: 1px solid $jass-green
+	div 	
+		display: flex
+		width: 100vw
+		justify-content: space-between
+		padding-left: 2rem
+		padding-right: 2rem
+		span 
+			flex: 0
+			font-size: 2.2rem
+			font-family: 'Josefin Sans',sans-serif
+			&.highlight
+				color: $jass-green-solid
+				font-weight: 800
+				// text-shadow: 1px 1px 2px black
+
 // Flexbx for items for sale
 .jass-sale-items
 	position: absolute
 	// background-color: $jass-green
 	background-color: white
 	color: black
-	top: 9rem
+	top: 12rem
 	display: flex
 	flex-wrap: wrap 
 	justify-content: space-around
 	align-items: stretch 
+	align-items: center
 	width: 100vw
 	padding: 1rem
 
 // individual item
 .jass-sale-item
-	flex-grow: 1
-	flex-shrink: 0
-	flex-basis: 100%
-	border: 1px solid black 
+	// flex-grow: 1
+	// flex-shrink: 0
+	// flex-basis: 100%
+	// border: 1px solid black 
+	flex: 0
 	border-radius: .3rem
-	font-family: 'Raleway', sans-serif
-	padding: 1rem
+	font-family: 'Josefin Sans', sans-serif
 	display: flex
 	flex-wrap: none
 	flex-direction: column
-	height: $jass-container-height
-	@media screen and (min-width: 560px)
-		flex-basis: calc((100vw - 8rem)/2)
-	@media screen and (min-width: 992px )
-		flex-basis: calc((100vw - 10rem)/3)
+	align-items: center
+	border: 1px solid white
+	padding: 1rem 4rem 2rem 4rem
+	// height: $jass-container-height
+	// @media screen and (min-width: 320px)
+	// 	flex-basis: calc((100vw - 8rem)/2)
+	// @media screen and (min-width: 560px)
+	// 	flex-basis: calc((100vw - 10rem)/3)
+	// @media screen and (min-width: 992px )
+	// 	flex-basis: calc((100vw - 12rem)/4)
+	img 
+		height: 33vh
+		object-fit: contain
+		max-height: 33vh
+		flex: 1
+	.sale-name
+		height: 7rem
+	.sale-price-small
+		height: 2.4rem
 
 	&:hover
-		border: 1px solid $jass-green-solid
+		border: 1px solid $jass-green
+		border-radius: 10px
 		.sale-image
 			-webkit-filter: saturate(2)
 			filter: saturate(2)
@@ -247,21 +284,32 @@ $jass-container-height: calc(100vh - 9rem)
 
 .sale-image
 	flex: 0 0
-	width: 100%
-	-webkit-filter: saturate(0)
-	filter: saturate(0)
-	transition: 1s
-	display: block
-	margin: auto
+	// width: 100%
+	// -webkit-filter: saturate(0)
+	// filter: saturate(0)
+	// transition: 1s
+	// display: block
+	// margin: auto
+	// margin-left: auto
+	// margin-right: auto
+	img 
+		max-height: 30vh
+		max-height: auto
+
+.sale-price-small
+	font-size: 1.8rem
+	color: #333
+	flex: 0
 
 .sale-price
 	// flex: 1
-	background-color: rgba(0, 22, 11, 0.8)
+	// background-color: rgba(0, 22, 11, 0.8)
+	background-color: rgb(99, 171, 115)
 	font-weight: 800
 	font-size: 3.2rem
 	color: white
-	-webkit-filter: saturate(0)
-	filter: saturate(0)
+	// -webkit-filter: saturate(0)
+	// filter: saturate(0)
 	display: flex
 	justify-content: flex-end 
 	flex-wrap: nowrap
@@ -271,8 +319,13 @@ $jass-container-height: calc(100vh - 9rem)
 
 	.add-me
 		flex: 1
-		color: transparent
-		transition: .3s
+		color: #eee
+		padding-left: 2rem
+		font-size: 2.8rem
+		i 	
+			color: transparent
+		// color: transparent
+		// transition: .3s
 
 	.the-price
 		text-align: right
@@ -281,15 +334,15 @@ $jass-container-height: calc(100vh - 9rem)
 
 .sale-name
 	flex: 0
-	background-color: rgba(206, 203, 203, 0.78)
+	// background-color: rgba(206, 203, 203, 0.78)
 	font-weight: 800
-	font-size: 2.8rem
+	font-size: 2.2rem
 	text-align: center
 	border-bottom: 3px solid $jass-green
 
 .sale-descr
-	flex: 1
-	background-color: rgba(206, 203, 203, 0.38)
+	// flex: 1
+	// background-color: rgba(206, 203, 203, 0.38)
 	font-weight: 200
 	font-size: 2rem
 
@@ -300,34 +353,11 @@ $jass-container-height: calc(100vh - 9rem)
 .jass-cart
 	height: $jass-container-height
 
-
-.jass-sale-items-old
-	position: absolute
-	background-color: rgba(73, 222, 48, 0.43)
-	background-color: white
-	top: 9rem
-	width: 100%
-	padding: 2rem
-
-	li 
-		list-style: none
-		list-style-type: none
-		display: inline
-		max-width: $jass-container-height
-		@media (orientation: landscape)
-			max-width: calc(50vw - 3rem)
-
-	img
-		max-width: calc(100vw - 4rem)
-		max-height: $jass-container-height
-		@media (orientation: portrait)
-			max-width: calc(50vw - 3rem)
-
 // Shopping cart control bar
 .jass-sales-bar
 	position: fixed
 	z-index: 66
-	top: 5rem
+	// top: 5rem
 	height: 4rem
 	width: 100%
 	background-color: black
