@@ -64,14 +64,27 @@ func showBlogItem(context *router.Context) {
 		jQuery(".blog-article").Call("scrollTop", 0)
 	})
 
+	doc.QuerySelector(".blog-article-name").AddEventListener("click", false, func(evt dom.Event) {
+		t := evt.Target()
+		c := t.Class()
+		if t.TagName() == "SPAN" {
+			c = t.ParentElement().Class()
+		}
+		if c.Contains("gotop") && !c.Contains("shrink1") {
+			print("bb")
+			Session.Navigate("/blog")
+		}
+
+	})
+
 	doc.QuerySelector(".blog-article").AddEventListener("click", false, func(evt dom.Event) {
 		evt.PreventDefault()
 		t := evt.Target()
-		// print("clikked on", t.TagName(), t.Class().String())
+		c := t.Class()
+		print("clikked on", t.TagName(), t.Class().String())
 		switch t.TagName() {
 		case "I":
 			// print("clicked on icon ... stay here")
-			c := t.Class()
 			if c.Contains("fa-chevron-right") {
 				// print("goto next blog")
 				if nextBlog != -1 {
@@ -85,9 +98,9 @@ func showBlogItem(context *router.Context) {
 				}
 			}
 
-		default:
+		case "DIV":
 			// print("clicked in general - go back")
-			if t.Class().Contains("jass-logo-small") {
+			if c.Contains("jass-logo-small") {
 				Session.Navigate("/blog")
 				return
 			}
