@@ -1,5 +1,11 @@
 <div class="blog-header"><i class="fa fa-angle-up"></i></div>
 <div class="blog-container">
+<div class="blog-item">
+<iframe width="1040" height="630" src="https://www.youtube.com/embed/Daoy9EUKWu8" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="blog-item">
+	<iframe width="1040" height="630" src="https://www.youtube.com/embed/GKNecMv9BdY" frameborder="0" allowfullscreen></iframe>
+</div>
 {{range $key,$value := .Blogs}}
 <div class="blog-item" name="blog-{{$value.ID}}" data-id="{{$value.ID}}">
 	<div class="blog-item-pic" name="blog-image-{{$value.ID}}" data-id="{{$value.ID}}"></div>

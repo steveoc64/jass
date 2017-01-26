@@ -2,12 +2,34 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 
 	"./shared"
+	"github.com/go-humble/locstor"
 	"github.com/go-humble/router"
 	"github.com/gopherjs/gopherjs/js"
 	"honnef.co/go/js/dom"
 )
+
+func getSessionID() {
+	uid, err := locstor.GetItem("uid")
+	if err == nil {
+		Session.UserID, err = strconv.Atoi(uid)
+		print("UID", Session.UserID)
+	}
+	sid, err := locstor.GetItem("sid")
+	if err == nil {
+		Session.SID, err = strconv.Atoi(sid)
+		print("SID", Session.SID)
+	}
+
+	if Session.SID == 0 {
+		GetJSON("/api/session", &Session.SID, func() {
+			print("Gen SID", Session.SID)
+			locstor.SetItem("sid", fmt.Sprintf("%d", Session.SID))
+		})
+	}
+}
 
 type GlobalSessionData struct {
 	UserID               int
@@ -15,6 +37,7 @@ type GlobalSessionData struct {
 	AppFn                map[string]router.Handler
 	Context              *router.Context
 	ID                   map[string]int
+	SID                  int
 	URL                  string
 	RedrawOnResize       bool
 	MobileSensitive      bool

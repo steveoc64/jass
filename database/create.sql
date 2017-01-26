@@ -1,3 +1,11 @@
+create table session (
+	id serial not null primary key,
+	date timestamptz not null default localtimestamp,
+	user_id int,
+	referrer text,
+	user_agent text
+);
+
 create table users (
 	id serial not null primary key,
 	name text not null default '',

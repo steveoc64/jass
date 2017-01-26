@@ -5,7 +5,10 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"strings"
 	"time"
+
+	"../shared"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -40,6 +43,7 @@ func main() {
 	e.GET("/api/products", getProducts)
 	e.GET("/api/category", getCategory)
 	e.GET("/api/blog", getBlogs)
+	e.GET("/api/session", getSession)
 
 	// Track specific connections from different services
 	e.GET("/blog", blogTracker)
@@ -99,4 +103,31 @@ func main() {
 	}
 	println("World of Jass Server All Done")
 
+}
+
+func getSession(c echo.Context) error {
+	print("GetSession")
+	req := c.Request()
+	realIP := req.Header["X-Forwarded-For"]
+	theIP := req.RemoteAddr
+	if len(realIP) > 0 {
+		theIP = realIP[0]
+	}
+	Agent := strings.Join(req.Header["User-Agent"], " ")
+	sess := shared.Session{
+		UserID:    0,
+		Referrer:  req.Referer(),
+		IP:        theIP,
+		UserAgent: Agent,
+	}
+	err := DB.InsertInto("session").
+		Whitelist("user_id", "referrer", "ip", "user_agent").
+		Record(sess).
+		Returning("id").
+		QueryScalar(&sess.ID)
+	if err != nil {
+		return c.JSON(http.StatusNotFound, "")
+	}
+
+	return c.JSON(http.StatusOK, sess.ID)
 }
